@@ -81,7 +81,7 @@ If you get stuck and need help, come to the office hours:
 
 - Commit and push your changes.
 
-## Making sure everything works
+## Making sure Python and Docker work
 
 
 > [!WARNING]
