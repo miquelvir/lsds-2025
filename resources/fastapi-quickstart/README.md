@@ -1,4 +1,4 @@
-# fasapi-quickstart
+# fastapi-quickstart
 
 This project has the basics to get started running FastAPI locally.
 It creates a single FastAPI service.
