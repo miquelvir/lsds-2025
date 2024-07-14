@@ -10,6 +10,10 @@ If you get stuck and need help, come to the office hours:
 - [DD/MM/YYYY HH:MM - HH:MM CET](meet.google.com/xxx-yyyy-zzz)
 - [DD/MM/YYYY HH:MM - HH:MM CET](meet.google.com/xxx-yyyy-zzz)
 
+## Choose your group
+
+- Fill in [this spreadsheet](todo) with your group members.
+
 ## Installation
 
 ### IDE

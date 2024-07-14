@@ -6,8 +6,6 @@ Welcome to the LSDS course at UPF. During this course, you will learn about dist
 
 # Deliverables
 
-- [DD/MM/YYYY - Choose your group](todo)
-
 - [DD/MM/YYYY - Developer setup](./setup/README.md)
 
 - [DD/MM/YYYY - SSHDFS lab](./sshdfs/README.md)
