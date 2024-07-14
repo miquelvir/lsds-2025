@@ -90,6 +90,7 @@ If you get stuck and need help, come to the office hours:
 - Run a Python server
 
 ```zsh
+cd resources
 cd fastapi-quickstart
 python3 -m venv venv
 source venv/bin/activate
@@ -130,6 +131,7 @@ $ curl -X GET http://127.0.0.1:8001/info | jq
 
 - Redeploy the service
 ```zsh
+cd resources
 cd fastapi-quickstart
 docker compose down
 docker compose up --build
