@@ -17,7 +17,8 @@ Welcome to the LSDS course at UPF. During this course, you will learn about dist
 
 # Additional resources
 
-- [How to run HDFS locally](./hdfs/README.md)
+- [How to run HDFS locally with Docker](./hdfs/README.md)
+- [How to run FastAPI locally with Docker](./fastapi-quickstart/README.md)
 
 
 # Group
