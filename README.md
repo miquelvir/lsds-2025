@@ -10,9 +10,6 @@ Welcome to the LSDS course at UPF. During this course, you will learn about dist
 
 - [DD/MM/YYYY - Developer setup](./setup/README.md)
 
-> [!CAUTION]
-> You are expected to complete all the steps in this guide BEFORE the first seminar or lab session takes place.
-
 - [DD/MM/YYYY - SSHDFS lab](./sshdfs/README.md)
 
 - [DD/MM/YYYY - Spark RDD lab](./sparkrdd/README.md)
