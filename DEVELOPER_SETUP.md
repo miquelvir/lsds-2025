@@ -65,7 +65,7 @@ If you get stuck and need help, come to the office hours:
 
 - Mark your fork as private. [Help](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility#changing-a-repositorys-visibility)
 
-- Share the repository with [all teachers](./../TEACHER_LIST.md). [Help](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository#inviting-a-collaborator-to-a-personal-repository)
+- Share the repository with [all teachers](./TEACHER_LIST.md). [Help](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository#inviting-a-collaborator-to-a-personal-repository)
 
 - Share the repository with the other two members of your group. [Help](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository#inviting-a-collaborator-to-a-personal-repository)
 
@@ -77,7 +77,7 @@ If you get stuck and need help, come to the office hours:
 - Clone the repository using Github Desktop. [Help](https://docs.github.com/en/desktop/adding-and-cloning-repositories/cloning-a-repository-from-github-to-github-desktop)
 
 
-- Fill in the [README](./../README.md) with the information about your group.
+- Fill in the [README](./README.md) with the information about your group.
 
 - Commit and push your changes.
 
@@ -126,7 +126,7 @@ $ curl -X GET http://127.0.0.1:8001/info | jq
 }
 ```
 
-- Try changing the code in [main.py](../fastapi-quickstart/app/main.py) so it returns `555` as the `studentId`.
+- Try changing the code in [main.py](./resources/fastapi-quickstart/app/main.py) so it returns `555` as the `studentId`.
 
 - Redeploy the service
 ```zsh
