@@ -8,17 +8,17 @@ Welcome to the LSDS course at UPF. During this course, you will learn about dist
 
 - [DD/MM/YYYY - Developer setup](./setup/README.md)
 
-- [DD/MM/YYYY - SSHDFS lab](./sshdfs/README.md)
+- [DD/MM/YYYY - SSHDFS lab](./labs/1-sshdfs/README.md)
 
-- [DD/MM/YYYY - Spark RDD lab](./sparkrdd/README.md)
+- [DD/MM/YYYY - Spark RDD lab](./labs/2-sparkrdd/README.md)
 
-- [DD/MM/YYYY - Streaming lab](./streaming/README.md)
+- [DD/MM/YYYY - Streaming lab](./labs/3-streaming/README.md)
 
 
 # Additional resources
 
-- [How to run HDFS locally with Docker](./hdfs/README.md)
-- [How to run FastAPI locally with Docker](./fastapi-quickstart/README.md)
+- [How to run HDFS locally with Docker](./resources/hadoop-quickstart/README.md)
+- [How to run FastAPI locally with Docker](./resources/fastapi-quickstart/README.md)
 
 
 # Group
