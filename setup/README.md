@@ -69,13 +69,12 @@ If you get stuck and need help, come to the office hours:
 
 - Share the repository with the other two members of your group. [Help](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository#inviting-a-collaborator-to-a-personal-repository)
 
+> [!WARNING]
+> If you use WSL, clone your repository to the following path: `\\wsl.localhost\Ubuntu\home\{username}\lsds`.
+> 
+> Everything inside `\\wsl.localhost` is the file system of your Linux subsystem.
+
 - Clone the repository using Github Desktop. [Help](https://docs.github.com/en/desktop/adding-and-cloning-repositories/cloning-a-repository-from-github-to-github-desktop)
-
-
-    > [!WARNING]
-    > If you use WSL, clone your repository to the following path: `\\wsl.localhost\Ubuntu\home\{username}\lsds`.
-    > 
-    > Everything inside `\\wsl.localhost` is the file system of your Linux subsystem.
 
 
 - Fill in the [README](./../README.md) with the information about your group.
