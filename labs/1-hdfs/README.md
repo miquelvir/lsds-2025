@@ -13,7 +13,7 @@ The goal of this lab is to build a distributed file storage system that allows t
 
 - [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks up to a maximum of 12 over 10.
 
-- [Design](#design). Read this section to understand the requirement and architecture of the system you must implement.
+- [Design](#design). Read this section to understand the requirements and architecture of the system you must implement.
     - [client](#client). How does SSHDFS client work?
     - [namenode](#namenode). How does SSHDFS namenode work?
     - [datanode](#datanode). How does SSHDFS datanode work?
