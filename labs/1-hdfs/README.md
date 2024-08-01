@@ -187,7 +187,7 @@ Test it works with curl and paste a screenshot.
 
 ---
 
-### [L1Q2] [10 marks] POST /files
+### [L1Q1] [10 marks] POST /files
 
 Implement the [POST /files](#post-files) endpoint. 
 
@@ -203,7 +203,7 @@ Test it works with curl and paste a screenshot. Verify the new file is also stor
 
 ---
 
-### [L1Q3] [10 marks] GET /files/{filename}
+### [L1Q2] [10 marks] GET /files/{filename}
 
 Implement the [GET /files/{filename}](#get-filesfilename) endpoint. 
 
@@ -215,7 +215,7 @@ Make sure you return a 404 if the file is not found in `files.json`.
 
 ---
 
-### [L1Q4] [5 marks] Deploying the namenode using docker-compose
+### [L1Q3] [5 marks] Deploying the namenode using docker-compose
 
 Docker compose allows us to easily build Docker and run services. Read the [Docker Compose Quickstart](https://docs.docker.com/compose/gettingstarted/).
 
@@ -284,7 +284,7 @@ Test you can download the cat image we uploaded before with curl: `curl -o downl
 
 ---
 
-### [L2Q1] [5 marks]. Deploying the datanode with docker compose
+### [L2Q2] [5 marks]. Deploying the datanode with docker compose
 
 Modify the `compose.yaml` file to also create 3 `datanodes` services at ports 8081, 8082 and 8083.
 
