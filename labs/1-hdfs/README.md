@@ -193,11 +193,11 @@ Implement the [POST /files](#post-files) endpoint.
 
 When a new file is created, you must return the number of blocks and the datanode where they need to be stored by the client:
 
-- To divide a file in blocks and assign them to `datanodes`, you must use a[modulo-based policy](#block-and-replica-placement)
+- [Read](https://python.land/data-processing/working-with-json#How_to_read_a_JSON_file_in_python) the [number of replicas, `datanodes` and block size from `config.json`](#namenode-filesystem).
 
-- You must  [read](https://python.land/data-processing/working-with-json#How_to_read_a_JSON_file_in_python) the number of replicas and block size from `config.json`.
+- Compute the number of blocks and assign them to `datanodes` using the [modulo-based policy](#block-and-replica-placement)
 
-- You must [write](https://python.land/data-processing/working-with-json#How_to_write_JSON_to_a_file_in_python) the metadata of the new file to `files.json` whenever a new file is created. 
+- [Write](https://python.land/data-processing/working-with-json#How_to_write_JSON_to_a_file_in_python) the [metadata of the new file to `files.json`](#namenode-filesystem) whenever a new file is created. 
 
 Test it works with curl and paste a screenshot. Verify the new file is also stored to `files.json` and paste a screenshot.
 
