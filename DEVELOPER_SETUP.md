@@ -31,9 +31,7 @@ If you get stuck and need help, come to the office hours:
 
 ### Operating System
 
-- If you use Windows, [install WSL](https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/guides/install-ubuntu-wsl2/).
-
-- If you use Windows, [change the default terminal in VSCode to WSL](https://stackoverflow.com/questions/44435697/change-the-default-terminal-in-visual-studio-code).
+- If you use Windows, [install WSL](https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/guides/install-ubuntu-wsl2/) and [change the default terminal in VSCode to WSL](https://stackoverflow.com/questions/44435697/change-the-default-terminal-in-visual-studio-code).
 
 ### AWS
 
@@ -88,6 +86,7 @@ If you get stuck and need help, come to the office hours:
 - Run a Python server
 
 ```zsh
+cd resources
 cd fastapi-quickstart
 python3 -m venv venv
 source venv/bin/activate
@@ -128,6 +127,7 @@ $ curl -X GET http://127.0.0.1:8001/info | jq
 
 - Redeploy the service
 ```zsh
+cd resources
 cd fastapi-quickstart
 docker compose down
 docker compose up --build
