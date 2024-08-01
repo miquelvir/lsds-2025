@@ -109,7 +109,7 @@ Create a folder `labs\1-hdfs\testserver1`. Inside the folder, follow the [Fastap
 
 **[2 marks] Implement a new endpoint of your API: `POST /sum`.** 
 
-The endpoint must receive a JSON object with two numbers and return the sum. [Help](https://fastapi.tiangolo.com/tutorial/body/)
+The endpoint must receive a [JSON object with two numbers in the body](https://fastapi.tiangolo.com/tutorial/body/) and return the sum.
 
 ```
 POST http://127.0.0.1:8000/sum
