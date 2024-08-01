@@ -129,6 +129,7 @@ compose.yaml
 ```
 
 **[10 marks] Implement the [POST /metrics](#post-metrics) endpoint**.
+
 **[20 marks] For every metric posted to /metrics, [publish it to the `metrics` Kafka topic](https://docs.confluent.io/kafka-clients/python/current/overview.html#initialization)**.
 
 > [!TIP]
