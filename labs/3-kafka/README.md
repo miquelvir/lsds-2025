@@ -28,9 +28,9 @@ We will call this system Super Simple Realtime Monitoring System (SSRMS).
     - [Lab 6: Building the alarms service](#lab-6-building-the-alarms-service) - TODO exercises (TODO marks)
 
 - [Design](#design). Read this section to understand the requirements and architecture of the system you must implement.
-    - [ingest service](#client). How does the ingest service work?
-    - [rules service](#namenode). How does the rules service work?
-    - [alarms service](#datanode). How does the alarms service work?
+    - [ingest service](#ingest-service). How does the ingest service work?
+    - [rules service](#rules-service). How does the rules service work?
+    - [alarms service](#alarms-service). How does the alarms service work?
 
 - [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks up to a maximum of 12 over 10.
 
