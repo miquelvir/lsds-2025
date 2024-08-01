@@ -47,6 +47,12 @@ Group number: `todo`
 - U-code: `todo`
 - NIA: `todo`
 
+## Member 3
+- Name: `todo`
+- Surnames: `todo`
+- Email: `todo`
+- U-code: `todo`
+- NIA: `todo`
 
 # Additional resources
 
