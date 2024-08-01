@@ -6,7 +6,7 @@ The goal of this lab is to build a distributed file storage system that allows t
 
 - [Grading](#grading). Where does the grade of this lab come from?
 - [Required exercises](#required-exercises). You must deliver all these exercises to be awarded a 10.
-    - [Seminar 1: Introduction to HDFS and APIs](#seminar-1-introduction-to-hdfs-services-and-apis) - 5 exercises (30 marks)
+    - [Seminar 1: Introduction to HDFS and APIs](#seminar-1-introduction-to-hdfs-services-and-apis) - 6 exercises (35 marks)
     - [Lab 1: Building the namenode](#lab-1-building-the-namenode) - 4 exercises (35 marks)
     - [Lab 2: Building the datanode](#lab-2-building-the-datanode) - 3 exercises (25 marks)
     - [Seminar 2: Building a Python client](#seminar-2-building-a-python-client) - 3 exercises (25 marks)
@@ -23,7 +23,7 @@ The goal of this lab is to build a distributed file storage system that allows t
 The grade for this lab is computed as:
 
 ```
-lab1_grade = delivered_marks / 115 * 10
+lab1_grade = delivered_marks / 120 * 10
 ```
 
 The final labs grade is computed as:
@@ -99,7 +99,24 @@ If plagiarism is detected, `labs_grade` is a 0.
 
 ---
 
-### [S1Q3] [5 marks] Build your first HTTP API
+### [S1Q3] [5 marks] Answer the following questions about Docker.
+
+> [!TIP]
+> Answer each question briefly (at most, 2 sentences per question).
+
+**[1 mark] Watch [Docker in 100 Seconds](https://www.youtube.com/watch?v=Gjnup-PuquQ). What is a Dockerfile?**
+
+**[1 mark] What is a Docker image?**
+
+**[1 mark] What is a Docker container?**
+
+**[1 mark] What is Docker compose?**
+
+**[1 mark] What is a Docker compose file?**
+
+---
+
+### [S1Q4] [5 marks] Build your first HTTP API
 
 Create a folder `labs\1-hdfs\testserver1`. Inside the folder, follow the [Fastapi quickstart](https://fastapi.tiangolo.com/#installation) tutorial to build a service with an HTTP API.
 
@@ -134,21 +151,15 @@ Response:
 
 ---
 
-### [S1Q4] [5 marks] Dockerizing a service
-
-Watch [Docker in 100 Seconds](https://www.youtube.com/watch?v=Gjnup-PuquQ).
-
-**[1 mark] What is a Dockerfile?**
-
-**[1 mark] What is a Docker image? And a Docker container?**
+### [S1Q5] [5 marks] Dockerizing a service
 
 Create a folder `labs\1-hdfs\testserver2`. Inside the folder, follow the [Fastapi in Containers - Docker](https://fastapi.tiangolo.com/deployment/docker/) tutorial.
 
-**[1 mark] Paste a screenshot where you test the API of your service running in Docker using `curl`.**
+**[2 mark] Paste a screenshot where you test the API of your service running in Docker using `curl`.**
 
 Go back to `labs\1-hdfs\testserver1`. Adapt it so it runs in Docker.
 
-**[2 marks] Paste a screenshot where you test the `sum` endpoint of your API running in Docker using `curl`.**
+**[3 mark] Paste a screenshot where you test the `sum` endpoint of your API running in Docker using `curl`.**
 
 ---
 
