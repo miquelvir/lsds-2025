@@ -8,10 +8,6 @@ If you get stuck and need help, come to the office hours:
 - [DD/MM/YYYY HH:MM - HH:MM CET](meet.google.com/xxx-yyyy-zzz)
 - [DD/MM/YYYY HH:MM - HH:MM CET](meet.google.com/xxx-yyyy-zzz)
 
-## Choose your group
-
-- Fill in [this spreadsheet](todo) with your group members.
-
 ## Installation
 
 ### IDE
@@ -72,8 +68,9 @@ If you get stuck and need help, come to the office hours:
 
 - Clone the repository using Github Desktop. [Help](https://docs.github.com/en/desktop/adding-and-cloning-repositories/cloning-a-repository-from-github-to-github-desktop)
 
-
 - Fill in the [README](./README.md) with the information about your group.
+
+- Fill in [this spreadsheet](todo) with your group members.
 
 - Commit and push your changes.
 
