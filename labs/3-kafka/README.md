@@ -23,9 +23,9 @@ We will call this system Super Simple Realtime Monitoring System (SSRMS).
 
 - [Grading](#grading). Where does the grade of this lab come from?
 - [Required exercises](#required-exercises). You must deliver all these exercises to be awarded a 10.
-    - [Seminar 5: Building the ingest service](#seminar-5-building-the-ingest-service) - TODO exercises (TODO marks)
-    - [Lab 5: Building the rules service](#lab-5-building-the-rules-service) - TODO exercises (TODO marks)
-    - [Lab 6: Building the alarms service](#lab-6-building-the-alarms-service) - TODO exercises (TODO marks)
+    - [Seminar 5: Building the ingest service](#seminar-5-building-the-ingest-service) - 6 exercises (60 marks)
+    - [Lab 5: Building the rules service](#lab-5-building-the-rules-service) - 3 exercises (45 marks)
+    - [Lab 6: Building the alarms service](#lab-6-building-the-alarms-service) - 5 exercises (55 marks)
 
 - [Design](#design). Read this section to understand the requirements and architecture of the system you must implement.
     - [ingest service](#ingest-service). How does the ingest service work?
@@ -488,6 +488,45 @@ curl -X POST {URL} -H 'Content-Type: application/json' -d '{"content": "Hello fr
 
 You can delivery the following exercises for additional marks in the labs grade (and/or if you are interested in learning more)
 
-### [ADQ0] [10 marks] Creating a proper client with click
+### [ADQ0] [5 marks] Improve the `alarms` service rule matching algorithm
 
----
+Instead of having a materialized view of `rule_id -> rule`, also materialize `metric_name -> rules` for faster O(1) access when processing metrics.
+
+
+### [ADQ1] [5 marks] Extend the `rules` service with support for updating rules
+
+Add a `PUT /rules/{id}` method to the `rules` API which allows updating an existing rule.
+
+
+### [ADQ2] [15 marks] Extend the `rules` service with support for getting rules
+
+Add a `GET /rules/{id}` and `GET /rules` methods to the `rules` API. You will need to add a consumer and a materialized view of rules in the `rules` service to support this usecase.
+
+### [ADQ3] [20 marks] Create a web client for the rules service
+
+Use the `rules` API to create a simple HTML + JS website that allows viewing, creating, updating and deleting rules.
+
+### [ADQ4] [10 marks] Measure how many metrics per second the `ingest` service can handle
+
+Measure how many metrics per second the `ingest` service can handle (i.e. load test it).
+
+### [ADQ5] [10 marks] Use the docker compose `deploy` attribute to horizontally scale services
+
+Instead of manually copying the services many times in the docker compose file to scale them horizontally, use the [deploy attribute](https://docs.docker.com/compose/compose-file/deploy/) to specify the number of replicas.
+
+### [ADQ6] [25 marks] Add tagging support
+
+Consider the usecase where we have many machines of type `convbelt`, and they all publish the same `fc.bcn1.convbelt.123.velocity` metric. Instead of publishing many metrics with different names depending on the fulfillment center and `convbelt` id, allow publishing metrics with tags. For example: `fc.convbelt.velocity` (tags: `fc:bcn1`, `convbelt:123`). Implement the necessary changes in `alarms`, `rules` and `ingest` services and APIs.
+
+### [ADQ7] [10 marks] Add rule operator support
+
+Add an additional attribute to `rules`: `operator`. The `operator` field can be `>` or `<`. Instead of always triggering alarms when the metric is above the threshold, these operators should allow triggering alarms when a metric is below a threshold. Implement the necessary changes in the `alarms` and `rules` services and APIs.
+
+### [ADQ8] [25 marks] Add cooldown support
+
+Add an additional attribute to `rules`: `cooldown_seconds`. Whenever a rule has sent an alarm notification to Discord, don't send any new alarms from that rule until `cooldown_seconds` have passed to avoid spamming the channel. Implement the necessary changes in the `alarms` and `rules` services and APIs.
+
+### [ADQ9] [20 marks] Add windowing support
+
+Add an additional attribute to `rules`: `type`. The `type` field can be `instantaneous` (default) or `window_average`. Instead of always triggering alarms when the metric is above/below the threshold, these operators should allow triggering alarms when the average in a `window_duration_seconds` window of the metric is above/below the threshold. Implement the necessary changes in the `alarms` and `rules` services and APIs.
+
