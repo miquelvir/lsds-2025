@@ -25,7 +25,7 @@ We will call this system Super Simple Realtime Monitoring System (SSRMS).
 - [Required exercises](#required-exercises). You must deliver all these exercises to be awarded a 10.
     - [Seminar 5: Building the ingest service](#seminar-5-building-the-ingest-service) - 6 exercises (60 marks)
     - [Lab 5: Building the rules service](#lab-5-building-the-rules-service) - 3 exercises (45 marks)
-    - [Lab 6: Building the alarms service](#lab-6-building-the-alarms-service) - 5 exercises (55 marks)
+    - [Lab 6: Building the alarms service](#lab-6-building-the-alarms-service) - 4 exercises (50 marks)
 
 - [Design](#design). Read this section to understand the requirements and architecture of the system you must implement.
     - [ingest service](#ingest-service). How does the ingest service work?
@@ -56,7 +56,7 @@ If plagiarism is detected, `labs_grade` is a 0.
 
 During this seminar session, you must build the `ingest` service as described in [ingest service](#ingest-service).
 
-### [S5Q0] [5 marks] Answer the following questions about Kafka.
+### [S5Q0] [7 marks] Answer the following questions about Kafka.
 
 > [!TIP]
 > Answer each question briefly (at most, 3 sentences per question).
@@ -71,9 +71,13 @@ During this seminar session, you must build the `ingest` service as described in
 
 **[1 mark] What is the upper boundary when horizontally scaling Kafka consumers for a single topic?**
 
+**[1 mark] Does each `alarms` service process only one metrics type or many?**
+
+**[1 mark] Can two metrics of the same type end up in two different `alarms` services?**
+
 ---
 
-### [S5Q1] [10 marks] Answer the following questions about Kafka compacted topics and materialized views.
+### [S5Q1] [8 marks] Answer the following questions about Kafka compacted topics and materialized views.
 
 > [!TIP]
 > Answer each question briefly (at most, 3 sentences per question).
@@ -82,9 +86,9 @@ During this seminar session, you must build the `ingest` service as described in
 
 **[1 mark] What is a materialized view? Why do we use compacted topics to create materialized views?**
 
-**[2 mark] If multiple horizontally scaled consumers want to each construct a materialized view of the full topic, must they be in the same or different consumer groups?**
+**[1 mark] If multiple horizontally scaled consumers want to each construct a materialized view of the full topic, must they be in the same or different consumer groups?**
 
-**[2 mark] If multiple horizontally scaled consumers want to each construct a materialized view of the full topic, what are the benefits of having more than 1 partition?**
+**[1 mark] If multiple horizontally scaled consumers want to each construct a materialized view of the full topic, what are the benefits of having more than 1 partition?**
 
 **[1 mark] What record represents a key deletion for a Materialzied View in a Kafka topic?**
 
@@ -261,20 +265,13 @@ Use a [Kafka consumer](https://docs.confluent.io/kafka-clients/python/current/ov
 
 When a rule is triggered, use the `discord_webhook_url` to [send an alarm message to Discord](#sending-messages-to-discord).
 
+---
 
 ### [L6Q3] [5 marks]. Deploying the alarms service with docker compose
 
 Modify the `compose.yaml` file to also create 3 `alarms` services at ports 7071, 7072 and 7073.
 
 Run `TODO` to start generating simulated metrics from the sources and manually test it works correctly.
-
-
-### [L6Q4] [5 marks]. Test the service and answer the following questions
-
-
-**[2 marks] Does each `alarms` service process only one metrics type or many?**
-
-**[3 marks] Can two metrics of the same type end up in two different `alarms` services?**
 
 ---
 
