@@ -11,7 +11,7 @@ The goal of this lab is to build a distributed file storage system that allows t
     - [Lab 2: Building the datanode](#lab-2-building-the-datanode) - 3 exercises (25 marks)
     - [Seminar 2: Building a Python client](#seminar-2-building-a-python-client) - 3 exercises (25 marks)
 
-- [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks.
+- [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks up to a maximum of 12 over 10.
 
 - [Design](#design). Read this section to understand the requirement and architecture of the system you must implement.
     - [client](#client). How does SSHDFS client work?
