@@ -181,7 +181,7 @@ Create a folder `labs\1-hdfs\namenode` with a basic FastAPI service that can be 
 ### [L1Q0] [10 marks] GET /datanodes
 
 
-Iplement the first endpoint of the `namenode` API: [GET /datanodes](#get-datanodes). Your code must [read](https://python.land/data-processing/working-with-json#How_to_read_a_JSON_file_in_python) the configured `datanodes` from the `config.json` file and return them.
+Implement the first endpoint of the `namenode` API: [GET /datanodes](#get-datanodes). Your code must [read](https://python.land/data-processing/working-with-json#How_to_read_a_JSON_file_in_python) the configured `datanodes` from the `config.json` file and return them.
 
 Test it works with curl and paste a screenshot.
 
