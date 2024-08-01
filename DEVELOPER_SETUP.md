@@ -2,8 +2,6 @@
 
 Follow this guide to set up your laptop with all the tools you need for the LSDS course.
 
-> [!CAUTION]
-> You are expected to complete all the steps in this guide BEFORE the first seminar or lab session takes place.
 
 ## Office hours
 If you get stuck and need help, come to the office hours:
