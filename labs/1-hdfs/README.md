@@ -11,19 +11,19 @@ The goal of this lab is to build a distributed file storage system that allows t
     - [Lab 2: Building the datanode](#lab-2-building-the-datanode) - 3 exercises (25 marks)
     - [Seminar 2: Building a Python client](#seminar-2-building-a-python-client) - 3 exercises (25 marks)
 
-- [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks up to a maximum of 12 over 10.
-
 - [Design](#design). Read this section to understand the requirements and architecture of the system you must implement.
     - [client](#client). How does SSHDFS client work?
     - [namenode](#namenode). How does SSHDFS namenode work?
     - [datanode](#datanode). How does SSHDFS datanode work?
+
+- [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks up to a maximum of 12 over 10.
 
 # Grading
 
 The grade for this lab is computed as:
 
 ```
-lab1_grade = delivered_marks / 120 * 10
+lab1_grade = delivered_marks / required_exercises_total_marks * 10
 ```
 
 The final labs grade is computed as:
@@ -118,7 +118,7 @@ If plagiarism is detected, `labs_grade` is a 0.
 
 ### [S1Q4] [5 marks] Build your first HTTP API
 
-Create a folder `labs\1-hdfs\testserver1`. Inside the folder, follow the [Fastapi quickstart](https://fastapi.tiangolo.com/#installation) tutorial to build a service with an HTTP API.
+Inside the folder [labs\1-hdfs\testserver1](./testserver1/), follow the [Fastapi quickstart](https://fastapi.tiangolo.com/#installation) tutorial to build a service with an HTTP API.
 
 **[1 mark] Paste a screenshot where you do a GET request to your service using the browser. Open `http://127.0.0.1:8000/items/512?q=lsds25`.**.
 
@@ -153,11 +153,11 @@ Response:
 
 ### [S1Q5] [5 marks] Dockerizing a service
 
-Create a folder `labs\1-hdfs\testserver2`. Inside the folder, follow the [Fastapi in Containers - Docker](https://fastapi.tiangolo.com/deployment/docker/) tutorial.
+Inside the folder [labs\1-hdfs\testserver2](./testserver2/), follow the [Fastapi in Containers - Docker](https://fastapi.tiangolo.com/deployment/docker/) tutorial.
 
 **[2 mark] Paste a screenshot where you test the API of your service running in Docker using `curl`.**
 
-Go back to `labs\1-hdfs\testserver1`. Adapt it so it runs in Docker.
+Go back to [labs\1-hdfs\testserver1](./testserver1/). Adapt it so it runs in Docker.
 
 **[3 mark] Paste a screenshot where you test the `sum` endpoint of your API running in Docker using `curl`.**
 
@@ -167,7 +167,7 @@ Go back to `labs\1-hdfs\testserver1`. Adapt it so it runs in Docker.
 
 During this lab session, you must build the `namenode` service as described in [namenode](#namenode).
 
-Create a folder `labs\1-hdfs\namenode` with a basic FastAPI service that can be dockerized like `testserver2`. In the `config.json` file, write a [JSON object with 3 data nodes](#namenode-filesystem).
+Create a basic FastAPI service in [labs\1-hdfs\namenode](./namenode/) that can be dockerized like [labs\1-hdfs\testserver2](./testserver2/). In the `config.json` file, write a [JSON object with 3 data nodes](#namenode-filesystem).
 
 ```
 /namenode
@@ -240,7 +240,7 @@ Also, paste a screenshot of the content of the `files.json` file using the `File
 
 During this lab session, you must build the `datanode` service as described in [datanode](#datanode).
 
-Create a folder `labs\1-hdfs\datanode` with a basic FastAPI service that can be dockerized like the `namenode`.
+Create a basic FastAPI service in [labs\1-hdfs\datanode](./datanode/) that can be dockerized like the [labs\1-hdfs\namenode](./namenode/).
 
 ```
 /namenode
@@ -358,106 +358,6 @@ Run the `upload.py` and `download.py` scripts. Paste a screenshot of how you can
 
 ---
 
-# Additional exercises
-
-You can delivery the following exercises for additional marks in the labs grade (and/or if you are interested in learning more)
-
-### [ADQ0] [10 marks] Creating a proper client with click
-
-Use the [click](https://click.palletsprojects.com/en/8.1.x/) library to create a unified client with different commands for: `upload`, `download` and `info`.
-
----
-
-### [ADQ1] [10 marks] Writing one automated test
-
-Use [pytest](https://docs.pytest.org/en/8.2.x/) to create one automated test that checks we can upload and download files from SSHDFS. Compare the checksums of the file to verify the downloaded file is intact.
-
----
-
-### [ADQ2] [20 marks] Reporting block status to namenode
-
-Use [rocketry](https://rocketry.readthedocs.io/en/stable/cookbook/fastapi.html) to report the blocks that each `datanode` has every 30 seconds to the `namenode`:
-- Add an endpoint in the API of the `namenode` that allows removing a file.
-- Add an endpoint in the API of the `namenode` to receive the block reports.
-- The `namenode` must answer the request with any blocks which should be removed (if the file has been removed and is no longer in `files.json`) or added (if the block is in `files.json` but the datanode does not have it).
-- The `datanode` should then remove all blocks that have been indicated for removal by the `namenode`.
-- Also, the `datanode` should then copy all blocks that have been indicated for addition by the `namenode` from another datanode that has a replica.
-
----
-
-### [ADQ3] [10 marks] Implement an asyncronous replication strategy
-
-_Depends on: ADQ2_
-
-Instead of having the client PUT each replica to each `datanode` one by one, PUT it only to the first replica. Then, when the `namenode` answers a block report with a missing block, each `namenode` can fetch it from the first replica.
-
----
-
-### [ADQ4] [20 marks] Analyzing parameters
-
-Compare how different replication factors impact upload speed. Analyze the impact of ADQ3.
-
-Compare how different replication factors impact download speed with many download requests. What if the client chooses a random replica (instead of the first one)?
-
-Use [matplotlib](https://matplotlib.org/) to plot the results.
-
----
-
-### [ADQ5] [10 marks] Detecting corrupted files
-
-_Depends on: ADQ2_
-
-Store the block hash next to each block in the `datanode` file system. Every 30 seconds, compute the hash of existing blocks to check if any of the blocks have been corrupted or modified. When a block hash does not match, report it as missing in the block report and retrieve it from a replica in another `datanode` provided in the `namenode` response.
-
----
-
-### [ADQ6] [5 marks] Discuss the namenode implementation
-
-Describe the main issues with the proposed `namenode` implementation and suggest improvements.
-
----
-
-### [ADQ7] [5 marks] Migrate to Docker volumes
-
-Persistent data, such as the `storage` folder in the `datanodes`, should use [Docker volumes](https://docs.docker.com/storage/volumes/). This allows replacing or restarting a `datanode` without loosing the stored data.
-
-Modify the Docker compose file to [use volumes for the `storage` folder](https://docs.docker.com/compose/compose-file/07-volumes/) of `datanodes`. 
-
-Modify the Docker compose file to [use volumes for the `files.json` file](https://docs.docker.com/compose/compose-file/07-volumes/) of the `namenode`.
-
----
-
-### [ADQ8] [5 marks] Introduce a datanode id
-
-Update `config.json` with an `id` field for each `datanode`. The id must be a [uuid4](https://www.uuidgenerator.net/). Then, in `files.json`, store only the id of the `datanode` for each replica, instead of repeating the `host` and `port` over and over. Finally, adapt the `namenode` implementation so the API continues to work without changes.
-
----
-
-### [ADQ9] [10 marks] Design and implement a smarter block and replica placement strategy
-
-The simple block placement strategy we use (always start with the first `datanode` and assign using modulo) can lead to unbalanced `datanodes`.
-
-Design a block (and replica) placement strategy that considers how many blocks each `datanode` already has, such that blocks are distributed uniformly. Explain and implement the improved placement strategy in `namenode`.
-
----
-
-### [ADQ10] [5 marks] Extend the client to check for file integrity [1 mark]
-
-Extend the `upload.py` client to also send the hash of the file. Then, store the file hash in the `files.json` and expose it in the `namenode` API. Finally, when the `download.py` client retrieves all the blocks and reconstructs the file, check that the hash matches the expected one. If the hash does not match (e.g. a block was corrupted), print an error.
-
----
-
-### [ADQ11] [20 marks] Implement a mechanism for AuthN
-
-Describe the main problems regarding the (lack of) AuthN in SSHDFS. Implement a JWT-based mechanism that only allows clients with a valid token to create files, upload and download files.
-
----
-
-### [ADQ12] [20 marks] Implement a mechanism for AuthZ
-
-_Depends on: ADQ11_
-
-Burn a role into the JWT payloads and only allow clients to download files that their role has access to. When uploading a file, the client can set the role needed to view that file.
 
 # Design
 
@@ -468,9 +368,9 @@ Burn a role into the JWT payloads and only allow clients to download files that 
 > SSHDFS is a simplified version of HDFS. Read and study [The Hadoop Distributed File System paper](https://ieeexplore.ieee.org/document/5496972) first to make sure you have a good understanding of the system.
 
 SSHDFS is composed of 2 services and 1 client:
-- The **client** allows the user to upload and download files from SSHDFS.
-- The **datanode** service stores blocks.
-- The **namenode** service stores which blocks compose a file and which `datanode` has each block.
+- The [**client**](#client) allows the user to upload and download files from SSHDFS.
+- The [**datanode** service](#datanode) stores blocks.
+- The [**namenode** service](#namenode) stores which blocks compose a file and which `datanode` has each block.
 
 The following diagram represents the dependencies in the system. For example, `client --> datanode` indicates that `client` depends on `datanode` (`client` uses the API of `datanode`).
 
@@ -479,6 +379,8 @@ graph TD;
     client-->datanode/s;
     datanode/s-->namenode;
     client-->namenode;
+
+    style client stroke:#f66,stroke-width:2px,stroke-dasharray: 5 5
 ```
 
 ### client
@@ -806,3 +708,104 @@ GETting a block from `/files/{filename}/blocks/{block_number}/content` downloads
 
 For example, to download the block `0` of a file named `myfile.jpg` from the `datanode` with address `localhost:8081`, the `client` must send a request to `GET http://localhost:8081/files/myfile.jpg/blocks/0/content`.
 
+
+# Additional exercises
+
+You can delivery the following exercises for additional marks in the labs grade (and/or if you are interested in learning more)
+
+### [ADQ0] [10 marks] Build a unified client with click
+
+Use the [click](https://click.palletsprojects.com/en/8.1.x/) library to create a unified client with different commands for: `upload`, `download` and `info`.
+
+---
+
+### [ADQ1] [10 marks] Writing one automated test
+
+Use [pytest](https://docs.pytest.org/en/8.2.x/) to create one automated test that checks we can upload and download files from SSHDFS. Compare the checksums of the file to verify the downloaded file is intact.
+
+---
+
+### [ADQ2] [20 marks] Reporting block status to namenode
+
+Use [rocketry](https://rocketry.readthedocs.io/en/stable/cookbook/fastapi.html) to report the blocks that each `datanode` has every 30 seconds to the `namenode`:
+- Add an endpoint in the API of the `namenode` that allows removing a file.
+- Add an endpoint in the API of the `namenode` to receive the block reports.
+- The `namenode` must answer the request with any blocks which should be removed (if the file has been removed and is no longer in `files.json`) or added (if the block is in `files.json` but the datanode does not have it).
+- The `datanode` should then remove all blocks that have been indicated for removal by the `namenode`.
+- Also, the `datanode` should then copy all blocks that have been indicated for addition by the `namenode` from another datanode that has a replica.
+
+---
+
+### [ADQ3] [10 marks] Implement an asyncronous replication strategy
+
+_Depends on: ADQ2_
+
+Instead of having the client PUT each replica to each `datanode` one by one, PUT it only to the first replica. Then, when the `namenode` answers a block report with a missing block, each `namenode` can fetch it from the first replica.
+
+---
+
+### [ADQ4] [20 marks] Analyzing parameters
+
+Compare how different replication factors impact upload speed. Analyze the impact of ADQ3.
+
+Compare how different replication factors impact download speed with many download requests. What if the client chooses a random replica (instead of the first one)?
+
+Use [matplotlib](https://matplotlib.org/) to plot the results.
+
+---
+
+### [ADQ5] [10 marks] Detecting corrupted files
+
+_Depends on: ADQ2_
+
+Store the block hash next to each block in the `datanode` file system. Every 30 seconds, compute the hash of existing blocks to check if any of the blocks have been corrupted or modified. When a block hash does not match, report it as missing in the block report and retrieve it from a replica in another `datanode` provided in the `namenode` response.
+
+---
+
+### [ADQ6] [5 marks] Discuss the namenode implementation
+
+Describe the main issues with the proposed `namenode` implementation and suggest improvements.
+
+---
+
+### [ADQ7] [5 marks] Migrate to Docker volumes
+
+Persistent data, such as the `storage` folder in the `datanodes`, should use [Docker volumes](https://docs.docker.com/storage/volumes/). This allows replacing or restarting a `datanode` without loosing the stored data.
+
+Modify the Docker compose file to [use volumes for the `storage` folder](https://docs.docker.com/compose/compose-file/07-volumes/) of `datanodes`. 
+
+Modify the Docker compose file to [use volumes for the `files.json` file](https://docs.docker.com/compose/compose-file/07-volumes/) of the `namenode`.
+
+---
+
+### [ADQ8] [5 marks] Introduce a datanode id
+
+Update `config.json` with an `id` field for each `datanode`. The id must be a [uuid4](https://www.uuidgenerator.net/). Then, in `files.json`, store only the id of the `datanode` for each replica, instead of repeating the `host` and `port` over and over. Finally, adapt the `namenode` implementation so the API continues to work without changes.
+
+---
+
+### [ADQ9] [10 marks] Design and implement a smarter block and replica placement strategy
+
+The simple block placement strategy we use (always start with the first `datanode` and assign using modulo) can lead to unbalanced `datanodes`.
+
+Design a block (and replica) placement strategy that considers how many blocks each `datanode` already has, such that blocks are distributed uniformly. Explain and implement the improved placement strategy in `namenode`.
+
+---
+
+### [ADQ10] [5 marks] Extend the client to check for file integrity [1 mark]
+
+Extend the `upload.py` client to also send the hash of the file. Then, store the file hash in the `files.json` and expose it in the `namenode` API. Finally, when the `download.py` client retrieves all the blocks and reconstructs the file, check that the hash matches the expected one. If the hash does not match (e.g. a block was corrupted), print an error.
+
+---
+
+### [ADQ11] [20 marks] Implement a mechanism for AuthN
+
+Describe the main problems regarding the (lack of) AuthN in SSHDFS. Implement a JWT-based mechanism that only allows clients with a valid token to create files, upload and download files.
+
+---
+
+### [ADQ12] [20 marks] Implement a mechanism for AuthZ
+
+_Depends on: ADQ11_
+
+Burn a role into the JWT payloads and only allow clients to download files that their role has access to. When uploading a file, the client can set the role needed to view that file.
