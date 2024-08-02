@@ -73,7 +73,7 @@ If you get stuck and need help, come to the office hours:
 
 - Fill in the [README](./README.md) with the information about your group.
 
-- Fill in [this spreadsheet](todo) with your group members.
+- Fill in [this spreadsheet](https://docs.google.com/spreadsheets/d/1dZ6m6r7b2M4QpjbJlqoQ2XpHhlhRuUGJauw2goXzXto/edit?usp=sharing) with your group members.
 
 - Commit and push your changes.
 
