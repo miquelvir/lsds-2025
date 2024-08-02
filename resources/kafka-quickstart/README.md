@@ -1,8 +1,8 @@
 # kafka samples
 
 This folder contains Python code samples for common Kafka usecases:
-- [consuming.py](./consuming.py): consuming JSON records from a topic
-- [producing.py](./producing.py): producing JSON records to a topic
+- [consumer.py](./consumer.py): consuming JSON records from a topic
+- [producer.py](./producer.py): producing JSON records to a topic
 - [materialized_view.py](./materialized_view.py): creating a materialized view from JSON records from a topic
 
 ## Installing the samples
