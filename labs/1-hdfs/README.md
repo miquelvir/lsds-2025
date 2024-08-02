@@ -377,7 +377,6 @@ The following diagram represents the dependencies in the system. For example, `c
 ```mermaid
 graph TD;
     client-->datanode/s;
-    datanode/s-->namenode;
     client-->namenode;
 
     style client stroke:#f66,stroke-width:2px,stroke-dasharray: 5 5
