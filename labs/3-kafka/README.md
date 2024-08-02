@@ -380,18 +380,7 @@ In order for the `clients` to create or delete `rules` to trigger alarms, the `r
 
 #### POST /rules
 
-The `clients` can create a new rule through this endpoint. The `rules` service takes each new rule and publishes it to the `rules` Kafka topic. The key in the Kafka topic must be the rule id, and the value the [full rule as a JSON string](https://pythonexamples.org/python-dict-to-json/). For example:
-
-```
-dc0d8a4c-46ea-4667-b6e9-eb7bf033fda9" -> {
-    "id": "dc0d8a4c-46ea-4667-b6e9-eb7bf033fda9",
-    "metric_name": "fc.bcn1.packages.received",
-    "threshold": 500,
-    "discord_webhook_url": "https://discordapp.com/api/webhooks/15434354352132/hfaslkdfhjsahldkf_02340lasdhf_fksdlf"
-}
-```
-
-For example, the `clients` can create a rule to send a Discord message when `fc.bcn1.packages.received` is higher than 500 in the `rules` service with address `localhost:9090` as follows:
+The `clients` can create a new rule through this endpoint. For example, the `clients` can create a rule to send a Discord message when `fc.bcn1.packages.received` is higher than 500 in the `rules` service with address `localhost:9090` as follows:
 
 ```
 POST http://localhost:9090/rules
@@ -407,6 +396,21 @@ Body:
 ```
 
 Response:
+```json
+{
+    "id": "dc0d8a4c-46ea-4667-b6e9-eb7bf033fda9",
+    "metric_name": "fc.bcn1.packages.received",
+    "threshold": 500,
+    "discord_webhook_url": "https://discordapp.com/api/webhooks/15434354352132/hfaslkdfhjsahldkf_02340lasdhf_fksdlf"
+}
+```
+
+The `rules` service takes each new rule and publishes it to the `rules` Kafka topic. The key in the Kafka topic must be the rule id, and the value the [full rule as a JSON string](https://pythonexamples.org/python-dict-to-json/). For example:
+
+```
+dc0d8a4c-46ea-4667-b6e9-eb7bf033fda9
+```
+
 ```json
 {
     "id": "dc0d8a4c-46ea-4667-b6e9-eb7bf033fda9",
