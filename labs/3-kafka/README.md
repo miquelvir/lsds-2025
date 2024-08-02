@@ -9,7 +9,7 @@ The operation engineers at Nozama have been facing many incidents costing the co
 - The time to package delivery is too high when more than 50k orders are received in an hour.
 - Workers performance is much worse when the fulfillment center temperature is above 28ºC.
 
-Seeing the amount of issues that could be prevented by monitoring and being notified before things get worse, the engineers at Nozama have decided to start adding many monitoring (sensors, termometers, counters, ...) to many machines and processes.
+Seeing the amount of issues that could be prevented by monitoring and being notified before things get worse, the engineers at Nozama have decided to start adding monitoring (sensors, termometers, counters, ...) to many machines and processes.
 
 They need you to build a realtime monitoring system such that:
 - the system **ingests all the metrics in near-realtime**. For example: `fc.bcn1.packages.received` is the name of a metric they publish into the system with the number of packages received in the `bcn1` fulfilment center. 
