@@ -51,7 +51,12 @@ If you get stuck and need help, come to the office hours:
 - If you don't, [install Python](https://www.python.org/downloads/)
 
 
-## Creating your repository
+## Creating your group's repository
+
+> [!NOTE]
+> All (3) members of your group must be from the same seminar.
+
+- Fill in [this spreadsheet](https://docs.google.com/spreadsheets/d/1dZ6m6r7b2M4QpjbJlqoQ2XpHhlhRuUGJauw2goXzXto/edit?usp=sharing) with your group members.
 
 - Fork this repository to create a copy with name `lsds-25-{groupnumber}`. [Help](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo#forking-a-repository)
 
@@ -68,12 +73,7 @@ If you get stuck and need help, come to the office hours:
 
 - Clone the repository using Github Desktop. [Help](https://docs.github.com/en/desktop/adding-and-cloning-repositories/cloning-a-repository-from-github-to-github-desktop)
 
-> [!NOTE]
-> All (3) members of your group must be from the same seminar.
-
 - Fill in the [README](./README.md) with the information about your group.
-
-- Fill in [this spreadsheet](https://docs.google.com/spreadsheets/d/1dZ6m6r7b2M4QpjbJlqoQ2XpHhlhRuUGJauw2goXzXto/edit?usp=sharing) with your group members.
 
 - Commit and push your changes.
 
