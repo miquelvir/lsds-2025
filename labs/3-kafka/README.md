@@ -13,8 +13,8 @@ Seeing the amount of issues that could be prevented by monitoring and being noti
 
 They need you to build a realtime monitoring system such that:
 - the system **ingests all the metrics in near-realtime**. For example: `fc.bcn1.packages.received` is the name of a metric they publish into the system with the number of packages received in the `bcn1` fulfilment center. 
-- allow operations engineers to **create and update alarm rules**. For example: trigger an alarm when `fc.bcn1.packages.received` is above `1000`.
-- process all the ingested metrics and **trigger any alarms in real-time according to the alarm rules** 
+- allow operations engineers to **create and delete rules**. For example: trigger an alarm when `fc.bcn1.packages.received` is above `1000`.
+- process all the ingested metrics and **trigger alarms in real-time according to the rules** 
 - **send notifications when an alarm is triggered** to a Discord channel 
 
 We will call this system Super Simple Realtime Monitoring System (SSRMS).
