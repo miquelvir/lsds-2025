@@ -68,6 +68,9 @@ If you get stuck and need help, come to the office hours:
 
 - Clone the repository using Github Desktop. [Help](https://docs.github.com/en/desktop/adding-and-cloning-repositories/cloning-a-repository-from-github-to-github-desktop)
 
+> [!NOTE]
+> All (3) members of your group must be from the same seminar.
+
 - Fill in the [README](./README.md) with the information about your group.
 
 - Fill in [this spreadsheet](todo) with your group members.
