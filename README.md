@@ -58,3 +58,4 @@ Group number: `todo`
 
 - [How to run HDFS locally with Docker](./resources/hadoop-quickstart/README.md)
 - [How to run FastAPI locally with Docker](./resources/fastapi-quickstart/README.md)
+- [How to run Kafka locally with Docker and use the Kafka client](./resources/kafka-quickstart/README.md)

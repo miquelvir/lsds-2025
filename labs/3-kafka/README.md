@@ -137,7 +137,7 @@ compose.yaml
 **[20 marks] For every metric posted to /metrics, [publish it to the `metrics` Kafka topic](https://docs.confluent.io/kafka-clients/python/current/overview.html#initialization)**.
 
 > [!TIP]
-> You will need to [install the `confluent-kafka` package](https://docs.confluent.io/kafka-clients/python/current/overview.html#python-installation) and add it to the requirements.txt file.
+> Take a look at [kafka-quickstart](./../../resources/kafka-quickstart/) for a sample.
 
 You can use the `kafka-console-consumer` to see the contents of the topic in realtime:
 
@@ -197,6 +197,9 @@ Implement the first endpoint of the `rules` API: [POST /rules](#post-rules).
 
 
 **[10 marks] For every created rule, [publish it to the `rules` Kafka topic](https://docs.confluent.io/kafka-clients/python/current/overview.html#initialization)**.
+
+> [!TIP]
+> Take a look at [kafka-quickstart](./../../resources/kafka-quickstart/) for a sample.
 
 Paste a screenshot of how you use `curl` to POST a rule it is published to the Kafka topic (using the `kafka-console-consumer`). 
 
