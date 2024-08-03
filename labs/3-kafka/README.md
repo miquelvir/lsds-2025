@@ -1,20 +1,18 @@
 # Building a realtime monitoring system
 
-Consider a package delivery company called Nozama that has huge fulfillment centers around the world. Each fulfilment center receives millions of packages every day, stores them and sends them to customers when they buy an item. 
+Consider a company called Nozama that has huge factories around the world. Each factory receives millions of packages every day, stores them and sends them to customers when they buy an item. 
 
-The operation engineers at Nozama have been facing many incidents costing the company huge amounts of money:
-- Conveyor belts usualy get stuck when they go above 10m/s.
-- Automatic packaging machines malfunction when the internal temperature is above 35ºC.
-- Too many packages accumulate at the entrance when more than 100k packages arrive in an hour.
-- The time to package delivery is too high when more than 50k orders are received in an hour.
-- Workers performance is much worse when the fulfillment center temperature is above 28ºC.
+The operation engineers at Nozama have been facing many incidents costing the company huge amounts of money. Seeing the amount of issues that could be prevented by monitoring and being notified in realtime, the engineers at Nozama have decided to start adding monitoring (sensors, termometers, counters, ...) to many machines and processes. For example:
+- Temperature of machines
+- Conveyor belt speeds
+- Number of packages received
+- Floor temperature
+- ...
 
-Seeing the amount of issues that could be prevented by monitoring and being notified before things get worse, the engineers at Nozama have decided to start adding monitoring (sensors, termometers, counters, ...) to many machines and processes.
-
-They need you to build a realtime monitoring system such that:
-- the system **ingests all the metrics in near-realtime**. For example: `fc.bcn1.packages.received` is the name of a metric they publish into the system with the number of packages received in the `bcn1` fulfilment center. 
-- allow operations engineers to **create and delete rules**. For example: trigger an alarm when `fc.bcn1.packages.received` is above `1000`.
-- **send alarms in real-time** to a Discord channel when the metric value is higher than the rule threshold
+They need you to build a realtime monitoring system that:
+- **reads all the metrics from the sources in realtime** 
+- allow operations engineers to **create and delete rules**. For example: trigger an alarm when `floor-temperature` is above `30`.
+- **send alarms in real-time** to a Discord channel when any rule is triggered . For example: send a Discord message when `floor-temperature` is above `30`.
 
 We will call this system Super Simple Realtime Monitoring System (SSRMS). You can check out the [SSRMS demo video](https://www.youtube.com/watch?v=yuPLcAdw5SQ) to better understand how your system must work when you finish the lab.
 
@@ -96,7 +94,7 @@ During this seminar session, you must create scripts that simulate the devices p
 
 ### [S1Q2] [5 marks] Create Kafka topics
 
-The [compose.kafka.yaml](./compose.kafka.yaml) file has a full Kafka deployment with 3 brokers. 
+The [compose.kafka.yaml](./compose.kafka.yaml) file has a full Kafka deployment with 1 broker. 
 
 Start the Kafka cluster with `docker compose -f compose.kafka.yaml up`.
 
@@ -440,7 +438,7 @@ A rule is defined as the `discord_webhook_url` where alarms must be sent when th
 ```json
 {
     "id": "dc0d8a4c-46ea-4667-b6e9-eb7bf033fda9",
-    "metric_name": "fc.bcn1.packages.received",
+    "metric_name": "packages-received",
     "threshold": 500,
     "discord_webhook_url": "https://discordapp.com/api/webhooks/15434354352132/hfaslkdfhjsahldkf_02340lasdhf_fksdlf"
 }
@@ -454,7 +452,7 @@ In order for the `clients` to create or delete `rules` to trigger alarms, the `r
 
 The `clients` can create a new rule through this endpoint. The `rules` service takes each new rule and publishes it to the `rules` Kafka topic. The key in the Kafka topic must be the rule id, and the value the [full rule as a JSON string](https://pythonexamples.org/python-dict-to-json/). 
 
-For example, the `clients` can create a rule to send a Discord message when `fc.bcn1.packages.received` is higher than 500 in the `rules` service with address `localhost:9090` as follows:
+For example, the `clients` can create a rule to send a Discord message when `packages-received` is higher than 500 in the `rules` service with address `localhost:9090` as follows:
 
 ```
 POST http://localhost:9090/rules
@@ -463,7 +461,7 @@ POST http://localhost:9090/rules
 Body:
 ```json
 {
-    "metric_name": "fc.bcn1.packages.received",
+    "metric_name": "packages-received",
     "threshold": 500,
     "discord_webhook_url": "https://discordapp.com/api/webhooks/15434354352132/hfaslkdfhjsahldkf_02340lasdhf_fksdlf"
 }
@@ -473,7 +471,7 @@ Response:
 ```json
 {
     "id": "dc0d8a4c-46ea-4667-b6e9-eb7bf033fda9",
-    "metric_name": "fc.bcn1.packages.received",
+    "metric_name": "packages-received",
     "threshold": 500,
     "discord_webhook_url": "https://discordapp.com/api/webhooks/15434354352132/hfaslkdfhjsahldkf_02340lasdhf_fksdlf"
 }
@@ -490,7 +488,7 @@ Value:
 ```
 {
     "id": "dc0d8a4c-46ea-4667-b6e9-eb7bf033fda9",
-    "metric_name": "fc.bcn1.packages.received",
+    "metric_name": "packages-received",
     "threshold": 500,
     "discord_webhook_url": "https://discordapp.com/api/webhooks/15434354352132/hfaslkdfhjsahldkf_02340lasdhf_fksdlf"
 }
@@ -663,7 +661,7 @@ Instead of manually copying the services many times in the docker compose file t
 
 ### [ADQ6] [25 marks] Add tagging support
 
-Consider the usecase where we have many machines of type `convbelt`, and they all publish the same `fc.bcn1.convbelt.123.velocity` metric. Instead of publishing many metrics with different names depending on the fulfillment center and `convbelt` id, allow publishing metrics with tags. For example: `fc.convbelt.velocity` (tags: `fc:bcn1`, `convbelt:123`). Implement the necessary changes in `alarms`, `rules` and `ingest` services and APIs.
+Consider the usecase where we have many machines of type `conveyorbelt`, and they all publish the same `conveyorbelt-velocity-12354` metric. Instead of publishing many metrics with different names (`conveyorbelt-velocity-12354`, `conveyorbelt-velocity-12355`, `conveyorbelt-velocity-12356`, ...) depending on the machine id, allow publishing metrics with tags. This will allow a single rule to be created for all metrics of the same type, regardless of the source. For example: `conveyorbelt-velocity` (tags: `machine_id:12354`). Implement the necessary changes in `alarms`, `rules` and `ingest` services and APIs.
 
 ### [ADQ7] [10 marks] Add rule operator support
 
