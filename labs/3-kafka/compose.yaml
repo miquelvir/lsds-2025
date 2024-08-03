@@ -1,2 +1,1 @@
-include:
-  - compose.kafka.yaml
+name: lsds-kafka-lab

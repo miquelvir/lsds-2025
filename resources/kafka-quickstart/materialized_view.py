@@ -31,13 +31,21 @@ try:
                 raise ValueError(msg.error())
 
         key = msg.key().decode()
-        value = msg.value().decode()
-        value_dict = json.loads(value)
-        materialized_view[key] = value_dict
+        value = msg.value()
 
+        if value is None:
+            # delete
+            materialized_view.pop(key)
+        else:
+            # create
+            value_dict = json.loads(value.decode())
+            materialized_view[key] = value_dict
+
+        print()
+        print("--- Materialized view summary ---")
         for key, value in materialized_view.items():
             print(f"{key}: {value['time']}")
-        print()
+        print("---------------------------------")
         print()
 finally:
     # Close down consumer to commit final offsets.

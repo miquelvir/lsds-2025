@@ -65,8 +65,3 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_CLUSTER_ID: ekGmiDBBTtq-VHVbx53u4w
 
-volumes:
-  zk1data:
-  zk1log:
-  zk2data:
-  zk2log:

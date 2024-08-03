@@ -12,23 +12,22 @@ The operation engineers at Nozama have been facing many incidents costing the co
 Seeing the amount of issues that could be prevented by monitoring and being notified before things get worse, the engineers at Nozama have decided to start adding many monitoring (sensors, termometers, counters, ...) to many machines and processes.
 
 They need you to build a realtime monitoring system such that:
-- the system **ingests all the metrics in near-realtime**. For example: `fc.bcn1.packages.received` is the name of a metric they publish into the system with the number of packages received in the `bcn1` fulfilment center. 
-- allow operations engineers to **create and update alarm rules**. For example: trigger an alarm when `fc.bcn1.packages.received` is above `1000`.
+- the system **ingests all the metrics in near-realtime** to a Kafka topic. For example: `fc.bcn1.packages.received` is the name of a metric they publish into the system with the number of packages received in the `bcn1` fulfilment center. 
+- allow operations engineers to **create and delete alarm rules**. For example: trigger an alarm when `fc.bcn1.packages.received` is above `1000`.
 - process all the ingested metrics and **trigger any alarms in real-time according to the alarm rules** 
 - **send notifications when an alarm is triggered** to a Discord channel 
 
-We will call this system Super Simple Realtime Monitoring System (SSRMS).
+We will call this system Super Simple Realtime Monitoring System (SSRMS). You can check out the [SSRMS demo video](https://www.youtube.com/watch?v=yuPLcAdw5SQ) to better understand how your system must work when you finish the lab.
 
 # Table of contents
 
 - [Grading](#grading). Where does the grade of this lab come from?
 - [Required exercises](#required-exercises). You must deliver all these exercises to be awarded a 10.
-    - [Seminar 5: Building the ingest service](#seminar-5-building-the-ingest-service) - 6 exercises (60 marks)
+    - [Seminar 5: Producing metrics to Kafka](#seminar-5-producing-metrics-to-kafka) - 6 exercises (35 marks)
     - [Lab 5: Building the rules service](#lab-5-building-the-rules-service) - 3 exercises (45 marks)
-    - [Lab 6: Building the alarms service](#lab-6-building-the-alarms-service) - 4 exercises (50 marks)
+    - [Lab 6: Building the alarms service](#lab-6-building-the-alarms-service) - 5 exercises (55 marks)
 
 - [Design](#design). Read this section to understand the requirements and architecture of the system you must implement.
-    - [ingest service](#ingest-service). How does the ingest service work?
     - [rules service](#rules-service). How does the rules service work?
     - [alarms service](#alarms-service). How does the alarms service work?
 
@@ -52,9 +51,9 @@ If plagiarism is detected, `labs_grade` is a 0.
 
 # Required exercises
 
-## Seminar 5: Building the ingest service
+## Seminar 5: Producing metrics to Kafka
 
-During this seminar session, you must build the `ingest` service as described in [ingest service](#ingest-service).
+During this seminar session, you must create scripts that simulate the devices publishing metrics to Kafka.
 
 ### [S5Q0] [7 marks] Answer the following questions about Kafka.
 
@@ -98,19 +97,19 @@ During this seminar session, you must build the `ingest` service as described in
 
 ### [S1Q2] [5 marks] Create Kafka topics
 
-The [compose.kafka.yaml](./compose.kafka.yaml) file has a full Kafka deployment with 3 brokers. Start it with `docker compose up`.
+The [compose.kafka.yaml](./compose.kafka.yaml) file has a full Kafka deployment with 3 brokers. 
 
-Use the Kafka CLI to create two topics: `metrics` and `rules` (compacted):
+Start the Kafka cluster with `docker compose -f compose.kafka.yaml up`.
+
+Use the Kafka CLI to create two topics: `metrics` (standard) and `rules` (compacted):
 
 ```zsh
-docker exec -it kafka-kafka-1-1 /bin/sh
+docker exec -it kafka-cluster-kafka-1-1 /bin/sh
 
-export B="kafka-1:9092,kafka-2:9092,kafka-3:9092"
+/bin/kafka-topics --bootstrap-server kafka-1:9092 --create --topic metrics --partitions 20 --replication-factor 1
+/bin/kafka-topics --bootstrap-server kafka-1:9092 --create --topic rules --partitions 3 --replication-factor 1 --config cleanup.policy=compact
 
-/bin/kafka-topics --bootstrap-server $B --create --topic metrics --partitions 20 --replication-factor 3
-/bin/kafka-topics --bootstrap-server $B --create --topic rules --partitions 3 --replication-factor 3 --config cleanup.policy=compact
-
-/bin/kafka-topics --bootstrap-server $B --list
+/bin/kafka-topics --bootstrap-server kafka-1:9092 --list
 
 exit
 ```
@@ -119,53 +118,130 @@ Paste a screenshot.
 
 ---
 
-### [S1Q3] [30 marks] Implement the ingest API
+### [S1Q3] [5 marks] Implement the constant source emulator
 
-Inside the [labs\3-kafka\ingest](./ingest/) folder, create a [Fastapi service with Docker](https://fastapi.tiangolo.com/deployment/docker/).
+Inside the [labs\3-kafka\sources](./sources/) folder, create a Python script `constant.py`.
 
-```
-/ingest
-    requirements.txt
-    main.py
-    Dockerfile
-compose.kafka.yaml
-compose.yaml
-```
-
-**[10 marks] Implement the [POST /metrics](#post-metrics) endpoint**.
-
-**[20 marks] For every metric posted to /metrics, [publish it to the `metrics` Kafka topic](https://docs.confluent.io/kafka-clients/python/current/overview.html#initialization)**.
-
-> [!TIP]
-> Take a look at [kafka-quickstart](./../../resources/kafka-quickstart/) for a sample.
-
-You can use the `kafka-console-consumer` to see the contents of the topic in realtime:
+This script should be called with 3 parameters: `metric_name`, `metric_value` and `period_seconds`. Then, it must publish to the `metrics` topic, using `metric_name` as key and `{"value":metric_value}` as value. Then, sleep `period_seconds` and repeat again.
 
 ```zsh
-docker exec -it kafka-kafka-1-1 /bin/sh
-
-export B="kafka-1:9092,kafka-2:9092,kafka-3:9092"
-
-/bin/kafka-console-consumer --bootstrap-server $B --topic metrics --from-beginning --property print.key=true
-
-exit
+python3 constant.py {metric_name} {metric_value} {period_seconds}
 ```
 
-Paste a screenshot of how you use `curl` to post metrics and they are published to the Kafka topic. 
+![constant](./guide_images/constant.png "constant publisher")
 
-### [S1Q4] [5 marks] Dockerizing the ingest service
+For example, this is an example command and what it should publish to Kafka (where we represent `key: value`):
 
-Add 5 instances of the `ingest` service to the [compose.yaml](./compose.yaml) file. Run the `ingest` services at `localhost:8081`, `localhost:8082`, ... and `localhost:8085`.
+```zsh
+python3 constant.py packages-received 501 10
+```
 
-Verify it still works when running inside Docker. Paste a screenshot of how you use `curl` to post metrics and they are published to the Kafka topic (using the `kafka-console-consumer`). 
+```
+packages-received: {"value": 501}
+packages-received: {"value": 501}
+packages-received: {"value": 501}
+packages-received: {"value": 501}
+packages-received: {"value": 501}
+...
+```
+> [!TIP]
+> Take a look at [producer.py](./../../resources/kafka-quickstart/producer.py).
 
-### [S1Q5] [5 marks] Run the simulated sources
+Paste a screenshot verifying the metrics are published to Kafka:
 
-Run `TODO` to start generating simulated metrics from the sources.
+```zsh
+docker exec -it kafka-cluster-kafka-1-1 /bin/sh
 
-Paste a screenshot of how all the metrics are published to the Kafka topic (using the `kafka-console-consumer`). 
+/bin/kafka-console-consumer --bootstrap-server kafka-1:9092 --topic metrics --property print.key=true
+```
 
----
+### [S1Q4] [5 marks] Implement the spikes source emulator
+
+Inside the [labs\3-kafka\sources](./sources/) folder, create a Python script `spikes.py`.
+
+This script should be called with 5 parameters: `metric_name`, `low_value`, `spike_value`, `period_seconds` and `frequency`. Then, it must publish to the `metrics` topic, using `metric_name` as key and `{"value":metric_value}` as value. The value must be `spike_value` every `frequency` records, otherwise `low_value` . Then, sleep `period_seconds` and repeat again.
+
+```zsh
+python3 spikes.py {metric_name} {low_value} {spike_value} {period_seconds} {frequency}
+```
+
+![spikes](./guide_images/spikes.png "spikes publisher")
+
+For example, this is an example command and what it should publish to Kafka (where we represent `key: value`):
+
+```zsh
+python3 spikes.py packages-received 450 550 1 3
+```
+
+```
+packages-received: {"value": 550}
+packages-received: {"value": 450}
+packages-received: {"value": 450}
+packages-received: {"value": 550}
+packages-received: {"value": 450}
+packages-received: {"value": 450}
+...
+```
+
+> [!TIP]
+> Take a look at [producer.py](./../../resources/kafka-quickstart/producer.py).
+
+Paste a screenshot verifying the metrics are published to Kafka:
+
+```zsh
+docker exec -it kafka-cluster-kafka-1-1 /bin/sh
+
+/bin/kafka-console-consumer --bootstrap-server kafka-1:9092 --topic metrics --property print.key=true
+```
+
+
+### [S1Q5] [5 marks] Implement the stairs source emulator
+
+Inside the [labs\3-kafka\sources](./sources/) folder, create a Python script `stairs.py`.
+
+This script should be called with 5 parameters: `metric_name`, `start_value`, `env_value`, `step` and `period_seconds`. Then, it must publish to the `metrics` topic, using `metric_name` as key and `{"value":metric_value}` as value. The value must start at `start_value`, and increment every `period_seconds` by `step` until `end_value`. Them, go back to `start_value` and repeat again.
+
+```zsh
+python3 stairs.py {metric_name} {metric_value} {start_value} {end_value} {step} {period_seconds}
+```
+
+![stairs](./guide_images/stairs.png "stairs publisher")
+
+For example, this is an example command and what it should publish to Kafka (where we represent `key: value`):
+
+```zsh
+python3 stairs.py packages-received 480 510 5 1
+```
+
+```
+packages-received: {"value": 480}
+packages-received: {"value": 485}
+packages-received: {"value": 490}
+packages-received: {"value": 495}
+packages-received: {"value": 500}
+packages-received: {"value": 505}
+packages-received: {"value": 510}
+packages-received: {"value": 480}
+packages-received: {"value": 485}
+packages-received: {"value": 490}
+packages-received: {"value": 495}
+packages-received: {"value": 500}
+packages-received: {"value": 505}
+packages-received: {"value": 510}
+...
+```
+
+> [!TIP]
+> Take a look at [producer.py](./../../resources/kafka-quickstart/producer.py).
+
+Paste a screenshot verifying the metrics are published to Kafka:
+
+```zsh
+docker exec -it kafka-cluster-kafka-1-1 /bin/sh
+
+/bin/kafka-console-consumer --bootstrap-server kafka-1:9092 --topic metrics --property print.key=true
+```
+
 
 ## Lab 5: Building the rules service
 
@@ -178,12 +254,6 @@ Inside the [labs\3-kafka\rules](./rules/) folder, create a [Fastapi service with
     requirements.txt
     main.py
     Dockerfile
-/ingest
-    requirements.txt
-    main.py
-    Dockerfile
-compose.kafka.yaml
-compose.yaml
 ```
 
 ### [L5Q0] [20 marks] POST /rules
@@ -201,7 +271,14 @@ Implement the first endpoint of the `rules` API: [POST /rules](#post-rules).
 > [!TIP]
 > Take a look at [kafka-quickstart](./../../resources/kafka-quickstart/) for a sample.
 
-Paste a screenshot of how you use `curl` to POST a rule it is published to the Kafka topic (using the `kafka-console-consumer`). 
+Paste a screenshot of how you use `curl` to POST a rule and it is published to the Kafka topic:
+
+```zsh
+docker exec -it kafka-cluster-kafka-1-1 /bin/sh
+
+/bin/kafka-console-consumer --bootstrap-server kafka-1:9092 --topic rules --property print.key=true
+```
+
 
 ---
 
@@ -213,15 +290,41 @@ Implement the other endpoint of the `rules` API: [DELETE /rules/{id}](#delete-ru
 
 **[10 marks] For every deleted rule, [publish it to the `rules` Kafka topic with a null body](https://docs.confluent.io/kafka-clients/python/current/overview.html#initialization)**.
 
-Paste a screenshot of how you use `curl` to POST a rule, it is published to the Kafka topic, you  DELETE a rule with `curl` and it is published again to the Kafka topic with an empty value (using the `kafka-console-consumer`). 
+Paste a screenshot of how you use `curl` to DELETE a rule and null is published to the Kafka topic:
 
----
+```zsh
+docker exec -it kafka-cluster-kafka-1-1 /bin/sh
+
+/bin/kafka-console-consumer --bootstrap-server kafka-1:9092 --topic rules --property print.key=true
+```
 
 ### [S1Q2] [5 marks] Dockerizing the rules service
 
-Add 1 instance of the `rules` service to the [compose.yaml](./compose.yaml) file. Run the `rules` service at `localhost:9091`.
+Add 1 instance of the `rules` service to the [compose.yaml](./compose.yaml) file.
 
-Verify it still works when running inside Docker. Paste a screenshot of how you use `curl` to post and delete rules, and they are published to the Kafka topic (using the `kafka-console-consumer`). 
+```yaml
+services:
+  rules:
+    build: rules
+    ports:
+      - "5001:80"
+    networks:
+      - kafka-cluster_kafka-cluster-network
+    environment:
+      BROKER: kafka-1:9092
+```
+
+Start the services:
+```zsh
+docker compose up --build
+```
+
+Verify and paste a screenshot of how when you POST and DELETE rules with `curl`, the correct records are published to Kafka.
+
+```zsh
+docker exec -it lsds-kafka-lab-kafka-1-1 /bin/sh
+/bin/kafka-console-consumer --bootstrap-server kafka-1:9092 --topic rules --property print.key=true
+```
 
 ---
 
@@ -232,20 +335,10 @@ During this lab session, you must build the `alarms` service as described in [al
 Inside the [labs\3-kafka\alarms](./alarms/) folder, create an empty `main.py` file with a Dockerfile and requirements.txt.
 
 ```
-/rules
-    requirements.txt
-    main.py
-    Dockerfile
-/ingest
-    requirements.txt
-    main.py
-    Dockerfile
 /alarms
     requirements.txt
     main.py
     Dockerfile
-compose.kafka.yaml
-compose.yaml
 ```
 
 ---
@@ -272,9 +365,21 @@ When a rule is triggered, use the `discord_webhook_url` to [send an alarm messag
 
 ### [L6Q3] [5 marks]. Deploying the alarms service with docker compose
 
-Modify the `compose.yaml` file to also create 3 `alarms` services at ports 7071, 7072 and 7073.
+Add 3 replicas of the `alarms` service to the [compose.yaml](./compose.yaml) file.
 
-Run `TODO` to start generating simulated metrics from the sources and manually test it works correctly.
+### [L6Q4] [5 marks]. Deploying the alarms service with docker compose
+
+Deploy the full system with Docker: `docker compose up --build`
+
+Create different rules with the rules API and start producing metrics with the [emulated sources](./sources/). 
+
+**[3 mark] Paste screenshots of how you receive the alarms in Discord.**
+
+**[1 mark] How are `metrics` distributed between alarm containers?**
+
+**[1 mark] What happens if you suddenly stop one of alarm service instances?**
+
+
 
 ---
 
@@ -289,19 +394,17 @@ Run `TODO` to start generating simulated metrics from the sources and manually t
 SSRMS is composed of 3 services and many source clients:
 - The [**sources**](#sources) send metrics into the system. For example, sensors, devices, and other services.
 - The [**clients**](#clients) (Operation Engineers at Nozama) use the Rules API to create and update rules in the system.
-- The [**ingest** service](#ingest-service) receives metrics through its API from `clients` and publishes the metrics to the `metrics topic`.
 - The [**rules** service](#rules-service) allows users to create and update alarm rules through the API and stores them in the `rules (compacted) topic`.
-- The [**alarms** service](#alarms-service) creates a materialized view from all the rules in the `rules (compacted) topic`, and consumes all metrics in the `metrics topic`. When a metric matches a rule, the service sends an alarm (message) to a Discord channel.
+- The [**alarms** service](#alarms-service) creates a materialized view from all the rules in the `rules (compacted) topic`, and consumes all metrics from the `metrics topic`. When a metric matches a rule, the service sends an alarm (message) to a Discord channel.
 
-The following diagram represents the dependencies in the system. For example, `clients --> ingest` indicates that `clients` depends on `ingest` (`clients` uses the API of `ingest`).
+The following diagram represents the flow of data in the system. For example, `client --> rules` indicates that `client` creates rules in the `rules` API.
 
 ```mermaid
 graph TD;
-    metricst([metrics - Kafka topic]);
-    rulest([rules - Kafka topic]);
+    metricst([metrics Kafka topic]);
+    rulest([rules Kafka topic]);
 
-    sources-->ingest;
-    ingest-->metricst;
+    sources[metric sources]-->metricst;
 
     client-->rules;
     rules-->rulest;
@@ -321,49 +424,17 @@ graph TD;
 
 The sources are all the devices that can integrate with SSRMS to send metrics. For example, other services, devices, temperature sensors, counters, etc.
 
-Since we don't have said devices available, we have created [a script that simulates the devices](./sources/) when they publish metrics to the [Ingest API](#ingest-service).
+Since we don't have said devices available, you must create scripts that simulate the devices in the [sources folder](./sources/). They must publish metrics to the `metrics` Kafka topic like the real devices would.
 
 ### clients
 
 The clients of SSRMS are the Operations Engineers from Nozama. Ideally, this would be an app or a website. However, for this prototype they will use `curl` to directly create and update rules using the [Rules API](#rules-service).
 
-### ingest service
-
-In SSRMS, there are many instances of the `ingest` service. I.e., the `ingest` service is scaled horizontally.
-
-> [!TIP]
-> Scaling the `ingest` service horizontally is very important because the number of sources and the amount of metrics they publish can be very large. This also allows the system to be highly available (i.e., if one `ingest` service breaks or is disconnected, the system can continue working with the other ones).
-
-In order for the `sources` to send metrics, the `ingest` service exposes a simple HTTP API. The API for the `ingest` service only allows one operation:
-- [Publish a metric](#post-metrics)
-
-#### POST /metrics
-
-The `sources` can send the value of a metric in realtime through this endpoint. The ingest service takes each metric value it receives and it publishes it to the `metrics` Kafka topic. The key in the Kafka topic must be the metric name, and the value a [JSON string](https://pythonexamples.org/python-dict-to-json/). For example:
-
-```
-fc.bcn1.packages.received -> {"value": 200}
-```
-
-For example, the `sources` can send a value of the `fc.bcn1.packages.received` metric to the `ingest` service with address `localhost:8080` as follows:
-
-```
-POST http://localhost:8080/metrics
-```
-
-Response:
-```json
-{
-    "name": "fc.bcn1.packages.received",
-    "value": 200
-}
-```
-
 ### rules service
 
 In SSRMS, there can be many instances of the `rules` service. I.e., the `rules` service is scaled horizontally if necessary.
 
-A rule is defined as the `discord_webhook_url` where alarms must be sent when the metric with name `metric_name` is higher than a `threshold` :
+A rule is defined as the `discord_webhook_url` where alarms must be sent when the metric with name `metric_name` is higher than a `threshold`. For example:
 
 ```json
 {
@@ -374,22 +445,13 @@ A rule is defined as the `discord_webhook_url` where alarms must be sent when th
 }
 ```
 
-In order for the `clients` to create or delete `rules` to trigger alarms, the `rules` service exposes a simple HTTP REST API. The API for the `rules` service only allows 3 operations:
+In order for the `clients` to create or delete `rules` to trigger alarms, the `rules` service exposes a simple HTTP REST API. The API for the `rules` service only allows 2 operations:
 - [Create a rule](#post-rules)
 - [Delete a rule](#delete-rulesid)
 
 #### POST /rules
 
-The `clients` can create a new rule through this endpoint. The `rules` service takes each new rule and publishes it to the `rules` Kafka topic. The key in the Kafka topic must be the rule id, and the value the [full rule as a JSON string](https://pythonexamples.org/python-dict-to-json/). For example:
-
-```
-dc0d8a4c-46ea-4667-b6e9-eb7bf033fda9" -> {
-    "id": "dc0d8a4c-46ea-4667-b6e9-eb7bf033fda9",
-    "metric_name": "fc.bcn1.packages.received",
-    "threshold": 500,
-    "discord_webhook_url": "https://discordapp.com/api/webhooks/15434354352132/hfaslkdfhjsahldkf_02340lasdhf_fksdlf"
-}
-```
+The `clients` can create a new rule through this endpoint. The `rules` service takes each new rule and publishes it to the `rules` Kafka topic. The key in the Kafka topic must be the rule id, and the value the [full rule as a JSON string](https://pythonexamples.org/python-dict-to-json/). 
 
 For example, the `clients` can create a rule to send a Discord message when `fc.bcn1.packages.received` is higher than 500 in the `rules` service with address `localhost:9090` as follows:
 
@@ -416,6 +478,23 @@ Response:
 }
 ```
 
+Then, the `rules` service will publish the following record to the `rules` topic in Kafka:
+
+Key:
+```
+dc0d8a4c-46ea-4667-b6e9-eb7bf033fda9
+```
+
+Value:
+```
+{
+    "id": "dc0d8a4c-46ea-4667-b6e9-eb7bf033fda9",
+    "metric_name": "fc.bcn1.packages.received",
+    "threshold": 500,
+    "discord_webhook_url": "https://discordapp.com/api/webhooks/15434354352132/hfaslkdfhjsahldkf_02340lasdhf_fksdlf"
+}
+```
+
 #### DELETE /rules/{id}
 
 The `clients` can delete an existing rule through this endpoint. The `rules` service takes each deleted rule and publishes it to the `rules` Kafka topic with an empty value.
@@ -429,6 +508,18 @@ DELETE http://localhost:9090/rules/dc0d8a4c-46ea-4667-b6e9-eb7bf033fda9
 Response:
 ```json
 {}
+```
+
+Then, the `rules` service will publish the following record to the `rules` topic in Kafka:
+
+Key:
+```
+dc0d8a4c-46ea-4667-b6e9-eb7bf033fda9
+```
+
+Value:
+```
+null
 ```
 
 
@@ -470,9 +561,9 @@ while True {
 
 The `alarms` service must poll the `rules` topic in a background thread and store all the rules in a dictionary. I.e., it must build a materialized view with all the rules in the topic.
 
-When a rule is added or deleted, the `alarms` service will receive it in near real-time and update the materialized view.
+When a rule is added or deleted, the `alarms` service must receive it in near real-time and update the materialized view.
 
-#### the rules topic
+#### the metrics topic
 
 The `alarms` service must poll the `metrics` topic. For each value received, it must check whether it is above the threshold for any of the rules configured for that metric. If it exceeds the threshold, it must send a message to Discord with the metric name, threshold and value.
 
@@ -482,6 +573,39 @@ To send messages to Discord, [create a Discord server](https://discord.com/blog/
 
 ```zsh
 curl -X POST {URL} -H 'Content-Type: application/json' -d '{"content": "Hello from curl"}'
+```
+
+For a better UX, you can send styled [embeds](https://discord.com/developers/docs/resources/message#embed-object) instead of plaintext content:
+
+```zsh
+curl -X POST {URL} -H 'Content-Type: application/json' -d '{
+    "content": "hello",
+    "embeds": [
+        {
+            "title": "Alarm triggered",
+            "description": "received-packages is 508 which exceeds the rule threshold (500)",
+            "color": 16711680,
+            "fields": [
+                {
+                    "name": "Rule id",
+                    "value": "21433034-8078-4f1a-bb8d-1ac996db395d"
+                },
+                {
+                    "name": "Metric name",
+                    "value": "received-packages"
+                },
+                {
+                    "name": "Metric value",
+                    "value": "508"
+                },
+                {
+                    "name": "Rule threshold",
+                    "value": "500"
+                }
+            ]
+        }
+    ]
+}'
 ```
 
 # Additional exercises
@@ -506,9 +630,31 @@ Add a `GET /rules/{id}` and `GET /rules` methods to the `rules` API. You will ne
 
 Use the `rules` API to create a simple HTML + JS website that allows viewing, creating, updating and deleting rules.
 
-### [ADQ4] [10 marks] Measure how many metrics per second the `ingest` service can handle
+### [ADQ4] [10 marks] Create an `ingest` service
 
-Measure how many metrics per second the `ingest` service can handle (i.e. load test it).
+Instead of allowing source devices to publish metrics directly to Kafka, create an `ingest` service with an API that allows POSTing metrics. Then, the `ingest` service sends them to the Kafka topic.
+
+```mermaid
+graph TD;
+    metricst([metrics Kafka topic]);
+    rulest([rules Kafka topic]);
+
+    sources[metric sources]-->ingest;
+    ingest-->metricst;
+
+    client-->rules;
+    rules-->rulest;
+
+    metricst-->alarms;
+    rulest-->alarms;
+    alarms-->discord;
+
+    style sources stroke:#f66,stroke-width:2px,stroke-dasharray: 5 5
+    style client stroke:#f66,stroke-width:2px,stroke-dasharray: 5 5
+    style metricst stroke:#6f6,stroke-width:2px
+    style rulest stroke:#6f6,stroke-width:2px
+    style discord stroke:#55f,stroke-width:2px
+```
 
 ### [ADQ5] [10 marks] Use the docker compose `deploy` attribute to horizontally scale services
 
@@ -530,3 +676,18 @@ Add an additional attribute to `rules`: `cooldown_seconds`. Whenever a rule has 
 
 Add an additional attribute to `rules`: `type`. The `type` field can be `instantaneous` (default) or `window_average`. Instead of always triggering alarms when the metric is above/below the threshold, these operators should allow triggering alarms when the average in a `window_duration_seconds` window of the metric is above/below the threshold. Implement the necessary changes in the `alarms` and `rules` services and APIs.
 
+### [ADQ10] [20 marks] Add JWT-based AuthN support to the rules and ingest services
+
+Only allow publishing rules and metrics with a valid JWT token.
+
+### [ADQ11] [10 marks] Materialized view initialization in the alarms service
+
+Do not start processing metrics in the `alarms` service until all rules from the `rules` topic have been read. In other words:
+- Read the rules topic until reaching the head and populate the materialized view
+- Then, start consuming the `metrics` topic
+
+Otherwise, metrics might be consumed before the rules are in the materialized view.
+
+### [ADQ12] [5 marks] Use styled embeds to send Discord messages
+
+Use styled embeds to improve the messages you send to Discord.
