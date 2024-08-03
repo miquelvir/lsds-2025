@@ -35,7 +35,8 @@ try:
 
         if value is None:
             # delete
-            materialized_view.pop(key)
+            if key in materialized_view:
+                materialized_view.pop(key)
         else:
             # create
             value_dict = json.loads(value.decode())
