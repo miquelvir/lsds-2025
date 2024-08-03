@@ -366,7 +366,9 @@ When a rule is triggered, use the `discord_webhook_url` to [send an alarm messag
 
 Add 3 replicas of the `alarms` service to the [compose.yaml](./compose.yaml) file.
 
-### [L6Q4] [5 marks]. Deploying the alarms service with docker compose
+---
+
+### [L6Q4] [5 marks]. Testing the system
 
 Deploy the full system with Docker: `docker compose up --build`
 
