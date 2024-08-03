@@ -7,15 +7,14 @@ The operation engineers at Nozama have been facing many incidents costing the co
 - Automatic packaging machines malfunction when the internal temperature is above 35ºC.
 - Too many packages accumulate at the entrance when more than 100k packages arrive in an hour.
 - The time to package delivery is too high when more than 50k orders are received in an hour.
-- Workers performance is much worse when the fulfillment center temperatur is above 28ºC.
+- Workers performance is much worse when the fulfillment center temperature is above 28ºC.
 
-Seeing the amount of issues that could be prevented by monitoring and being notified before things get worse, the engineers at Nozama have decided to start adding many monitoring (sensors, termometers, counters, ...) to many machines and processes.
+Seeing the amount of issues that could be prevented by monitoring and being notified before things get worse, the engineers at Nozama have decided to start adding monitoring (sensors, termometers, counters, ...) to many machines and processes.
 
 They need you to build a realtime monitoring system such that:
-- the system **ingests all the metrics in near-realtime** to a Kafka topic. For example: `fc.bcn1.packages.received` is the name of a metric they publish into the system with the number of packages received in the `bcn1` fulfilment center. 
-- allow operations engineers to **create and delete alarm rules**. For example: trigger an alarm when `fc.bcn1.packages.received` is above `1000`.
-- process all the ingested metrics and **trigger any alarms in real-time according to the alarm rules** 
-- **send notifications when an alarm is triggered** to a Discord channel 
+- the system **ingests all the metrics in near-realtime**. For example: `fc.bcn1.packages.received` is the name of a metric they publish into the system with the number of packages received in the `bcn1` fulfilment center. 
+- allow operations engineers to **create and delete rules**. For example: trigger an alarm when `fc.bcn1.packages.received` is above `1000`.
+- **send alarms in real-time** to a Discord channel when the metric value is higher than the rule threshold
 
 We will call this system Super Simple Realtime Monitoring System (SSRMS). You can check out the [SSRMS demo video](https://www.youtube.com/watch?v=yuPLcAdw5SQ) to better understand how your system must work when you finish the lab.
 
