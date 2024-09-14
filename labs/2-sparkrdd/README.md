@@ -14,7 +14,7 @@ The goal of this lab is to use Spark RDDs to analyze a large volume of Tweets in
 
 # Delivering the exercises
 
-To deliver the exercises, submit [this form](https://forms.gle/SejCjwcu7zRVXjij9).
+To deliver the exercises, submit [this form](https://forms.gle/ygV1j36hSdxM6r1L7).
 
 # Grading
 
