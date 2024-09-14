@@ -712,19 +712,19 @@ For example, to download the block `0` of a file named `myfile.jpg` from the `da
 
 You can delivery the following exercises for additional marks in the labs grade (and/or if you are interested in learning more)
 
-### [ADQ0] [10 marks] Build a unified client with click
+### [ADQ0] [5 marks] Build a unified client with click
 
 Use the [click](https://click.palletsprojects.com/en/8.1.x/) library to create a unified client with different commands for: `upload`, `download` and `info`.
 
 ---
 
-### [ADQ1] [10 marks] Writing one automated test
+### [ADQ1] [5 marks] Writing one automated test
 
 Use [pytest](https://docs.pytest.org/en/8.2.x/) to create one automated test that checks we can upload and download files from SSHDFS. Compare the checksums of the file to verify the downloaded file is intact.
 
 ---
 
-### [ADQ2] [20 marks] Reporting block status to namenode
+### [ADQ2] [5 marks] Reporting block status to namenode
 
 Use [rocketry](https://rocketry.readthedocs.io/en/stable/cookbook/fastapi.html) to report the blocks that each `datanode` has every 30 seconds to the `namenode`:
 - Add an endpoint in the API of the `namenode` that allows removing a file.
@@ -735,7 +735,7 @@ Use [rocketry](https://rocketry.readthedocs.io/en/stable/cookbook/fastapi.html) 
 
 ---
 
-### [ADQ3] [10 marks] Implement an asyncronous replication strategy
+### [ADQ3] [5 marks] Implement an asyncronous replication strategy
 
 _Depends on: ADQ2_
 
@@ -743,7 +743,7 @@ Instead of having the client PUT each replica to each `datanode` one by one, PUT
 
 ---
 
-### [ADQ4] [20 marks] Analyzing parameters
+### [ADQ4] [5 marks] Analyzing parameters
 
 Compare how different replication factors impact upload speed. Analyze the impact of ADQ3.
 
@@ -753,7 +753,7 @@ Use [matplotlib](https://matplotlib.org/) to plot the results.
 
 ---
 
-### [ADQ5] [10 marks] Detecting corrupted files
+### [ADQ5] [5 marks] Detecting corrupted files
 
 _Depends on: ADQ2_
 
@@ -783,7 +783,7 @@ Update `config.json` with an `id` field for each `datanode`. The id must be a [u
 
 ---
 
-### [ADQ9] [10 marks] Design and implement a smarter block and replica placement strategy
+### [ADQ9] [5 marks] Design and implement a smarter block and replica placement strategy
 
 The simple block placement strategy we use (always start with the first `datanode` and assign using modulo) can lead to unbalanced `datanodes`.
 
@@ -797,13 +797,13 @@ Extend the `upload.py` client to also send the hash of the file. Then, store the
 
 ---
 
-### [ADQ11] [20 marks] Implement a mechanism for AuthN
+### [ADQ11] [5 marks] Implement a mechanism for AuthN
 
 Describe the main problems regarding the (lack of) AuthN in SSHDFS. Implement a JWT-based mechanism that only allows clients with a valid token to create files, upload and download files.
 
 ---
 
-### [ADQ12] [20 marks] Implement a mechanism for AuthZ
+### [ADQ12] [5 marks] Implement a mechanism for AuthZ
 
 _Depends on: ADQ11_
 
