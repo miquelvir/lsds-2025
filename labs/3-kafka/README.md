@@ -29,7 +29,7 @@ We will call this system Super Simple Realtime Monitoring System (SSRMS). You ca
     - [rules service](#rules-service). How does the rules service work?
     - [alarms service](#alarms-service). How does the alarms service work?
 
-- [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks up to a maximum of 12 over 10.
+- [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks.
 
 # Delivering the exercises
 
