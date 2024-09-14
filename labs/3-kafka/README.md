@@ -92,7 +92,7 @@ During this seminar session, you must create scripts that simulate the devices p
 
 ---
 
-### [S1Q2] [5 marks] Create Kafka topics
+### [S5Q2] [5 marks] Create Kafka topics
 
 The [compose.kafka.yaml](./compose.kafka.yaml) file has a full Kafka deployment with 1 broker. 
 
@@ -115,7 +115,7 @@ Paste a screenshot.
 
 ---
 
-### [S1Q3] [5 marks] Implement the constant source emulator
+### [S5Q3] [5 marks] Implement the constant source emulator
 
 Inside the [labs\3-kafka\sources](./sources/) folder, create a Python script `constant.py`.
 
@@ -152,7 +152,7 @@ docker exec -it kafka-cluster-kafka-1-1 /bin/sh
 /bin/kafka-console-consumer --bootstrap-server kafka-1:9092 --topic metrics --property print.key=true
 ```
 
-### [S1Q4] [5 marks] Implement the spikes source emulator
+### [S5Q4] [5 marks] Implement the spikes source emulator
 
 Inside the [labs\3-kafka\sources](./sources/) folder, create a Python script `spikes.py`.
 
@@ -192,7 +192,7 @@ docker exec -it kafka-cluster-kafka-1-1 /bin/sh
 ```
 
 
-### [S1Q5] [5 marks] Implement the stairs source emulator
+### [S5Q5] [5 marks] Implement the stairs source emulator
 
 Inside the [labs\3-kafka\sources](./sources/) folder, create a Python script `stairs.py`.
 
