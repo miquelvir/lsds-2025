@@ -31,7 +31,7 @@ If plagiarism is detected, `labs_grade` is a 0.
 
 ## Lab 3: Downloading Tweets from S3 and parsing them from JSON
 
-### EX0. Downloading Tweet data from S3 [5 marks]
+### [L3Q0] [5 marks] Downloading Tweet data from S3
 
 - Watch [AWS S3 Tutorial For Beginners](https://www.youtube.com/watch?v=tfU0JEZjcsg)
 - Download `s3://lsds2022/twitter-eurovision-2018.tar.gz` from S3 using the AWS CLI. [Help. Example 4: Copying an S3 object to a local file](https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html)
@@ -44,7 +44,7 @@ If plagiarism is detected, `labs_grade` is a 0.
 - Take a look at the first two lines: `cat Eurovision3.json -n | head -n 2`.
 - **[1 mark]** How many Tweets does each line contain?
 
-### EX1. Parsing JSON with Python [5 marks]
+### [L3Q1] [5 marks]Parsing JSON with Python
 
 - Create a file `tweet_parser.py`
 - Create a `Tweet` dataclass with fields for the `tweet_id` (int), `text` (str), `user_id` (int), `user_name` (str), `language` (str), `timestamp_ms` (int) and `retweet_count` (int). [Help](https://realpython.com/python-data-classes/)
@@ -53,7 +53,7 @@ If plagiarism is detected, `labs_grade` is a 0.
 - Take a screenshot and add it to the README.
 - Push your changes.
 
-### EX2. Counting Tweets by language [5 marks]
+### [L3Q2] [5 marks]Counting Tweets by language
 
 - Create a file `simple_tweet_language_counter.py`
 - Implement a script that reads each line of `Eurovision8.json` one by one. [Help](https://stackoverflow.com/a/3277512)
@@ -67,7 +67,7 @@ If plagiarism is detected, `labs_grade` is a 0.
 
 > Before starting this section, read [RDD Programming Guide](https://spark.apache.org/docs/latest/rdd-programming-guide.html) and [Resilient Distributed Datasets](https://www.usenix.org/system/files/conference/nsdi12/nsdi12-final138.pdf)
 
-### EX3. What is Spark RDD? [10 marks]
+### [S3Q0] [10 marks] What is Spark RDD?
 
 - **[1 mark]** What is the difference between a transformation and an action?
 - **[1 mark]** What is the difference between a wide and a narrow dependency? What is a stage in Spark RDD?
@@ -79,7 +79,7 @@ If plagiarism is detected, `labs_grade` is a 0.
 - Run the job with Spark: `docker-compose exec spark-master spark-submit --master spark://{IP_FRM_PREVIOUS_STEP}:7077 /opt/bitnami/spark/app/spark_sum.py /opt/bitnami/spark/app/data/numbers1.txt`
 - **[1 mark]** Take a close look at the logs. What was the result of your job?
 
-### EX4. Sum the numbers [5 marks]
+### [S3Q1] [5 marks]  Sum the numbers
 
 The file [numbers2.txt](./data/numbers2.txt) has many lines, each with many numbers.
 
@@ -87,7 +87,7 @@ The file [numbers2.txt](./data/numbers2.txt) has many lines, each with many numb
 - Implement and run a Spark job that computes the sum of all the numbers.
 - Write the command you used to run it in the README and show a screenshot of the result.
 
-### EX5. Sum the even numbers [5 marks]
+### [S3Q3] [5 marks] Sum the even numbers
 
 The file [numbers2.txt](./data/numbers2.txt) has many lines, each with many numbers.
 
@@ -95,7 +95,7 @@ The file [numbers2.txt](./data/numbers2.txt) has many lines, each with many numb
 - Implement and run a Spark job that computes the sum of all the even numbers.
 - Write the command you used to run it in the README and show a screenshot of the result.
 
-### EX6. Find how many people live in each city [5 marks]
+### [S3Q6] [5 marks] Find how many people live in each city
 
 The file [people.txt](./data/people.txt) has many lines, each with `{NAME} {LANGUAGE} {CITY}`.
 
@@ -103,7 +103,7 @@ The file [people.txt](./data/people.txt) has many lines, each with `{NAME} {LANG
 - Implement and run a Spark job that counts how many people live in each city.
 - Write the command you used to run it in the README and show a screenshot of the result.
 
-### EX7. Count the bigrams [5 marks]
+### [S3Q7] [5 marks] Count the bigrams
 
 The file [cat.txt](./data/cat.txt) has many lines, each with a sentence.
 
@@ -113,7 +113,7 @@ The file [cat.txt](./data/cat.txt) has many lines, each with a sentence.
 
 ## Lab 4: Analyzing Tweets with Spark
 
-### EX8. Filtering Tweets by language with Spark [10 marks]
+### [L4Q0] [10 marks] Filtering Tweets by language with Spark
 
 - Create a file `spark_tweet_language_filter.py`.
 - Implement a Spark job that finds all the tweets in a file for a given language (e.g. `zh`)
@@ -126,7 +126,7 @@ docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS
 > You might need to `chmod 755 data` if you get "file not found" errors
 
 
-### EX9. Get the most repeated bigrams [10 marks]
+### [L4Q1] [10 marks] Get the most repeated bigrams
 
 - Create a file `spark_tweet_bigrams.py`.
 - Implement a Spark job that finds the most repeated bigrams for a language (e.g. `es`)
@@ -138,7 +138,7 @@ docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS
 ```
 
 
-### EX10. Get the 10 most retweeted tweets [10 marks]
+### [L4Q2] [10 marks] Get the 10 most retweeted tweets
 
 - Create a file `spark_tweet_retweets.py`.
 - Implement a Spark job that finds the users with the top 10 most retweeted Tweets for a language
@@ -147,7 +147,7 @@ docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS
 docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS_STEP}:7077 /opt/bitnami/spark/app/spark_tweet_retweets.py es /opt/bitnami/spark/app/data/Eurovision10.json
 ```
 
-### EX11. Get the 10 most retweeted users [10 marks]
+### [L4Q3] [10 marks] Get the 10 most retweeted users
 
 - Create a file `spark_tweet_user_retweets.py`.
 - Implement a Spark job that finds the users with the top 10 most retweets (in total) for a language. I.e., sum all the retweets each user has and get the top 10 users.
@@ -158,7 +158,7 @@ docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS
 
 ## Seminar 4: Running Spark in AWS
 
-### EX12. Run EX9 in AWS using EMR [1 mark]
+### [S4Q0] [10 marks] Run L4Q1 in AWS using EMR
 
 TODO
 
