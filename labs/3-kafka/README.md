@@ -621,11 +621,11 @@ Instead of having a materialized view of `rule_id -> rule`, also materialize `me
 Add a `PUT /rules/{id}` method to the `rules` API which allows updating an existing rule.
 
 
-### [AD2Q2] [10 marks] Extend the `rules` service with support for getting rules
+### [AD2Q2] [5 marks] Extend the `rules` service with support for getting rules
 
 Add a `GET /rules/{id}` and `GET /rules` methods to the `rules` API. You will need to add a consumer and a materialized view of rules in the `rules` service to support this usecase.
 
-### [AD2Q3] [10 marks] Create a web client for the rules service
+### [AD2Q3] [5 marks] Create a web client for the rules service
 
 Use the `rules` API to create a simple HTML + JS website that allows viewing, creating, updating and deleting rules.
 
@@ -659,7 +659,7 @@ graph TD;
 
 Instead of manually copying the services many times in the docker compose file to scale them horizontally, use the [deploy attribute](https://docs.docker.com/compose/compose-file/deploy/) to specify the number of replicas.
 
-### [AD2Q6] [10 marks] Add tagging support
+### [AD2Q6] [5 marks] Add tagging support
 
 Consider the usecase where we have many machines of type `conveyorbelt`, and they all publish the same `conveyorbelt-velocity-12354` metric. Instead of publishing many metrics with different names (`conveyorbelt-velocity-12354`, `conveyorbelt-velocity-12355`, `conveyorbelt-velocity-12356`, ...) depending on the machine id, allow publishing metrics with tags. This will allow a single rule to be created for all metrics of the same type, regardless of the source. For example: `conveyorbelt-velocity` (tags: `machine_id:12354`). Implement the necessary changes in `alarms`, `rules` and `ingest` services and APIs.
 
@@ -667,15 +667,15 @@ Consider the usecase where we have many machines of type `conveyorbelt`, and the
 
 Add an additional attribute to `rules`: `operator`. The `operator` field can be `>` or `<`. Instead of always triggering alarms when the metric is above the threshold, these operators should allow triggering alarms when a metric is below a threshold. Implement the necessary changes in the `alarms` and `rules` services and APIs.
 
-### [AD2Q8] [10 marks] Add cooldown support
+### [AD2Q8] [5 marks] Add cooldown support
 
 Add an additional attribute to `rules`: `cooldown_seconds`. Whenever a rule has sent an alarm notification to Discord, don't send any new alarms from that rule until `cooldown_seconds` have passed to avoid spamming the channel. Implement the necessary changes in the `alarms` and `rules` services and APIs.
 
-### [AD2Q9] [10 marks] Add windowing support
+### [AD2Q9] [5 marks] Add windowing support
 
 Add an additional attribute to `rules`: `type`. The `type` field can be `instantaneous` (default) or `window_average`. Instead of always triggering alarms when the metric is above/below the threshold, these operators should allow triggering alarms when the average in a `window_duration_seconds` window of the metric is above/below the threshold. Implement the necessary changes in the `alarms` and `rules` services and APIs.
 
-### [AD2Q10] [10 marks] Add JWT-based AuthN support to the rules and ingest services
+### [AD2Q10] [5 marks] Add JWT-based AuthN support to the rules and ingest services
 
 Only allow publishing rules and metrics with a valid JWT token.
 
@@ -691,6 +691,6 @@ Otherwise, metrics might be consumed before the rules are in the materialized vi
 
 Use styled embeds to improve the messages you send to Discord.
 
-### [AD2Q12] [5 marks] Add threshold crossing support
+### [AD2Q13] [5 marks] Add threshold crossing support
 
 Change the behaviour of rule triggering, so that an alarm is only triggered when the value changes from below to above the threshold. I.e., if you receive a value above the threshold multiple times, don't trigger the alarm again until it goes below the threshold at least once.
