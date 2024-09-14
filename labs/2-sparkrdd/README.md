@@ -44,7 +44,7 @@ If plagiarism is detected, `labs_grade` is a 0.
 - Take a look at the first two lines: `cat Eurovision3.json -n | head -n 2`.
 - **[1 mark]** How many Tweets does each line contain?
 
-### [L3Q1] [5 marks]Parsing JSON with Python
+### [L3Q1] [5 marks] Parsing JSON with Python
 
 - Create a file `tweet_parser.py`
 - Create a `Tweet` dataclass with fields for the `tweet_id` (int), `text` (str), `user_id` (int), `user_name` (str), `language` (str), `timestamp_ms` (int) and `retweet_count` (int). [Help](https://realpython.com/python-data-classes/)
@@ -53,7 +53,7 @@ If plagiarism is detected, `labs_grade` is a 0.
 - Take a screenshot and add it to the README.
 - Push your changes.
 
-### [L3Q2] [5 marks]Counting Tweets by language
+### [L3Q2] [5 marks] Counting Tweets by language
 
 - Create a file `simple_tweet_language_counter.py`
 - Implement a script that reads each line of `Eurovision8.json` one by one. [Help](https://stackoverflow.com/a/3277512)
