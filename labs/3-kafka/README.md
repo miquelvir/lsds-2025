@@ -11,7 +11,7 @@ The operation engineers at Nozama have been facing many incidents costing the co
 
 They need you to build a realtime monitoring system that:
 - **reads all the metrics from the sources in realtime** 
-- allow operations engineers to **create and delete rules**. For example: trigger an alarm when `floor-temperature` is above `30`.
+- allow operations engineers to **create and delete rules** using an API. For example: trigger an alarm when `floor-temperature` is above `30`.
 - **send alarms in real-time** to a Discord channel when any rule is triggered . For example: send a Discord message when `floor-temperature` is above `30`.
 
 We will call this system Super Simple Realtime Monitoring System (SSRMS). You can check out the [SSRMS demo video](https://www.youtube.com/watch?v=yuPLcAdw5SQ) to better understand how your system must work when you finish the lab.
