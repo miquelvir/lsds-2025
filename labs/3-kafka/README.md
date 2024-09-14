@@ -395,7 +395,7 @@ Create different rules with the rules API and start producing metrics with the [
 > [!TIP]
 > SSRMS system uses Kafka extensively. Read and study the [Kafka: a Distributed Messaging System for Log Processing](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/09/Kafka.pdf?msockid=01dc1031619a67bb08ec049760dd66cc) paper.
 
-SSRMS is composed of 3 services and many source clients:
+SSRMS is composed of 2 services, metric sources and clients:
 - The [**sources**](#sources) send metrics into the system. For example, sensors, devices, and other services.
 - The [**clients**](#clients) (Operation Engineers at Nozama) use the Rules API to create and update rules in the system.
 - The [**rules** service](#rules-service) allows users to create and update alarm rules through the API and stores them in the `rules (compacted) topic`.
