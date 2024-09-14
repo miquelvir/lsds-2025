@@ -6,7 +6,7 @@ The goal of this lab is to use Spark RDDs to analyze a large volume of Tweets in
 
 - [Grading](#grading). Where does the grade of this lab come from?
 - [Required exercises](#required-exercises). You must deliver all these exercises to be awarded a 10.
-    - [Lab 3: Downloading Tweets from S3 and parsing them from JSON](#lab-3-downloading-tweets-from-s3-and-parsing-them-from-json) - 5 exercises (30 marks)
+    - [Lab 3: Downloading Tweets from S3 and parsing them from JSON](#lab-3-downloading-tweets-from-s3-and-parsing-them-from-json) - 3 exercises (15 marks)
     - [Seminar 3: Using Spark RDDs](#seminar-3-using-spark-rdds) - 5 exercises (35 marks)
     - [Lab 4: Analyzing Tweets with Spark](#lab-4-analyzing-tweets-with-spark) - 4 exercises (40 marks)
     - [Seminar 4: Running Spark in AWS](#seminar-4-running-spark-in-aws) - 1 exercise (15 marks)
@@ -58,30 +58,16 @@ If plagiarism is detected, `labs_grade` is a 0.
 - Create a file `simple_tweet_language_counter.py`
 - Implement a script that reads each line of `Eurovision8.json` one by one. [Help](https://stackoverflow.com/a/3277512)
     - You might need to skip any invalid lines, such as empty lines with only a `\n` or Tweets with an invalid JSON format.
-- Parse each Tweet using the `deserialize_tweet` function from the previous exercise.
+- Parse each Tweet using the `parse_tweet` function from the previous exercise.
 - Count the number of Tweets of each language using a dictionary. [Help](https://www.w3schools.com/python/python_dictionaries.asp)
 - Print the dictionary. Take a screenshot and add it to the README.
-- Push your changes.
-
-### EX3. Timing the execution of your script [5 marks]
-
-- Extend `simple_tweet_language_counter.py` to count how many seconds does your program take to go through `Eurovision8.json`. [Help](https://stackoverflow.com/a/1557584)
-- Push your changes.
-
-### EX4. Filtering Tweets by language [5 marks]
-
-- Create a file `simple_tweet_language_filter.py` that we will call with three arguments: `python3 simple_tweet_language_filter.py es ./data/Eurovision10.json ./data/Eurovision10Es.json`
-- Read the `language`, `source` path and `destination` path arguments. [Help](https://stackoverflow.com/questions/4033723/how-do-i-access-command-line-arguments)
-- Read all the Tweets from the `source` path, and write all the Tweets that match the `language` to the `destination` path. [Help](https://stackoverflow.com/questions/6159900/correct-way-to-write-line-to-file)
-- Time the execution as well.
-- Run `python3 simple_tweet_language_filter.py zh ./data/Eurovision10.json ./data/Eurovision10Zh.json`. Take a screenshot of the output file and add it to the README.
 - Push your changes.
 
 ## Seminar 3: Using Spark RDDs
 
 > Before starting this section, read [RDD Programming Guide](https://spark.apache.org/docs/latest/rdd-programming-guide.html) and [Resilient Distributed Datasets](https://www.usenix.org/system/files/conference/nsdi12/nsdi12-final138.pdf)
 
-### EX5. What is Spark RDD? [10 marks]
+### EX3. What is Spark RDD? [10 marks]
 
 - **[1 mark]** What is the difference between a transformation and an action?
 - **[1 mark]** What is the difference between a wide and a narrow dependency? What is a stage in Spark RDD?
@@ -93,7 +79,7 @@ If plagiarism is detected, `labs_grade` is a 0.
 - Run the job with Spark: `docker-compose exec spark-master spark-submit --master spark://{IP_FRM_PREVIOUS_STEP}:7077 /opt/bitnami/spark/app/spark_sum.py /opt/bitnami/spark/app/data/numbers1.txt`
 - **[1 mark]** Take a close look at the logs. What was the result of your job?
 
-### EX6. Sum the numbers [5 marks]
+### EX4. Sum the numbers [5 marks]
 
 The file [numbers2.txt](./data/numbers2.txt) has many lines, each with many numbers.
 
@@ -101,7 +87,7 @@ The file [numbers2.txt](./data/numbers2.txt) has many lines, each with many numb
 - Implement and run a Spark job that computes the sum of all the numbers.
 - Write the command you used to run it in the README and show a screenshot of the result.
 
-### EX6. Sum the even numbers [5 marks]
+### EX5. Sum the even numbers [5 marks]
 
 The file [numbers2.txt](./data/numbers2.txt) has many lines, each with many numbers.
 
@@ -109,7 +95,7 @@ The file [numbers2.txt](./data/numbers2.txt) has many lines, each with many numb
 - Implement and run a Spark job that computes the sum of all the even numbers.
 - Write the command you used to run it in the README and show a screenshot of the result.
 
-### EX7. Find how many people live in each city [5 marks]
+### EX6. Find how many people live in each city [5 marks]
 
 The file [people.txt](./data/people.txt) has many lines, each with `{NAME} {LANGUAGE} {CITY}`.
 
@@ -117,7 +103,7 @@ The file [people.txt](./data/people.txt) has many lines, each with `{NAME} {LANG
 - Implement and run a Spark job that counts how many people live in each city.
 - Write the command you used to run it in the README and show a screenshot of the result.
 
-### EX8. Count the bigrams [5 marks]
+### EX7. Count the bigrams [5 marks]
 
 The file [cat.txt](./data/cat.txt) has many lines, each with a sentence.
 
@@ -127,7 +113,7 @@ The file [cat.txt](./data/cat.txt) has many lines, each with a sentence.
 
 ## Lab 4: Analyzing Tweets with Spark
 
-### EX9. Filtering Tweets by language with Spark [10 marks]
+### EX8. Filtering Tweets by language with Spark [10 marks]
 
 - Create a file `spark_tweet_language_filter.py`.
 - Implement a Spark job that finds all the tweets in a file for a given language (e.g. `zh`)
@@ -140,7 +126,7 @@ docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS
 > You might need to `chmod 755 data` if you get "file not found" errors
 
 
-### EX10. Get the most repeated bigrams [10 marks]
+### EX9. Get the most repeated bigrams [10 marks]
 
 - Create a file `spark_tweet_bigrams.py`.
 - Implement a Spark job that finds the most repeated bigrams for a language (e.g. `es`)
@@ -152,7 +138,7 @@ docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS
 ```
 
 
-### EX11. Get the 10 most retweeted tweets [10 marks]
+### EX10. Get the 10 most retweeted tweets [10 marks]
 
 - Create a file `spark_tweet_retweets.py`.
 - Implement a Spark job that finds the users with the top 10 most retweeted Tweets for a language
@@ -161,7 +147,7 @@ docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS
 docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS_STEP}:7077 /opt/bitnami/spark/app/spark_tweet_retweets.py es /opt/bitnami/spark/app/data/Eurovision10.json
 ```
 
-### EX12. Get the 10 most retweeted users [10 marks]
+### EX11. Get the 10 most retweeted users [10 marks]
 
 - Create a file `spark_tweet_user_retweets.py`.
 - Implement a Spark job that finds the users with the top 10 most retweets (in total) for a language. I.e., sum all the retweets each user has and get the top 10 users.
@@ -172,7 +158,7 @@ docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS
 
 ## Seminar 4: Running Spark in AWS
 
-### EX13. Run EX9 in AWS using EMR [1 mark]
+### EX12. Run EX9 in AWS using EMR [1 mark]
 
 TODO
 
