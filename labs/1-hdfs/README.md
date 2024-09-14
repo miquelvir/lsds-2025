@@ -18,6 +18,10 @@ The goal of this lab is to build a distributed file storage system that allows t
 
 - [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks up to a maximum of 12 over 10.
 
+# Delivering the exercises
+
+To deliver the exercises, submit [this form](https://forms.gle/kJsosLgm2r2CLHZw9).
+
 # Grading
 
 The grade for this lab is computed as:
