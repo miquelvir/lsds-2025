@@ -19,6 +19,7 @@ We will call this system Super Simple Realtime Monitoring System (SSRMS). You ca
 # Table of contents
 
 - [Grading](#grading). Where does the grade of this lab come from?
+- [Delivering](#delivering-the-exercises). How to deliver these exercises.
 - [Required exercises](#required-exercises). You must deliver all these exercises to be awarded a 10.
     - [Seminar 5: Producing metrics to Kafka](#seminar-5-producing-metrics-to-kafka) - 6 exercises (35 marks)
     - [Lab 5: Building the rules service](#lab-5-building-the-rules-service) - 3 exercises (45 marks)
@@ -29,6 +30,10 @@ We will call this system Super Simple Realtime Monitoring System (SSRMS). You ca
     - [alarms service](#alarms-service). How does the alarms service work?
 
 - [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks up to a maximum of 12 over 10.
+
+# Delivering the exercises
+
+To deliver the exercises, submit [this form](https://forms.gle/AnjSQtggXPq8n1rB7).
 
 # Grading
 
