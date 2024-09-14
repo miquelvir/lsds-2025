@@ -5,6 +5,7 @@ The goal of this lab is to build a distributed file storage system that allows t
 # Table of contents
 
 - [Grading](#grading). Where does the grade of this lab come from?
+- [Delivering](#delivering-the-exercises). How to deliver these exercises.
 - [Required exercises](#required-exercises). You must deliver all these exercises to be awarded a 10.
     - [Seminar 1: Introduction to HDFS and APIs](#seminar-1-introduction-to-hdfs-services-and-apis) - 6 exercises (35 marks)
     - [Lab 1: Building the namenode](#lab-1-building-the-namenode) - 4 exercises (35 marks)
