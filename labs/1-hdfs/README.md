@@ -17,7 +17,7 @@ The goal of this lab is to build a distributed file storage system that allows t
     - [namenode](#namenode). How does SSHDFS namenode work?
     - [datanode](#datanode). How does SSHDFS datanode work?
 
-- [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks up to a maximum of 12 over 10.
+- [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks.
 
 # Delivering the exercises
 
