@@ -5,8 +5,8 @@ Follow this guide to set up your laptop with all the tools you need for the LSDS
 
 ## Office hours
 If you get stuck and need help, come to the office hours:
-- [DD/MM/YYYY HH:MM - HH:MM CET](meet.google.com/xxx-yyyy-zzz)
-- [DD/MM/YYYY HH:MM - HH:MM CET](meet.google.com/xxx-yyyy-zzz)
+- [09/01/2025 17:00 - 18:00 CET](meet.google.com/idb-zdbt-xuc)
+- [10/01/2025 17:00 - 18:00 CET](meet.google.com/xce-zhjb-qjz)
 
 ## Installation
 
