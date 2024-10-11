@@ -7,16 +7,13 @@ Welcome to the LSDS course at UPF. During this course, you will learn about dist
 
 # Deliverables
 
-> [!CAUTION]
-> You are expected to complete the full Developer Setup before the first seminar and lab session take place.
+- [Developer setup](./DEVELOPER_SETUP.md)
 
-- [DD/MM/YYYY - Developer setup](./DEVELOPER_SETUP.md)
+- [HDFS lab](./labs/1-hdfs/README.md)
 
-- [DD/MM/YYYY - HDFS lab](./labs/1-hdfs/README.md)
+- [Spark RDD lab](./labs/2-sparkrdd/README.md)
 
-- [DD/MM/YYYY - Spark RDD lab](./labs/2-sparkrdd/README.md)
-
-- [DD/MM/YYYY - Kafka lab](./labs/3-kafka/README.md)
+- [Kafka lab](./labs/3-kafka/README.md)
 
 
 # Rules
