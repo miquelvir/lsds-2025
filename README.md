@@ -26,7 +26,7 @@ Welcome to the LSDS course at UPF. During this course, you will learn about dist
 # Group
 
 > [!TIP]
-> Fill in this section in your fork.
+> Fill in this section in your copy of this repository.
 
 Group number: `todo`
 
