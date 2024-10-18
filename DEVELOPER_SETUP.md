@@ -57,9 +57,7 @@ If you get stuck and need help, come to the office hours:
 
 - Fill in [this spreadsheet](https://docs.google.com/spreadsheets/d/1dZ6m6r7b2M4QpjbJlqoQ2XpHhlhRuUGJauw2goXzXto/edit?usp=sharing) with your group members.
 
-- Click the [Use this template -> Create a new repository](https://github.com/miquelvir/lsds-2025) button and create a repository with the following name: `lsds-2025-{group_number}-t{theory_number}-p{lab_number}-s{seminar_number}`. For example, `lsds-2025-01-t1-p102-s103`.
-
-- Mark your repository as private. [Help](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility#changing-a-repositorys-visibility)
+- Click the [Use this template -> Create a new repository](https://github.com/miquelvir/lsds-2025) button and create a **private** repository with the following name: `lsds-2025-{group_number}-t{theory_number}-p{lab_number}-s{seminar_number}`. For example, `lsds-2025-01-t1-p102-s103`.
 
 - Share the repository with [all teachers](./TEACHER_LIST.md). [Help](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository#inviting-a-collaborator-to-a-personal-repository)
 
