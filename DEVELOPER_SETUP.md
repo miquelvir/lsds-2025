@@ -5,8 +5,8 @@ Follow this guide to set up your laptop with all the tools you need for the LSDS
 
 ## Office hours
 If you get stuck and need help, come to the office hours:
-- [DD/MM/YYYY HH:MM - HH:MM CET](meet.google.com/xxx-yyyy-zzz)
-- [DD/MM/YYYY HH:MM - HH:MM CET](meet.google.com/xxx-yyyy-zzz)
+- [09/01/2025 17:00 - 18:00 CET](meet.google.com/idb-zdbt-xuc)
+- [10/01/2025 17:00 - 18:00 CET](meet.google.com/xce-zhjb-qjz)
 
 ## Installation
 
@@ -58,9 +58,7 @@ If you get stuck and need help, come to the office hours:
 
 - Fill in [this spreadsheet](https://docs.google.com/spreadsheets/d/1dZ6m6r7b2M4QpjbJlqoQ2XpHhlhRuUGJauw2goXzXto/edit?usp=sharing) with your group members.
 
-- Fork this repository to create a copy with name `lsds-2025-{group_number}-t{theory_number}-p{lab_number}-s{seminar_number}`. For example, `lsds-2025-01-t1-p102-s103`. [Help](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo#forking-a-repository)
-
-- Mark your fork as private. [Help](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility#changing-a-repositorys-visibility)
+- Click the [Use this template -> Create a new repository](https://github.com/miquelvir/lsds-2025) button and create a **private** repository with the following name: `lsds-2025-{group_number}-t{theory_number}-p{lab_number}-s{seminar_number}`. For example, `lsds-2025-01-t1-p102-s103`.
 
 - Share the repository with [all teachers](./TEACHER_LIST.md). [Help](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository#inviting-a-collaborator-to-a-personal-repository)
 

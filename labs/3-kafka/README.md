@@ -11,7 +11,7 @@ The operation engineers at Nozama have been facing many incidents costing the co
 
 They need you to build a realtime monitoring system that:
 - **reads all the metrics from the sources in realtime** 
-- allow operations engineers to **create and delete rules**. For example: trigger an alarm when `floor-temperature` is above `30`.
+- allow operations engineers to **create and delete rules** using an API. For example: trigger an alarm when `floor-temperature` is above `30`.
 - **send alarms in real-time** to a Discord channel when any rule is triggered . For example: send a Discord message when `floor-temperature` is above `30`.
 
 We will call this system Super Simple Realtime Monitoring System (SSRMS). You can check out the [SSRMS demo video](https://www.youtube.com/watch?v=yuPLcAdw5SQ) to better understand how your system must work when you finish the lab.
@@ -19,6 +19,7 @@ We will call this system Super Simple Realtime Monitoring System (SSRMS). You ca
 # Table of contents
 
 - [Grading](#grading). Where does the grade of this lab come from?
+- [Delivering](#delivering-the-exercises). How to deliver these exercises.
 - [Required exercises](#required-exercises). You must deliver all these exercises to be awarded a 10.
     - [Seminar 5: Producing metrics to Kafka](#seminar-5-producing-metrics-to-kafka) - 6 exercises (35 marks)
     - [Lab 5: Building the rules service](#lab-5-building-the-rules-service) - 3 exercises (45 marks)
@@ -28,7 +29,11 @@ We will call this system Super Simple Realtime Monitoring System (SSRMS). You ca
     - [rules service](#rules-service). How does the rules service work?
     - [alarms service](#alarms-service). How does the alarms service work?
 
-- [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks up to a maximum of 12 over 10.
+- [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks.
+
+# Delivering the exercises
+
+To deliver the exercises, submit [this form](https://forms.gle/AnjSQtggXPq8n1rB7).
 
 # Grading
 
@@ -92,7 +97,7 @@ During this seminar session, you must create scripts that simulate the devices p
 
 ---
 
-### [S1Q2] [5 marks] Create Kafka topics
+### [S5Q2] [5 marks] Create Kafka topics
 
 The [compose.kafka.yaml](./compose.kafka.yaml) file has a full Kafka deployment with 1 broker. 
 
@@ -115,7 +120,7 @@ Paste a screenshot.
 
 ---
 
-### [S1Q3] [5 marks] Implement the constant source emulator
+### [S5Q3] [5 marks] Implement the constant source emulator
 
 Inside the [labs\3-kafka\sources](./sources/) folder, create a Python script `constant.py`.
 
@@ -152,7 +157,7 @@ docker exec -it kafka-cluster-kafka-1-1 /bin/sh
 /bin/kafka-console-consumer --bootstrap-server kafka-1:9092 --topic metrics --property print.key=true
 ```
 
-### [S1Q4] [5 marks] Implement the spikes source emulator
+### [S5Q4] [5 marks] Implement the spikes source emulator
 
 Inside the [labs\3-kafka\sources](./sources/) folder, create a Python script `spikes.py`.
 
@@ -192,7 +197,7 @@ docker exec -it kafka-cluster-kafka-1-1 /bin/sh
 ```
 
 
-### [S1Q5] [5 marks] Implement the stairs source emulator
+### [S5Q5] [5 marks] Implement the stairs source emulator
 
 Inside the [labs\3-kafka\sources](./sources/) folder, create a Python script `stairs.py`.
 
@@ -295,7 +300,7 @@ docker exec -it kafka-cluster-kafka-1-1 /bin/sh
 /bin/kafka-console-consumer --bootstrap-server kafka-1:9092 --topic rules --property print.key=true
 ```
 
-### [S1Q2] [5 marks] Dockerizing the rules service
+### [L5Q2] [5 marks] Dockerizing the rules service
 
 Add 1 instance of the `rules` service to the [compose.yaml](./compose.yaml) file.
 
@@ -390,7 +395,7 @@ Create different rules with the rules API and start producing metrics with the [
 > [!TIP]
 > SSRMS system uses Kafka extensively. Read and study the [Kafka: a Distributed Messaging System for Log Processing](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/09/Kafka.pdf?msockid=01dc1031619a67bb08ec049760dd66cc) paper.
 
-SSRMS is composed of 3 services and many source clients:
+SSRMS is composed of 2 services, metric sources and clients:
 - The [**sources**](#sources) send metrics into the system. For example, sensors, devices, and other services.
 - The [**clients**](#clients) (Operation Engineers at Nozama) use the Rules API to create and update rules in the system.
 - The [**rules** service](#rules-service) allows users to create and update alarm rules through the API and stores them in the `rules (compacted) topic`.
@@ -611,25 +616,25 @@ curl -X POST {URL} -H 'Content-Type: application/json' -d '{
 
 You can delivery the following exercises for additional marks in the labs grade (and/or if you are interested in learning more)
 
-### [ADQ0] [5 marks] Improve the `alarms` service rule matching algorithm
+### [AD2Q0] [5 marks] Improve the `alarms` service rule matching algorithm
 
 Instead of having a materialized view of `rule_id -> rule`, also materialize `metric_name -> rules` for faster O(1) access when processing metrics.
 
 
-### [ADQ1] [5 marks] Extend the `rules` service with support for updating rules
+### [AD2Q1] [5 marks] Extend the `rules` service with support for updating rules
 
 Add a `PUT /rules/{id}` method to the `rules` API which allows updating an existing rule.
 
 
-### [ADQ2] [15 marks] Extend the `rules` service with support for getting rules
+### [AD2Q2] [5 marks] Extend the `rules` service with support for getting rules
 
 Add a `GET /rules/{id}` and `GET /rules` methods to the `rules` API. You will need to add a consumer and a materialized view of rules in the `rules` service to support this usecase.
 
-### [ADQ3] [20 marks] Create a web client for the rules service
+### [AD2Q3] [5 marks] Create a web client for the rules service
 
 Use the `rules` API to create a simple HTML + JS website that allows viewing, creating, updating and deleting rules.
 
-### [ADQ4] [10 marks] Create an `ingest` service
+### [AD2Q4] [5 marks] Create an `ingest` service
 
 Instead of allowing source devices to publish metrics directly to Kafka, create an `ingest` service with an API that allows POSTing metrics. Then, the `ingest` service sends them to the Kafka topic.
 
@@ -655,31 +660,31 @@ graph TD;
     style discord stroke:#55f,stroke-width:2px
 ```
 
-### [ADQ5] [10 marks] Use the docker compose `deploy` attribute to horizontally scale services
+### [AD2Q5] [5 marks] Use the docker compose `deploy` attribute to horizontally scale services
 
 Instead of manually copying the services many times in the docker compose file to scale them horizontally, use the [deploy attribute](https://docs.docker.com/compose/compose-file/deploy/) to specify the number of replicas.
 
-### [ADQ6] [25 marks] Add tagging support
+### [AD2Q6] [5 marks] Add tagging support
 
 Consider the usecase where we have many machines of type `conveyorbelt`, and they all publish the same `conveyorbelt-velocity-12354` metric. Instead of publishing many metrics with different names (`conveyorbelt-velocity-12354`, `conveyorbelt-velocity-12355`, `conveyorbelt-velocity-12356`, ...) depending on the machine id, allow publishing metrics with tags. This will allow a single rule to be created for all metrics of the same type, regardless of the source. For example: `conveyorbelt-velocity` (tags: `machine_id:12354`). Implement the necessary changes in `alarms`, `rules` and `ingest` services and APIs.
 
-### [ADQ7] [10 marks] Add rule operator support
+### [AD2Q7] [5 marks] Add rule operator support
 
 Add an additional attribute to `rules`: `operator`. The `operator` field can be `>` or `<`. Instead of always triggering alarms when the metric is above the threshold, these operators should allow triggering alarms when a metric is below a threshold. Implement the necessary changes in the `alarms` and `rules` services and APIs.
 
-### [ADQ8] [25 marks] Add cooldown support
+### [AD2Q8] [5 marks] Add cooldown support
 
 Add an additional attribute to `rules`: `cooldown_seconds`. Whenever a rule has sent an alarm notification to Discord, don't send any new alarms from that rule until `cooldown_seconds` have passed to avoid spamming the channel. Implement the necessary changes in the `alarms` and `rules` services and APIs.
 
-### [ADQ9] [20 marks] Add windowing support
+### [AD2Q9] [5 marks] Add windowing support
 
 Add an additional attribute to `rules`: `type`. The `type` field can be `instantaneous` (default) or `window_average`. Instead of always triggering alarms when the metric is above/below the threshold, these operators should allow triggering alarms when the average in a `window_duration_seconds` window of the metric is above/below the threshold. Implement the necessary changes in the `alarms` and `rules` services and APIs.
 
-### [ADQ10] [20 marks] Add JWT-based AuthN support to the rules and ingest services
+### [AD2Q10] [5 marks] Add JWT-based AuthN support to the rules and ingest services
 
 Only allow publishing rules and metrics with a valid JWT token.
 
-### [ADQ11] [10 marks] Materialized view initialization in the alarms service
+### [AD2Q11] [5 marks] Materialized view initialization in the alarms service
 
 Do not start processing metrics in the `alarms` service until all rules from the `rules` topic have been read. In other words:
 - Read the rules topic until reaching the head and populate the materialized view
@@ -687,6 +692,10 @@ Do not start processing metrics in the `alarms` service until all rules from the
 
 Otherwise, metrics might be consumed before the rules are in the materialized view.
 
-### [ADQ12] [5 marks] Use styled embeds to send Discord messages
+### [AD2Q12] [5 marks] Use styled embeds to send Discord messages
 
 Use styled embeds to improve the messages you send to Discord.
+
+### [AD2Q13] [5 marks] Add threshold crossing support
+
+Change the behaviour of rule triggering, so that an alarm is only triggered when the value changes from below to above the threshold. I.e., if you receive a value above the threshold multiple times, don't trigger the alarm again until it goes below the threshold at least once.
