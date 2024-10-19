@@ -34,13 +34,11 @@ If plagiarism is detected, `labs_grade` is a 0.
 
 # Required exercises
 
-## Lab 3: Downloading Tweets from S3 and parsing them from JSON
+## Lab 3: Parsing Tweets as JSON
 
 ### [L3Q0] [5 marks] Downloading Tweet data from S3
 
-- Watch [AWS S3 Tutorial For Beginners](https://www.youtube.com/watch?v=tfU0JEZjcsg)
-- Download `s3://lsds2022/twitter-eurovision-2018.tar.gz` from S3 using the AWS CLI. [Help. Example 4: Copying an S3 object to a local file](https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html)
-- Extract the `.tar.gz` contents into the `data` folder. [Help](https://askubuntu.com/questions/25347/what-command-do-i-need-to-unzip-extract-a-tar-gz-file).
+- Follow the Developer Setup to download the needed data if you did not at the beginning of the course.
 - Take a look at the first Tweet: `cat Eurovision3.json -n | head -n 1 | jq`. [Help](https://unix.stackexchange.com/questions/288521/with-the-linux-cat-command-how-do-i-show-only-certain-lines-by-number#:~:text=cat%20%2Fvar%2Flog%2Fsyslog%20-n%20%7C%20head%20-n%2050%20%7C,-b10%20-a10%20will%20show%20lines%2040%20thru%2060.)
 - **[1 mark]** What field in the JSON object of a Tweet contains the user bio?
 - **[1 mark]** What field in the JSON object of a Tweet contains the language?
@@ -125,7 +123,7 @@ The file [cat.txt](./data/cat.txt) has many lines, each with a sentence.
 - Saves the result to a file
 - Run your code in your local Spark cluster:
 ```zsh
-docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS_STEP}:7077 /opt/bitnami/spark/app/spark_tweet_language_filter.py zh /opt/bitnami/spark/app/data/Eurovision10.json /opt/bitnami/spark/output/Eurovision10Zh.json
+docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS_STEP}:7077 /opt/bitnami/spark/app/spark_tweet_language_filter.py zh /opt/bitnami/spark/app/data/Eurovision3.json /opt/bitnami/spark/output/Eurovision3Zh.json
 ```
 
 > You might need to `chmod 755 data` if you get "file not found" errors
@@ -139,7 +137,7 @@ docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS
 - Saves the result to a file (sorted by how many times they appear in descending order)
 - Run your code in your local Spark cluster:
 ```zsh
-docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS_STEP}:7077 /opt/bitnami/spark/app/spark_tweet_bigrams.py es /opt/bitnami/spark/app/data/Eurovision10.json /opt/bitnami/spark/output/Eurovision10EsBigrams
+docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS_STEP}:7077 /opt/bitnami/spark/app/spark_tweet_bigrams.py es /opt/bitnami/spark/app/data/Eurovision3.json /opt/bitnami/spark/output/Eurovision3EsBigrams
 ```
 
 
@@ -149,7 +147,7 @@ docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS
 - Implement a Spark job that finds the users with the top 10 most retweeted Tweets for a language
 - Run your code in your local Spark cluster:
 ```zsh
-docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS_STEP}:7077 /opt/bitnami/spark/app/spark_tweet_retweets.py es /opt/bitnami/spark/app/data/Eurovision10.json
+docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS_STEP}:7077 /opt/bitnami/spark/app/spark_tweet_retweets.py es /opt/bitnami/spark/app/data/Eurovision3.json
 ```
 
 ### [L4Q3] [10 marks] Get the 10 most retweeted users
@@ -158,7 +156,7 @@ docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS
 - Implement a Spark job that finds the users with the top 10 most retweets (in total) for a language and how many retweets they have. I.e., sum all the retweets each user has and get the top 10 users.
 - Run your code in your local Spark cluster:
 ```zsh
-docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS_STEP}:7077 /opt/bitnami/spark/app/spark_tweet_user_retweets.py es /opt/bitnami/spark/app/data/Eurovision10.json
+docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS_STEP}:7077 /opt/bitnami/spark/app/spark_tweet_user_retweets.py es /opt/bitnami/spark/app/data/Eurovision3.json
 ```
 
 ## Seminar 4: Running Spark in AWS

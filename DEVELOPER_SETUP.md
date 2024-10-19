@@ -29,14 +29,6 @@ If you get stuck and need help, come to the office hours:
 
 - If you use Windows, [install WSL](https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/guides/install-ubuntu-wsl2/) and [change the default terminal in VSCode to WSL](https://stackoverflow.com/questions/44435697/change-the-default-terminal-in-visual-studio-code).
 
-### AWS
-
-> [!WARNING]
-> If you use WSL, remember to run these commands in the WSL terminal.
-
-- [Install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-- Accept the invitation to AWS academy you received in the email.
-
 ### Python
 
 > [!WARNING]
@@ -50,6 +42,10 @@ If you get stuck and need help, come to the office hours:
     ```
 
 - If you don't, [install Python](https://www.python.org/downloads/)
+
+### AWS
+
+- Accept the invitation to AWS academy you received in the email.
 
 ## Creating your group's repository
 
@@ -74,6 +70,10 @@ If you get stuck and need help, come to the office hours:
 - Fill in the [README](./README.md) with the information about your group.
 
 - Commit and push your changes.
+
+## Download the sample dataset
+
+- Download the file `Eurovision3.json` and `Eurovision9.json` from AulaGlobal and save them inside `labs/2-sparkrdd/data`.
 
 ## Making sure Python and Docker work
 

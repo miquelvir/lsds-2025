@@ -183,7 +183,7 @@ Create a basic FastAPI service in [labs\1-hdfs\namenode](./namenode/) that can b
     files.json
 ```
 
-### [L1Q0] [10 marks] GET /datanodes
+### [L1Q0] [5 marks] GET /datanodes
 
 
 Implement the first endpoint of the `namenode` API: [GET /datanodes](#get-datanodes). Your code must [read](https://python.land/data-processing/working-with-json#How_to_read_a_JSON_file_in_python) the configured `datanodes` from the `config.json` file and return them.
@@ -192,7 +192,7 @@ Test it works with curl and paste a screenshot.
 
 ---
 
-### [L1Q1] [10 marks] POST /files
+### [L1Q1] [15 marks] POST /files
 
 Implement the [POST /files](#post-files) endpoint. 
 
@@ -813,3 +813,7 @@ Describe the main problems regarding the (lack of) AuthN in SSHDFS. Implement a 
 _Depends on: AD0Q11_
 
 Burn a role into the JWT payloads and only allow clients to download files that their role has access to. When uploading a file, the client can set the role needed to view that file.
+
+### [AD0Q13] [5 marks] Implement deleting blocks
+
+Extend the APIs and client scripts to allow deleting files.
