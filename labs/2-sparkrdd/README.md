@@ -163,6 +163,11 @@ docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS
 
 ## Seminar 4: Running Spark in AWS
 
+AWS allows us to rent virtual servers and deploy a Spark cluter to do data anlysis at scale. In this seminar, you will learn how to:
+- Use S3 to store and read files
+- Use AWS EMR to host a Spark cluster in AWS EC2 servers
+- Run some of your Spark applications in the cluster.
+
 ### [S4Q0] [10 marks] Run L4Q1 in AWS using EMR
 
 - Accept the invitation to AWS academy.
