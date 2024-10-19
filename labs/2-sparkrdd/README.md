@@ -164,7 +164,7 @@ docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS
 ### EX12. Get the 10 most retweeted users [10 marks]
 
 - Create a file `spark_tweet_user_retweets.py`.
-- Implement a Spark job that finds the users with the top 10 most retweets (in total) for a language. I.e., sum all the retweets each user has and get the top 10 users.
+- Implement a Spark job that finds the users with the top 10 most retweets (in total) for a language and how many retweets they have. I.e., sum all the retweets each user has and get the top 10 users.
 - Run your code in your local Spark cluster:
 ```zsh
 docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS_STEP}:7077 /opt/bitnami/spark/app/spark_tweet_user_retweets.py es /opt/bitnami/spark/app/data/Eurovision10.json
@@ -172,7 +172,50 @@ docker-compose exec spark-master spark-submit --master spark://{IP_FROM_PREVIOUS
 
 ## Seminar 4: Running Spark in AWS
 
-### EX13. Run EX9 in AWS using EMR [1 mark]
+### EX13. Run EX12 in AWS using EMR [10 marks]
 
-TODO
+- Accept the invitation to AWS academy.
+- Open the [AWS Academy](https://awsacademy.instructure.com/courses) course
+- In `Modules`, select `Launch AWS Academy Learner Lab`
+- Click `Start Lab`
+- Wait until the `AWS` indicator has a green circle
+- Click the `AWS` text with the green circle to open the AWS console
 
+> [!TIP]
+> When you launch a cluster, you start spending AWS credit! Remember to terminate your cluster at the end of your experiments!
+
+- [Create a bucket in S3](https://us-east-1.console.aws.amazon.com/s3/home?region=us-east-1#):
+    - Bucket type: `General purpose`
+    - Name: `lsds-2025-{group_number}-t{theory_number}-p{lab_number}-s{seminar_number}-s3bucket`
+
+- In the bucket, create 4 folders: `input`, `app`, `logs` and `output`
+
+- Upload the `Eurovision3.json` file inside the `input` folder
+
+- Upload `spark_tweet_user_retweets.py` and `tweet_parser.py` in the `app` folder
+
+- Open the [EMR console](https://us-east-1.console.aws.amazon.com/emr/home?region=us-east-1#/clusters)
+
+- Create a cluster
+    - Application bundle: `Spark Interactive`
+    - Name: `lsds-2025-{group_number}-t{theory_number}-p{lab_number}-s{seminar_number}-sparkcluster`
+    - Choose this instance type: `m4.large`
+    - Instance(s) size: `3`
+    - Cluster logs: select the `logs` folder in the S3 bucket you created
+    - Service role: `EMR_DefaultRole`
+    - Instance profile: `EMR_EC2_DefaultRole`
+
+- In `Steps`, select `Add step`.
+    - Type: `Spark application`
+    - Name: `lab2-ex13`
+    - Deploy mode: `Cluster mode`
+    - Application location: select the `spark_tweet_user_retweets.py` in the S3 bucket
+    - Spark-submit options: specify the `tweet_parser.py` module. For example: `--py-files s3://lsds-2025-miquel-test/app/tweet_parser.py`
+    - Arguments: specify the input and output. For example: `es s3://lsds-2025-miquel-test/input/Eurovision3.json`.
+
+- When you submit a step, wait until the `Status` is `Completed`. 
+
+> [!TIP]
+> You can find the logs in your S3 bucket: `logs/{cluster id}/containers/application_*_{run number}/container_*_000001/stdout.gz` - they might take some minutes to appear
+
+- Paste a screenshot of the log where we can see: how much time it took, what are the ids of the ten most retweeted users.

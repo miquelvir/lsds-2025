@@ -35,6 +35,7 @@ If you get stuck and need help, come to the office hours:
 > If you use WSL, remember to run these commands in the WSL terminal.
 
 - [Install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+- Accept the invitation to AWS academy you received in the email.
 
 ### Python
 
