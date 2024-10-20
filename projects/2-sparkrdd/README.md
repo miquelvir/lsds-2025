@@ -21,16 +21,16 @@ To deliver the exercises, submit [this form](https://forms.gle/ygV1j36hSdxM6r1L7
 The grade for this lab is computed as:
 
 ```
-lab2_grade = delivered_marks / required_exercises_total_marks * 10
+project2_grade = delivered_marks / required_exercises_total_marks * 10
 ```
 
-The final labs grade is computed as:
+The final grade is computed as:
 
 ```
-labs_grade = (lab1_grade + lab2_grade + lab3_grade) / 3
+final_grade = (project1_grade + project2_grade + project3_grade) / 3
 ```
 
-If plagiarism is detected, `labs_grade` is a 0.
+If plagiarism is detected, `final_grade` is a 0.
 
 # Required exercises
 

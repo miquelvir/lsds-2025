@@ -2,18 +2,18 @@
 
 `Universitat Pompeu Fabra (UPF), 2024 - 2025`
 
-Welcome to the LSDS course at UPF. During this course, you will learn about distributed systems design. Then, during the labs you will build your own distributed systems, as well as use existing distributed systems. 
+Welcome to the LSDS course at UPF. During this course, you will learn about distributed systems design. Then, during the seminars and labs you will build your own distributed systems, as well as use existing distributed systems. 
 
 
 # Deliverables
 
 - [Developer setup](./DEVELOPER_SETUP.md)
 
-- [HDFS lab](./labs/1-hdfs/README.md)
+- [HDFS lab](./projects/1-hdfs/README.md)
 
-- [Spark RDD lab](./labs/2-sparkrdd/README.md)
+- [Spark RDD lab](./projects/2-sparkrdd/README.md)
 
-- [Kafka lab](./labs/3-kafka/README.md)
+- [Kafka lab](./projects/3-kafka/README.md)
 
 
 # Rules

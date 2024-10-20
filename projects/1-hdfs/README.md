@@ -28,16 +28,16 @@ To deliver the exercises, submit [this form](https://forms.gle/kJsosLgm2r2CLHZw9
 The grade for this lab is computed as:
 
 ```
-lab1_grade = delivered_marks / required_exercises_total_marks * 10
+project1_grade = delivered_marks / required_exercises_total_marks * 10
 ```
 
-The final labs grade is computed as:
+The final grade is computed as:
 
 ```
-labs_grade = (lab1_grade + lab2_grade + lab3_grade) / 3
+final_grade = (project1_grade + project2_grade + project3_grade) / 3
 ```
 
-If plagiarism is detected, `labs_grade` is a 0.
+If plagiarism is detected, `final_grade` is a 0.
 
 # Required exercises
 
@@ -123,7 +123,7 @@ If plagiarism is detected, `labs_grade` is a 0.
 
 ### [S1Q4] [5 marks] Build your first HTTP API
 
-Inside the folder [labs\1-hdfs\testserver1](./testserver1/), follow the [Fastapi quickstart](https://fastapi.tiangolo.com/#installation) tutorial to build a service with an HTTP API.
+Inside the folder [projects\1-hdfs\testserver1](./testserver1/), follow the [Fastapi quickstart](https://fastapi.tiangolo.com/#installation) tutorial to build a service with an HTTP API.
 
 **[1 mark] Paste a screenshot where you do a GET request to your service using the browser. Open `http://127.0.0.1:8000/items/512?q=lsds25`.**.
 
@@ -158,11 +158,11 @@ Response:
 
 ### [S1Q5] [5 marks] Dockerizing a service
 
-Inside the folder [labs\1-hdfs\testserver2](./testserver2/), follow the [Fastapi in Containers - Docker](https://fastapi.tiangolo.com/deployment/docker/) tutorial.
+Inside the folder [projects\1-hdfs\testserver2](./testserver2/), follow the [Fastapi in Containers - Docker](https://fastapi.tiangolo.com/deployment/docker/) tutorial.
 
 **[2 mark] Paste a screenshot where you test the API of your service running in Docker using `curl`.**
 
-Go back to [labs\1-hdfs\testserver1](./testserver1/). Adapt it so it runs in Docker.
+Go back to [projects\1-hdfs\testserver1](./testserver1/). Adapt it so it runs in Docker.
 
 **[3 mark] Paste a screenshot where you test the `sum` endpoint of your API running in Docker using `curl`.**
 
@@ -172,7 +172,7 @@ Go back to [labs\1-hdfs\testserver1](./testserver1/). Adapt it so it runs in Doc
 
 During this lab session, you must build the `namenode` service as described in [namenode](#namenode).
 
-Create a basic FastAPI service in [labs\1-hdfs\namenode](./namenode/) that can be dockerized like [labs\1-hdfs\testserver2](./testserver2/). In the `config.json` file, write a [JSON object with 3 data nodes](#namenode-filesystem).
+Create a basic FastAPI service in [projects\1-hdfs\namenode](./namenode/) that can be dockerized like [projects\1-hdfs\testserver2](./testserver2/). In the `config.json` file, write a [JSON object with 3 data nodes](#namenode-filesystem).
 
 ```
 /namenode
@@ -245,7 +245,7 @@ Also, paste a screenshot of the content of the `files.json` file using the `File
 
 During this lab session, you must build the `datanode` service as described in [datanode](#datanode).
 
-Create a basic FastAPI service in [labs\1-hdfs\datanode](./datanode/) that can be dockerized like the [labs\1-hdfs\namenode](./namenode/).
+Create a basic FastAPI service in [projects\1-hdfs\datanode](./datanode/) that can be dockerized like the [projects\1-hdfs\namenode](./namenode/).
 
 ```
 /namenode
@@ -303,7 +303,7 @@ During this seminar, you must build the [Python client](#client) which allows up
 
 ### [S2Q0] [5 marks] List datanodes
 
-Create a new Python script `labs\1-hdfs\client\list_datanodes.py` that retrieves all the `datanodes` from the `namenode` and prints the URLs:
+Create a new Python script `projects\1-hdfs\client\list_datanodes.py` that retrieves all the `datanodes` from the `namenode` and prints the URLs:
 - Retrieve the host and port of each `datanode` dynamically [using the `namenode` API](#get-datanodes). 
 - Then, print the result nicely.
 
@@ -316,7 +316,7 @@ Run the `list_datanodes.py` script and paste a screenshot of the result.
 
 ### [S2Q1] [10 marks] Upload a file
 
-Create a new Python script `labs\1-hdfs\client\upload.py` that asks the user for a file path, creates a new file in the `namenode` and uploads each block (and each replica) to the `datanodes` that the `namenode` assigned:
+Create a new Python script `projects\1-hdfs\client\upload.py` that asks the user for a file path, creates a new file in the `namenode` and uploads each block (and each replica) to the `datanodes` that the `namenode` assigned:
 - Ask the user for a path using `input`. 
 - Ask the user for a filename using `input`. 
 - [Check the file size](https://stackoverflow.com/questions/2104080/how-do-i-check-file-size-in-python)
@@ -344,7 +344,7 @@ Run the `upload.py` script and paste a screenshot of the result and how the bloc
 
 ### [S2Q2] [10 marks] Download a file
 
-Create a new Python script `labs\1-hdfs\client\download.py` that asks the user for a filename, a destination path, downloads all the blocks from the `datanodes` and writes them all together to the destination path as the complete file:
+Create a new Python script `projects\1-hdfs\client\download.py` that asks the user for a filename, a destination path, downloads all the blocks from the `datanodes` and writes them all together to the destination path as the complete file:
 - Ask the user for a filename using `input`.
 - First, retrieve the file metadata using the [GET /files/{filename}](#get-filesfilename) endpoint of the `namenode` API. 
 - Then, use the [GET /files/{filename}/blocks/{block}/content](#get-filesfilenameblocksblock_numbercontent) endpoint of the `datanode` API to download each block from one of the replicas.
@@ -715,7 +715,7 @@ For example, to download the block `0` of a file named `myfile.jpg` from the `da
 
 # Additional exercises
 
-You can delivery the following exercises for additional marks in the labs grade (and/or if you are interested in learning more)
+You can delivery the following exercises for additional marks in the project grade (and/or if you are interested in learning more)
 
 ### [AD0Q0] [5 marks] Build a unified client with click
 

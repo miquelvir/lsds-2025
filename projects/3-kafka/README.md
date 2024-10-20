@@ -40,16 +40,16 @@ To deliver the exercises, submit [this form](https://forms.gle/AnjSQtggXPq8n1rB7
 The grade for this lab is computed as:
 
 ```
-lab3_grade = delivered_marks / required_exercises_total_marks * 10
+project3_grade = delivered_marks / required_exercises_total_marks * 10
 ```
 
-The final labs grade is computed as:
+The final grade is computed as:
 
 ```
-labs_grade = (lab1_grade + lab2_grade + lab3_grade) / 3
+final_grade = (project1_grade + project2_grade + project3_grade) / 3
 ```
 
-If plagiarism is detected, `labs_grade` is a 0.
+If plagiarism is detected, `final_grade` is a 0.
 
 # Required exercises
 
@@ -122,7 +122,7 @@ Paste a screenshot.
 
 ### [S5Q3] [5 marks] Implement the constant source emulator
 
-Inside the [labs\3-kafka\sources](./sources/) folder, create a Python script `constant.py`.
+Inside the [projects\3-kafka\sources](./sources/) folder, create a Python script `constant.py`.
 
 This script should be called with 3 parameters: `metric_name`, `metric_value` and `period_seconds`. Then, it must publish to the `metrics` topic, using `metric_name` as key and `{"value":metric_value}` as value. Then, sleep `period_seconds` and repeat again.
 
@@ -159,7 +159,7 @@ docker exec -it kafka-cluster-kafka-1-1 /bin/sh
 
 ### [S5Q4] [5 marks] Implement the spikes source emulator
 
-Inside the [labs\3-kafka\sources](./sources/) folder, create a Python script `spikes.py`.
+Inside the [projects\3-kafka\sources](./sources/) folder, create a Python script `spikes.py`.
 
 This script should be called with 5 parameters: `metric_name`, `low_value`, `spike_value`, `period_seconds` and `frequency`. Then, it must publish to the `metrics` topic, using `metric_name` as key and `{"value":metric_value}` as value. The value must be `spike_value` every `frequency` records, otherwise `low_value` . Then, sleep `period_seconds` and repeat again.
 
@@ -199,7 +199,7 @@ docker exec -it kafka-cluster-kafka-1-1 /bin/sh
 
 ### [S5Q5] [5 marks] Implement the stairs source emulator
 
-Inside the [labs\3-kafka\sources](./sources/) folder, create a Python script `stairs.py`.
+Inside the [projects\3-kafka\sources](./sources/) folder, create a Python script `stairs.py`.
 
 This script should be called with 5 parameters: `metric_name`, `start_value`, `env_value`, `step` and `period_seconds`. Then, it must publish to the `metrics` topic, using `metric_name` as key and `{"value":metric_value}` as value. The value must start at `start_value`, and increment every `period_seconds` by `step` until `end_value`. Them, go back to `start_value` and repeat again.
 
@@ -249,7 +249,7 @@ docker exec -it kafka-cluster-kafka-1-1 /bin/sh
 
 During this lab session, you must build the `rules` service as described in [rules service](#rules-service).
 
-Inside the [labs\3-kafka\rules](./rules/) folder, create a [Fastapi service with Docker](https://fastapi.tiangolo.com/deployment/docker/).
+Inside the [projects\3-kafka\rules](./rules/) folder, create a [Fastapi service with Docker](https://fastapi.tiangolo.com/deployment/docker/).
 
 ```
 /rules
@@ -334,7 +334,7 @@ docker exec -it lsds-kafka-lab-kafka-1-1 /bin/sh
 
 During this lab session, you must build the `alarms` service as described in [alarms service](#alarms-service).
 
-Inside the [labs\3-kafka\alarms](./alarms/) folder, create an empty `main.py` file with a Dockerfile and requirements.txt.
+Inside the [projects\3-kafka\alarms](./alarms/) folder, create an empty `main.py` file with a Dockerfile and requirements.txt.
 
 ```
 /alarms
@@ -614,7 +614,7 @@ curl -X POST {URL} -H 'Content-Type: application/json' -d '{
 
 # Additional exercises
 
-You can delivery the following exercises for additional marks in the labs grade (and/or if you are interested in learning more)
+You can delivery the following exercises for additional marks in the project grade (and/or if you are interested in learning more)
 
 ### [AD2Q0] [5 marks] Improve the `alarms` service rule matching algorithm
 
