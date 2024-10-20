@@ -9,11 +9,11 @@ Welcome to the LSDS course at UPF. During this course, you will learn about dist
 
 - [Developer setup](./DEVELOPER_SETUP.md)
 
-- [HDFS lab](./projects/1-hdfs/README.md)
+- [HDFS project](./projects/1-hdfs/README.md)
 
-- [Spark RDD lab](./projects/2-sparkrdd/README.md)
+- [Spark RDD project](./projects/2-sparkrdd/README.md)
 
-- [Kafka lab](./projects/3-kafka/README.md)
+- [Kafka project](./projects/3-kafka/README.md)
 
 
 # Rules
