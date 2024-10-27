@@ -419,13 +419,13 @@ graph TD;
 
 ### sources
 
-The sources are all the devices that can integrate with SSRMS to send metrics. For example, other services, devices, temperature sensors, counters, etc.
+The sources are all the clients that can integrate with SSRMS to send metrics. For example, servers or sensors.
 
-Since we don't have said devices available, you must create scripts that simulate the devices in the [sources folder](./sources/). They must publish metrics to the `metrics` Kafka topic like the real devices would.
+To make testing easier, you must create scripts that simulate being sources in the [sources folder](./sources/). They must publish metrics to the `metrics` Kafka topic like a real metric source would.
 
 ### clients
 
-The clients of SSRMS are the Operations Engineers from Nozama. Ideally, this would be an app or a website. However, for this prototype they will use `curl` to directly create and update rules using the [Rules API](#rules-service).
+The clients of SSRMS are used by the engineers of Acme to create and delete rules. Ideally, this would be an app or a website. However, for this prototype they will use `curl` to directly create and update rules using the [Rules API](#rules-service).
 
 ### rules service
 
