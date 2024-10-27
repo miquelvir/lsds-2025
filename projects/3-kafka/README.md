@@ -1,18 +1,11 @@
 # Building a realtime monitoring system
 
-Consider a company called Nozama that has huge factories around the world. Each factory receives millions of packages every day, stores them and sends them to customers when they buy an item. 
+Engineers at Acme Inc. are suffering many incidents and outages. During these outages, their services go down and customers cannot use the website and other services they offer. They want to start publishing metrics from their servers such as CPU usage, failure count, memory usage, request count, packages received in their warehouses, etc. Then, they wish to leverage some service which can help them define rules and trigger alerts. For example, send a Discord message with an alarm when the CPU usage is above 80%. They hope if they get an alert in realtime about any issues in their services, they will be able to fix them quickly before there is customer impact.
 
-The operation engineers at Nozama have been facing many incidents costing the company huge amounts of money. Seeing the amount of issues that could be prevented by monitoring and being notified in realtime, the engineers at Nozama have decided to start adding monitoring (sensors, termometers, counters, ...) to many machines and processes. For example:
-- Temperature of machines
-- Conveyor belt speeds
-- Number of packages received
-- Floor temperature
-- ...
-
-They need you to build a realtime monitoring system that:
+You need to build said realtime monitoring system which:
 - **reads all the metrics from the sources in realtime** 
-- allow operations engineers to **create and delete rules** using an API. For example: trigger an alarm when `floor-temperature` is above `30`.
-- **send alarms in real-time** to a Discord channel when any rule is triggered . For example: send a Discord message when `floor-temperature` is above `30`.
+- allow engineers to **create and delete rules** using an API. For example: trigger an alarm when `cpu-usage-server-124` is above `90`.
+- **send alarms in real-time to a Discord channel**. For example: send a Discord message when the `cpu-usage-server-124 > 90` rule is triggered.
 
 We will call this system Super Simple Realtime Monitoring System (SSRMS). You can check out the [SSRMS demo video](https://www.youtube.com/watch?v=yuPLcAdw5SQ) to better understand how your system must work when you finish the lab.
 
