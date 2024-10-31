@@ -11,20 +11,20 @@ We will call this system Super Simple Realtime Monitoring System (SSRMS). You ca
 
 # Table of contents
 
-- [Grading](#grading). Where does the grade of this lab come from?
-- [Delivering](#delivering-the-exercises). How to deliver these exercises.
-- [Required exercises](#required-exercises). You must deliver all these exercises to be awarded a 10.
-    - [Seminar 5: Producing metrics to Kafka](#seminar-5-producing-metrics-to-kafka) - 6 exercises (35 marks)
-    - [Lab 5: Building the rules service](#lab-5-building-the-rules-service) - 3 exercises (45 marks)
-    - [Lab 6: Building the alarms service](#lab-6-building-the-alarms-service) - 5 exercises (55 marks)
+- [Required exercises](#required-exercises)
+    - [Seminar 5: Producing metrics to Kafka](#seminar-5-producing-metrics-to-kafka)
+    - [Lab 5: Building the rules service](#lab-5-building-the-rules-service)
+    - [Lab 6: Building the alarms service](#lab-6-building-the-alarms-service)
 
-- [Design](#design). Read this section to understand the requirements and architecture of the system you must implement.
-    - [rules service](#rules-service). How does the rules service work?
-    - [alarms service](#alarms-service). How does the alarms service work?
+- [Design](#design)
+    - [rules service](#rules-service)
+    - [alarms service](#alarms-service)
 
-- [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks.
+- [Additional exercises](#additional-exercises)
 
 # Required exercises
+
+Remember you must format your code with black and follow PEP8 conventions.
 
 ## Seminar 5: Producing metrics to Kafka
 
