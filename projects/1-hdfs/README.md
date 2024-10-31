@@ -4,20 +4,18 @@ The goal of this lab is to build a distributed file storage system that allows t
 
 # Table of contents
 
-- [Grading](#grading). Where does the grade of this lab come from?
-- [Delivering](#delivering-the-exercises). How to deliver these exercises.
-- [Required exercises](#required-exercises). You must deliver all these exercises to be awarded a 10.
-    - [Seminar 1: Introduction to HDFS and APIs](#seminar-1-introduction-to-hdfs-services-and-apis) - 6 exercises (35 marks)
-    - [Lab 1: Building the namenode](#lab-1-building-the-namenode) - 4 exercises (35 marks)
-    - [Lab 2: Building the datanode](#lab-2-building-the-datanode) - 3 exercises (25 marks)
-    - [Seminar 2: Building a Python client](#seminar-2-building-a-python-client) - 3 exercises (25 marks)
+- [Required exercises](#required-exercises)
+    - [Seminar 1: Introduction to HDFS and APIs](#seminar-1-introduction-to-hdfs-services-and-apis)
+    - [Lab 1: Building the namenode](#lab-1-building-the-namenode)
+    - [Lab 2: Building the datanode](#lab-2-building-the-datanode)
+    - [Seminar 2: Building a Python client](#seminar-2-building-a-python-client)
 
-- [Design](#design). Read this section to understand the requirements and architecture of the system you must implement.
-    - [client](#client). How does SSHDFS client work?
-    - [namenode](#namenode). How does SSHDFS namenode work?
-    - [datanode](#datanode). How does SSHDFS datanode work?
+- [Design](#design)
+    - [client](#client)
+    - [namenode](#namenode)
+    - [datanode](#datanode)
 
-- [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks.
+- [Additional exercises](#additional-exercises)
 
 # Required exercises
 
