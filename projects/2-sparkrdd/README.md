@@ -39,7 +39,7 @@ The goal of this lab is to use Spark RDDs to analyze a large volume of Tweets in
 ### [L3Q2] [5 marks] Counting Tweets by language
 
 - Create a file `simple_tweet_language_counter.py`
-- Implement a script that reads each line of `Eurovision8.json` one by one. [Help](https://stackoverflow.com/a/3277512)
+- Implement a script that reads each line of `Eurovision3.json` one by one. [Help](https://stackoverflow.com/a/3277512)
     - You might need to skip any invalid lines, such as empty lines with only a `\n` or Tweets with an invalid JSON format.
 - Parse each Tweet using the `parse_tweet` function from the previous exercise.
 - Count the number of Tweets of each language using a dictionary. [Help](https://www.w3schools.com/python/python_dictionaries.asp)
