@@ -169,7 +169,7 @@ AWS allows us to rent virtual servers and deploy a Spark cluter to do data anlys
 - Paste a screenshot
 
 - Upload the `Eurovision3.json` file inside the `input` folder
-- 
+
 - Paste a screenshot
 
 - Upload `spark_tweet_user_retweets.py` and `tweet_parser.py` in the `app` folder
