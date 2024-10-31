@@ -16,7 +16,7 @@ The goal of this lab is to use Spark RDDs to analyze a large volume of Tweets in
 
 ## Lab 3: Parsing Tweets as JSON
 
-### [L3Q0] [5 marks] Downloading Tweet data from S3
+### [L3Q0] [5 marks] The tweets dataset
 
 - Follow the Developer Setup to download the needed data if you did not at the beginning of the course.
 - Take a look at the first Tweet: `cat Eurovision3.json -n | head -n 1 | jq`. [Help](https://unix.stackexchange.com/questions/288521/with-the-linux-cat-command-how-do-i-show-only-certain-lines-by-number#:~:text=cat%20%2Fvar%2Flog%2Fsyslog%20-n%20%7C%20head%20-n%2050%20%7C,-b10%20-a10%20will%20show%20lines%2040%20thru%2060.)
