@@ -695,8 +695,6 @@ For example, to download the block `0` of a file named `myfile.jpg` from the `da
 
 You can earn an additional 3 marks (over 10) on this project's grade by working on additional exercises. To earn the full +3, you need to complete 5 additional exercises. 
 
-List the additional exercises you have worked on here: <TODO>
-
 ### [AD0Q0] Build a unified client with click
 
 Use the [click](https://click.palletsprojects.com/en/8.1.x/) library to create a unified client with different commands for: `upload`, `download` and `info`.
