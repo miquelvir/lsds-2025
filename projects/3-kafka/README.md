@@ -24,26 +24,6 @@ We will call this system Super Simple Realtime Monitoring System (SSRMS). You ca
 
 - [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks.
 
-# Delivering the exercises
-
-To deliver the exercises, submit [this form](https://forms.gle/AnjSQtggXPq8n1rB7).
-
-# Grading
-
-The grade for this lab is computed as:
-
-```
-project3_grade = delivered_marks / required_exercises_total_marks * 10
-```
-
-The final grade is computed as:
-
-```
-final_grade = (project1_grade + project2_grade + project3_grade) / 3
-```
-
-If plagiarism is detected, `final_grade` is a 0.
-
 # Required exercises
 
 ## Seminar 5: Producing metrics to Kafka
