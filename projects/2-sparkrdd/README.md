@@ -70,7 +70,7 @@ The file [numbers2.txt](./data/numbers2.txt) has many lines, each with many numb
 - Implement and run a Spark job that computes the sum of all the numbers.
 - Write the command you used to run it in the README and show a screenshot of the result.
 
-### [S3Q3] [5 marks] Sum the even numbers
+### [S3Q2] [5 marks] Sum the even numbers
 
 The file [numbers2.txt](./data/numbers2.txt) has many lines, each with many numbers.
 
@@ -78,7 +78,7 @@ The file [numbers2.txt](./data/numbers2.txt) has many lines, each with many numb
 - Implement and run a Spark job that computes the sum of all the even numbers.
 - Write the command you used to run it in the README and show a screenshot of the result.
 
-### [S3Q6] [5 marks] Find how many people live in each city
+### [S3Q3] [5 marks] Find how many people live in each city
 
 The file [people.txt](./data/people.txt) has many lines, each with `{NAME} {LANGUAGE} {CITY}`.
 
@@ -86,7 +86,7 @@ The file [people.txt](./data/people.txt) has many lines, each with `{NAME} {LANG
 - Implement and run a Spark job that counts how many people live in each city.
 - Write the command you used to run it in the README and show a screenshot of the result.
 
-### [S3Q7] [5 marks] Count the bigrams
+### [S3Q4] [5 marks] Count the bigrams
 
 The file [cat.txt](./data/cat.txt) has many lines, each with a sentence.
 
