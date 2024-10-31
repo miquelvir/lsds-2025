@@ -13,7 +13,7 @@ Welcome to the LSDS course at UPF. During this course, you will learn about dist
 
 - [Spark RDD project](./projects/2-sparkrdd/README.md) - DUE 23/02/2025
 
-- [Kafka project](./projects/3-kafka/README.md) - DUE 09/04/2025
+- [Kafka project](./projects/3-kafka/README.md) - DUE 09/03/2025
 
 
 # Rules
