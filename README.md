@@ -16,12 +16,17 @@ Welcome to the LSDS course at UPF. During this course, you will learn about dist
 - [Kafka project](./projects/3-kafka/README.md) - DUE 09/03/2025
 
 
-# Rules
+# Plagiarism Warning
 
-- You **MAY** use Google to look for examples on how to solve concrete problems.
-- You **MUST** add a comment next to any code you copy from elsewhere with the source URL.
-- You **MUST NOT** accept code from freelancers, other students, non-UPF teachers (i.e. CEUS) or similar. We will consider it plagiarism.
-- You **MUST** commit frequently as you work on your solution. If you add all your code in one commit, we will consider it plagiarism.
+Submitting a labs/seminars project which contains code you have not authored is considered plagiarism.
+
+- You MUST NOT ask other students for their project or fragments of their code.
+- You MUST add a link next to any code you copy from external sources.
+- You MUST NOT accept code from any 3rd parties, including but not limited to: other students, freelancers and external teachers.
+- You MUST NOT share your code with other students even if they ask you to.
+- You MUST commit frequently to the repository (at least 1 commit per exercise).
+
+In case copying is suspected, the School Direction will be informed as per [the protocol](https://www.upf.edu/web/usquid-etic/plag-doc-teachers). These offenses are [sanctioned](https://seuelectronica.upf.edu/regim-disciplinari-dels-estudiants-de-la-universitat-pompeu-fabra) with temporary expulsion from the University, loss of the right to be assessed in all or part of the courses, and/or others.
 
 # Group
 
