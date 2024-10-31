@@ -587,27 +587,29 @@ curl -X POST {URL} -H 'Content-Type: application/json' -d '{
 
 # Additional exercises
 
-You can delivery the following exercises for additional marks in the project grade (and/or if you are interested in learning more)
+You can earn an additional 3 marks (over 10) on this project's grade by working on additional exercises. To earn the full +3, you need to complete 5 additional exercises. 
 
-### [AD2Q0] [5 marks] Improve the `alarms` service rule matching algorithm
+List the additional exercises you have worked on here: <TODO>
+
+### [AD2Q0] Improve the `alarms` service rule matching algorithm
 
 Instead of having a materialized view of `rule_id -> rule`, also materialize `metric_name -> rules` for faster O(1) access when processing metrics.
 
 
-### [AD2Q1] [5 marks] Extend the `rules` service with support for updating rules
+### [AD2Q1] Extend the `rules` service with support for updating rules
 
 Add a `PUT /rules/{id}` method to the `rules` API which allows updating an existing rule.
 
 
-### [AD2Q2] [5 marks] Extend the `rules` service with support for getting rules
+### [AD2Q2] Extend the `rules` service with support for getting rules
 
 Add a `GET /rules/{id}` and `GET /rules` methods to the `rules` API. You will need to add a consumer and a materialized view of rules in the `rules` service to support this usecase.
 
-### [AD2Q3] [5 marks] Create a web client for the rules service
+### [AD2Q3] Create a web client for the rules service
 
 Use the `rules` API to create a simple HTML + JS website that allows viewing, creating, updating and deleting rules.
 
-### [AD2Q4] [5 marks] Create an `ingest` service
+### [AD2Q4] Create an `ingest` service
 
 Instead of allowing source devices to publish metrics directly to Kafka, create an `ingest` service with an API that allows POSTing metrics. Then, the `ingest` service sends them to the Kafka topic.
 
@@ -633,31 +635,31 @@ graph TD;
     style discord stroke:#55f,stroke-width:2px
 ```
 
-### [AD2Q5] [5 marks] Use the docker compose `deploy` attribute to horizontally scale services
+### [AD2Q5] Use the docker compose `deploy` attribute to horizontally scale services
 
 Instead of manually copying the services many times in the docker compose file to scale them horizontally, use the [deploy attribute](https://docs.docker.com/compose/compose-file/deploy/) to specify the number of replicas.
 
-### [AD2Q6] [5 marks] Add tagging support
+### [AD2Q6] Add tagging support
 
 Consider the usecase where we have many machines of type `conveyorbelt`, and they all publish the same `conveyorbelt-velocity-12354` metric. Instead of publishing many metrics with different names (`conveyorbelt-velocity-12354`, `conveyorbelt-velocity-12355`, `conveyorbelt-velocity-12356`, ...) depending on the machine id, allow publishing metrics with tags. This will allow a single rule to be created for all metrics of the same type, regardless of the source. For example: `conveyorbelt-velocity` (tags: `machine_id:12354`). Implement the necessary changes in `alarms`, `rules` and `ingest` services and APIs.
 
-### [AD2Q7] [5 marks] Add rule operator support
+### [AD2Q7] Add rule operator support
 
 Add an additional attribute to `rules`: `operator`. The `operator` field can be `>` or `<`. Instead of always triggering alarms when the metric is above the threshold, these operators should allow triggering alarms when a metric is below a threshold. Implement the necessary changes in the `alarms` and `rules` services and APIs.
 
-### [AD2Q8] [5 marks] Add cooldown support
+### [AD2Q8] Add cooldown support
 
 Add an additional attribute to `rules`: `cooldown_seconds`. Whenever a rule has sent an alarm notification to Discord, don't send any new alarms from that rule until `cooldown_seconds` have passed to avoid spamming the channel. Implement the necessary changes in the `alarms` and `rules` services and APIs.
 
-### [AD2Q9] [5 marks] Add windowing support
+### [AD2Q9] Add windowing support
 
 Add an additional attribute to `rules`: `type`. The `type` field can be `instantaneous` (default) or `window_average`. Instead of always triggering alarms when the metric is above/below the threshold, these operators should allow triggering alarms when the average in a `window_duration_seconds` window of the metric is above/below the threshold. Implement the necessary changes in the `alarms` and `rules` services and APIs.
 
-### [AD2Q10] [5 marks] Add JWT-based AuthN support to the rules and ingest services
+### [AD2Q10] Add JWT-based AuthN support to the rules and ingest services
 
 Only allow publishing rules and metrics with a valid JWT token.
 
-### [AD2Q11] [5 marks] Materialized view initialization in the alarms service
+### [AD2Q11] Materialized view initialization in the alarms service
 
 Do not start processing metrics in the `alarms` service until all rules from the `rules` topic have been read. In other words:
 - Read the rules topic until reaching the head and populate the materialized view
@@ -665,10 +667,10 @@ Do not start processing metrics in the `alarms` service until all rules from the
 
 Otherwise, metrics might be consumed before the rules are in the materialized view.
 
-### [AD2Q12] [5 marks] Use styled embeds to send Discord messages
+### [AD2Q12] Use styled embeds to send Discord messages
 
 Use styled embeds to improve the messages you send to Discord.
 
-### [AD2Q13] [5 marks] Add threshold crossing support
+### [AD2Q13] Add threshold crossing support
 
 Change the behaviour of rule triggering, so that an alarm is only triggered when the value changes from below to above the threshold. I.e., if you receive a value above the threshold multiple times, don't trigger the alarm again until it goes below the threshold at least once.
