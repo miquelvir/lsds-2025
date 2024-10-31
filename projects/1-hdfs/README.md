@@ -19,6 +19,8 @@ The goal of this lab is to build a distributed file storage system that allows t
 
 # Required exercises
 
+Remember you must format your code with black and follow PEP8 conventions.
+
 ## Seminar 1: Introduction to HDFS, services and APIs
 
 ### [S1Q0] [5 marks] Answer the following questions about distributed systems.
