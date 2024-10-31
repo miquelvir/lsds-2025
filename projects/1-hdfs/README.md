@@ -695,21 +695,23 @@ For example, to download the block `0` of a file named `myfile.jpg` from the `da
 
 # Additional exercises
 
-You can delivery the following exercises for additional marks in the project grade (and/or if you are interested in learning more)
+You can earn an additional 3 marks (over 10) on this project's grade by working on additional exercises. To earn the full +3, you need to complete 5 additional exercises. 
 
-### [AD0Q0] [5 marks] Build a unified client with click
+List the additional exercises you have worked on here: <TODO>
+
+### [AD0Q0] Build a unified client with click
 
 Use the [click](https://click.palletsprojects.com/en/8.1.x/) library to create a unified client with different commands for: `upload`, `download` and `info`.
 
 ---
 
-### [AD0Q1] [5 marks] Writing one automated test
+### [AD0Q1] Writing one automated test
 
 Use [pytest](https://docs.pytest.org/en/8.2.x/) to create one automated test that checks we can upload and download files from SSHDFS. Compare the checksums of the file to verify the downloaded file is intact.
 
 ---
 
-### [AD0Q2] [5 marks] Reporting block status to namenode
+### [AD0Q2] Reporting block status to namenode
 
 Use [rocketry](https://rocketry.readthedocs.io/en/stable/cookbook/fastapi.html) to report the blocks that each `datanode` has every 30 seconds to the `namenode`:
 - Add an endpoint in the API of the `namenode` that allows removing a file.
@@ -720,7 +722,7 @@ Use [rocketry](https://rocketry.readthedocs.io/en/stable/cookbook/fastapi.html) 
 
 ---
 
-### [AD0Q3] [5 marks] Implement an asyncronous replication strategy
+### [AD0Q3] Implement an asyncronous replication strategy
 
 _Depends on: AD0Q2_
 
@@ -728,7 +730,7 @@ Instead of having the client PUT each replica to each `datanode` one by one, PUT
 
 ---
 
-### [AD0Q4] [5 marks] Analyzing parameters
+### [AD0Q4] Analyzing parameters
 
 Compare how different replication factors impact upload speed. Analyze the impact of AD0Q3.
 
@@ -738,7 +740,7 @@ Use [matplotlib](https://matplotlib.org/) to plot the results.
 
 ---
 
-### [AD0Q5] [5 marks] Detecting corrupted files
+### [AD0Q5] Detecting corrupted files
 
 _Depends on: AD0Q2_
 
@@ -746,13 +748,13 @@ Store the block hash next to each block in the `datanode` file system. Every 30 
 
 ---
 
-### [AD0Q6] [5 marks] Discuss the namenode implementation
+### [AD0Q6] Discuss the namenode implementation
 
 Describe the main issues with the proposed `namenode` implementation and suggest improvements.
 
 ---
 
-### [AD0Q7] [5 marks] Migrate to Docker volumes
+### [AD0Q7] Migrate to Docker volumes
 
 Persistent data, such as the `storage` folder in the `datanodes`, should use [Docker volumes](https://docs.docker.com/storage/volumes/). This allows replacing or restarting a `datanode` without loosing the stored data.
 
@@ -762,13 +764,13 @@ Modify the Docker compose file to [use volumes for the `files.json` file](https:
 
 ---
 
-### [AD0Q8] [5 marks] Introduce a datanode id
+### [AD0Q8] Introduce a datanode id
 
 Update `config.json` with an `id` field for each `datanode`. The id must be a [uuid4](https://www.uuidgenerator.net/). Then, in `files.json`, store only the id of the `datanode` for each replica, instead of repeating the `host` and `port` over and over. Finally, adapt the `namenode` implementation so the API continues to work without changes.
 
 ---
 
-### [AD0Q9] [5 marks] Design and implement a smarter block and replica placement strategy
+### [AD0Q9] Design and implement a smarter block and replica placement strategy
 
 The simple block placement strategy we use (always start with the first `datanode` and assign using modulo) can lead to unbalanced `datanodes`.
 
@@ -776,24 +778,24 @@ Design a block (and replica) placement strategy that considers how many blocks e
 
 ---
 
-### [AD0Q10] [5 marks] Extend the client to check for file integrity [1 mark]
+### [AD0Q10] Extend the client to check for file integrity [1 mark]
 
 Extend the `upload.py` client to also send the hash of the file. Then, store the file hash in the `files.json` and expose it in the `namenode` API. Finally, when the `download.py` client retrieves all the blocks and reconstructs the file, check that the hash matches the expected one. If the hash does not match (e.g. a block was corrupted), print an error.
 
 ---
 
-### [AD0Q11] [5 marks] Implement a mechanism for AuthN
+### [AD0Q11] Implement a mechanism for AuthN
 
 Describe the main problems regarding the (lack of) AuthN in SSHDFS. Implement a JWT-based mechanism that only allows clients with a valid token to create files, upload and download files.
 
 ---
 
-### [AD0Q12] [5 marks] Implement a mechanism for AuthZ
+### [AD0Q12] Implement a mechanism for AuthZ
 
 _Depends on: AD0Q11_
 
 Burn a role into the JWT payloads and only allow clients to download files that their role has access to. When uploading a file, the client can set the role needed to view that file.
 
-### [AD0Q13] [5 marks] Implement deleting blocks
+### [AD0Q13] Implement deleting blocks
 
 Extend the APIs and client scripts to allow deleting files.
