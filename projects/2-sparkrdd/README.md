@@ -4,13 +4,11 @@ The goal of this lab is to use Spark RDDs to analyze a large volume of Tweets in
 
 # Table of contents
 
-- [Grading](#grading). Where does the grade of this lab come from?
-- [Delivering](#delivering-the-exercises). How to deliver these exercises.
-- [Required exercises](#required-exercises). You must deliver all these exercises to be awarded a 10.
-    - [Lab 3: Downloading Tweets from S3 and parsing them from JSON](#lab-3-downloading-tweets-from-s3-and-parsing-them-from-json) - 3 exercises (15 marks)
-    - [Seminar 3: Using Spark RDDs](#seminar-3-using-spark-rdds) - 5 exercises (35 marks)
-    - [Lab 4: Analyzing Tweets with Spark](#lab-4-analyzing-tweets-with-spark) - 4 exercises (40 marks)
-    - [Seminar 4: Running Spark in AWS](#seminar-4-running-spark-in-aws) - 1 exercise (15 marks)
+- [Required exercises](#required-exercises)
+    - [Lab 3: Downloading Tweets from S3 and parsing them from JSON](#lab-3-downloading-tweets-from-s3-and-parsing-them-from-json)
+    - [Seminar 3: Using Spark RDDs](#seminar-3-using-spark-rdds)
+    - [Lab 4: Analyzing Tweets with Spark](#lab-4-analyzing-tweets-with-spark)
+    - [Seminar 4: Running Spark in AWS](#seminar-4-running-spark-in-aws)
 
 # Required exercises
 
