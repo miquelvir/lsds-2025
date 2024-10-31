@@ -14,6 +14,8 @@ The goal of this lab is to use Spark RDDs to analyze a large volume of Tweets in
 
 # Required exercises
 
+Remember you must format your code with black and follow PEP8 conventions.
+
 ## Lab 3: Parsing Tweets as JSON
 
 ### [L3Q0] [5 marks] The tweets dataset
