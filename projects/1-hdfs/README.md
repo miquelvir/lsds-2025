@@ -19,26 +19,6 @@ The goal of this lab is to build a distributed file storage system that allows t
 
 - [Additional exercises](#additional-exercises). You can deliver additional exercises for extra marks.
 
-# Delivering the exercises
-
-To deliver the exercises, submit [this form](https://forms.gle/kJsosLgm2r2CLHZw9).
-
-# Grading
-
-The grade for this lab is computed as:
-
-```
-project1_grade = delivered_marks / required_exercises_total_marks * 10
-```
-
-The final grade is computed as:
-
-```
-final_grade = (project1_grade + project2_grade + project3_grade) / 3
-```
-
-If plagiarism is detected, `final_grade` is a 0.
-
 # Required exercises
 
 ## Seminar 1: Introduction to HDFS, services and APIs
