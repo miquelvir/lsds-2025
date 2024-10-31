@@ -589,8 +589,6 @@ curl -X POST {URL} -H 'Content-Type: application/json' -d '{
 
 You can earn an additional 3 marks (over 10) on this project's grade by working on additional exercises. To earn the full +3, you need to complete 5 additional exercises. 
 
-List the additional exercises you have worked on here: <TODO>
-
 ### [AD2Q0] Improve the `alarms` service rule matching algorithm
 
 Instead of having a materialized view of `rule_id -> rule`, also materialize `metric_name -> rules` for faster O(1) access when processing metrics.
