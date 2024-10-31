@@ -162,11 +162,19 @@ AWS allows us to rent virtual servers and deploy a Spark cluter to do data anlys
     - Bucket type: `General purpose`
     - Name: `lsds-2025-{group_number}-t{theory_number}-p{lab_number}-s{seminar_number}-s3bucket`
 
+- Paste a screenshot
+
 - In the bucket, create 4 folders: `input`, `app`, `logs` and `output`
 
+- Paste a screenshot
+
 - Upload the `Eurovision3.json` file inside the `input` folder
+- 
+- Paste a screenshot
 
 - Upload `spark_tweet_user_retweets.py` and `tweet_parser.py` in the `app` folder
+
+- Paste a screenshot
 
 - Open the [EMR console](https://us-east-1.console.aws.amazon.com/emr/home?region=us-east-1#/clusters)
 
@@ -178,6 +186,8 @@ AWS allows us to rent virtual servers and deploy a Spark cluter to do data anlys
     - Cluster logs: select the `logs` folder in the S3 bucket you created
     - Service role: `EMR_DefaultRole`
     - Instance profile: `EMR_EC2_DefaultRole`
+    
+- Paste a screenshot
 
 - In `Steps`, select `Add step`.
     - Type: `Spark application`
@@ -187,7 +197,11 @@ AWS allows us to rent virtual servers and deploy a Spark cluter to do data anlys
     - Spark-submit options: specify the `tweet_parser.py` module. For example: `--py-files s3://lsds-2025-miquel-test/app/tweet_parser.py`
     - Arguments: specify the input and output. For example: `es s3://lsds-2025-miquel-test/input/Eurovision3.json`.
 
+- Paste a screenshot
+
 - When you submit a step, wait until the `Status` is `Completed`. 
+
+- Paste a screenshot
 
 > [!TIP]
 > You can find the logs in your S3 bucket: `logs/{cluster id}/containers/application_*_{run number}/container_*_000001/stdout.gz` - they might take some minutes to appear
