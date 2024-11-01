@@ -7,13 +7,13 @@ Welcome to the LSDS course at UPF. During this course, you will learn about dist
 
 # Deliverables
 
-- [Developer setup](./DEVELOPER_SETUP.md) - DUE 09/01/2025
+- [Developer setup](./DEVELOPER_SETUP.md)
 
-- [HDFS project](./projects/1-hdfs/README.md) - DUE 02/02/2025
+- [HDFS project](./projects/1-hdfs/README.md)
 
-- [Spark RDD project](./projects/2-sparkrdd/README.md) - DUE 23/02/2025
+- [Spark RDD project](./projects/2-sparkrdd/README.md)
 
-- [Kafka project](./projects/3-kafka/README.md) - DUE 09/03/2025
+- [Kafka project](./projects/3-kafka/README.md)
 
 
 # Plagiarism Warning
