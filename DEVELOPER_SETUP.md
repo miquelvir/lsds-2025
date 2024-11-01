@@ -141,13 +141,6 @@ $ curl -X GET http://127.0.0.1:8001/info | jq
 }
 ```
 
-## Catch up with everything you should know already
+## Everything You Should Know
 
-We expect you to understand some topics from previous courses (i.e. Networks). If you don't, here are some links you should watch before the first lab:
-
-- **Docker.** Watch [100+ Docker Concepts you Need to Know](https://www.youtube.com/watch?v=rIrNIzy6U_g&t=143s)
-- **API.** Follow the [FastAPI in Containers tutorial](https://fastapi.tiangolo.com/deployment/docker/)
-- **REST API.** Watch [RESTful APIs in 100 Seconds](https://www.youtube.com/watch?v=-MTSQjw5DrM)
-- **curl.** Watch [You NEED to know how to use CURL!](https://www.youtube.com/watch?v=q2sqkvXzsw8)
-- **Servers.** Watch [Web Server Concepts and Examples](https://www.youtube.com/watch?v=9J1nJOivdyw)
-
+Read and study: [Everything You Should Know](https://docs.google.com/presentation/d/1hVYOn-Cs5LHM8l-t4164iZ7BqfINJoJT/edit?usp=sharing&ouid=102931553666282890148&rtpof=true&sd=true). If you have any questions, come to the Office Hours.
