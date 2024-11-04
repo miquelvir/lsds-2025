@@ -43,6 +43,10 @@ If you get stuck and need help, come to the office hours:
 
 - If you don't, [install Python](https://www.python.org/downloads/)
 
+### Asking for help
+
+Join the Discord server (link in Aula Global) where you can ask professors and other students for help in the labs and seminars.
+
 ### AWS
 
 - Accept the invitation to AWS academy you received in the email.
