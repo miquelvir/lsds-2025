@@ -47,7 +47,7 @@ If you get stuck and need help, come to the office hours:
 
 ### Discord
 
-Join the Discord server (link in Aula Global) where you can ask professors and other students for help in the labs and seminars.
+- Join the Discord server (link in Aula Global) where you can ask professors and other students for help in the labs and seminars.
 
 ### AWS
 
