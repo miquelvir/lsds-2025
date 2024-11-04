@@ -49,6 +49,8 @@ If you get stuck and need help, come to the office hours:
 
 - Join the Discord server (link in Aula Global) where you can ask professors and other students for help in the labs and seminars.
 
+- Mute the channels from the other subjects so you only receive notifications for LSDS. [Help](https://support.discord.com/hc/en-us/articles/209791877-How-do-I-mute-and-disable-notifications-for-specific-channels)
+
 ### AWS
 
 - Accept the invitation to AWS academy you received in the email.
