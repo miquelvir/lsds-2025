@@ -4,10 +4,9 @@
 
 Welcome to the LSDS course at UPF. During this course, you will learn about distributed systems design. Then, during the seminars and labs you will build your own distributed systems, as well as use existing distributed systems. 
 
+To get started, follow the [Developer setup](./DEVELOPER_SETUP.md).
 
-# Deliverables
-
-- [Developer setup](./DEVELOPER_SETUP.md)
+# Projects
 
 - [HDFS project](./projects/1-hdfs/README.md)
 
