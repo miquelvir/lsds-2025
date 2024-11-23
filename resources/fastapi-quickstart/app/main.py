@@ -12,10 +12,7 @@ def read_root():
 
 @app.get("/info")
 def read_info():
-    return {
-        "studentId": 123,
-        "universityName": "upf"
-    }
+    return {"studentId": 123, "universityName": "upf"}
 
 
 @app.get("/items/{item_id}")
