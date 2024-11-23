@@ -13,9 +13,6 @@ If you get stuck and need help, come to the office hours:
 ### IDE
 
 - [Install VSCode](https://code.visualstudio.com/download)
-- [Install the Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
-- [Install the Markdown Preview Mermaid Support extension](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid)
-- [Install the Markdown Alert extension](https://marketplace.visualstudio.com/items?itemName=yahyabatulu.vscode-markdown-alert)
 
 ### Version Control
 
@@ -27,7 +24,16 @@ If you get stuck and need help, come to the office hours:
 
 ### Operating System
 
-- If you use Windows, [install WSL](https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/guides/install-ubuntu-wsl2/) and [change the default terminal in VSCode to WSL](https://stackoverflow.com/questions/44435697/change-the-default-terminal-in-visual-studio-code).
+- If you use Windows, [install WSL](https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/guides/install-ubuntu-wsl2/).
+
+### Configure VSCode
+
+- If you use Windows, [install the WSL extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl) and open VSCode in WSL to follow the next steps
+- [Install the Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+- [Install the Markdown Preview Mermaid Support extension](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid)
+- [Install the Markdown Alert extension](https://marketplace.visualstudio.com/items?itemName=yahyabatulu.vscode-markdown-alert)
+- [Install the Black Formatter extension](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter)
+- Only if you use Windows + WSL, [change the default terminal in VSCode to WSL](https://stackoverflow.com/questions/44435697/change-the-default-terminal-in-visual-studio-code)
 
 ### Python
 
