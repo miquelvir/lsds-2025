@@ -65,6 +65,7 @@ If you get stuck and need help, come to the office hours:
 
 > [!NOTE]
 > All (3) members of your group must be from the same seminar.
+> Only one member of the group must create the repository and share it with the others.
 
 - Fill in [this spreadsheet](https://docs.google.com/spreadsheets/d/1dZ6m6r7b2M4QpjbJlqoQ2XpHhlhRuUGJauw2goXzXto/edit?usp=sharing) with your group members.
 
