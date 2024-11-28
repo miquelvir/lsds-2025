@@ -1,9 +1,5 @@
 # Large Scale Distributed Systems (LSDS)
 
-`Universitat Pompeu Fabra (UPF), 2024 - 2025`
-
-Welcome to the LSDS course at UPF. During this course, you will learn about distributed systems design. Then, during the seminars and labs you will build your own distributed systems, as well as use existing distributed systems. 
-
 To get started, follow the [Developer setup](./DEVELOPER_SETUP.md).
 
 # Projects
