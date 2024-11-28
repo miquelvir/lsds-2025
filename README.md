@@ -23,6 +23,15 @@ Submitting a labs/seminars project which contains code you have not authored is 
 
 In case copying is suspected, the School Direction will be informed as per [the protocol](https://www.upf.edu/web/usquid-etic/plag-doc-teachers). These offenses are [sanctioned](https://seuelectronica.upf.edu/regim-disciplinari-dels-estudiants-de-la-universitat-pompeu-fabra) with temporary expulsion from the University, loss of the right to be assessed in all or part of the courses, and/or others.
 
+# Collaboration Policy
+
+- You must write all the code you hand in for this course, except for code that we give you as part of assignments.
+- You are not allowed to look at anyone else's solution, and you are not allowed to look at solutions from previous years.
+- You may discuss the assignments with other students, but you may not look at or copy each others' code.
+- The reason for this rule is that we believe you will learn the most by designing and implementing your lab solution yourself.
+- Please do not publish your code or make it available to current or future students.
+- github.com repositories are public by default, so make sure your repository is private. 
+
 # Group
 
 > [!TIP]
