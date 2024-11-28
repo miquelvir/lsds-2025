@@ -17,7 +17,6 @@ Submitting a labs/seminars project which contains code you have not authored is 
 
 - You MUST NOT ask other students for their project or fragments of their code.
 - You MUST add a link next to any code you copy from external sources.
-- You MUST NOT look at project solutions from any 3rd parties, including but not limited to: other students, freelancers and non UPF teachers.
 - You MUST NOT share your code with other students even if they ask you to.
 - You MUST commit frequently to the repository (at least 1 commit per exercise).
 - You MAY discuss the assignments with other students, but you may not look at or copy each others' code.
