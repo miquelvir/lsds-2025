@@ -17,20 +17,14 @@ Submitting a labs/seminars project which contains code you have not authored is 
 
 - You MUST NOT ask other students for their project or fragments of their code.
 - You MUST add a link next to any code you copy from external sources.
-- You MUST NOT accept code from any 3rd parties, including but not limited to: other students, freelancers and external teachers.
+- You MUST NOT look at project solutions from any 3rd parties, including but not limited to: other students, freelancers and non UPF teachers.
 - You MUST NOT share your code with other students even if they ask you to.
 - You MUST commit frequently to the repository (at least 1 commit per exercise).
+- You MAY discuss the assignments with other students, but you may not look at or copy each others' code.
+- You MUST make your repository private.
+- You MUST NOT look at anyone else's solutions, including previous year students.
 
 In case copying is suspected, the School Direction will be informed as per [the protocol](https://www.upf.edu/web/usquid-etic/plag-doc-teachers). These offenses are [sanctioned](https://seuelectronica.upf.edu/regim-disciplinari-dels-estudiants-de-la-universitat-pompeu-fabra) with temporary expulsion from the University, loss of the right to be assessed in all or part of the courses, and/or others.
-
-# Collaboration Policy
-
-- You must write all the code you hand in for this course, except for code that we give you as part of assignments.
-- You are not allowed to look at anyone else's solution, and you are not allowed to look at solutions from previous years.
-- You may discuss the assignments with other students, but you may not look at or copy each others' code.
-- The reason for this rule is that we believe you will learn the most by designing and implementing your lab solution yourself.
-- Please do not publish your code or make it available to current or future students.
-- github.com repositories are public by default, so make sure your repository is private. 
 
 # Group
 
