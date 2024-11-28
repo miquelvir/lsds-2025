@@ -30,26 +30,10 @@ In case copying is suspected, the School Direction will be informed as per [the 
 
 Group number: `todo`
 
-## Member 1
-- Name: `todo`
-- Surnames: `todo`
-- Email: `todo`
-- U-code: `todo`
-- NIA: `todo`
-
-## Member 2
-- Name: `todo`
-- Surnames: `todo`
-- Email: `todo`
-- U-code: `todo`
-- NIA: `todo`
-
-## Member 3
-- Name: `todo`
-- Surnames: `todo`
-- Email: `todo`
-- U-code: `todo`
-- NIA: `todo`
+## Members
+- Member 1 email: `todo`
+- Member 2 email: `todo`
+- Member 3 email: `todo`
 
 # Additional resources
 
