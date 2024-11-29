@@ -263,7 +263,7 @@ The API should look like this:
 
 ```
 curl -X POST localhost:8080/search -H "Content-Type: application/json" -d '{
-    "query": "david semi-finalists"
+    "query": "english football season"
 }' | jq
 
 {
@@ -303,4 +303,4 @@ Some tips:
 
 ### [AD1Q4] Use AWS to compute the inverted index for the first 10k, 100k and 1M articles
 
-Use AWS to compute the inverted index for the first 10k and 100k articles
+Use AWS to compute the inverted index for the much larger datasets.
