@@ -9,6 +9,7 @@ The goal of this lab is to use Spark RDDs to analyze a large volume of Tweets in
     - [Seminar 3: Using Spark RDDs](#seminar-3-using-spark-rdds)
     - [Lab 4: Analyzing Tweets with Spark](#lab-4-analyzing-tweets-with-spark)
     - [Seminar 4: Running Spark in AWS](#seminar-4-running-spark-in-aws)
+- [Additional exercises](#additional-exercises)
 
 # Required exercises
 
@@ -207,3 +208,99 @@ AWS allows us to rent virtual servers and deploy a Spark cluter to do data anlys
 > You can find the logs in your S3 bucket: `logs/{cluster id}/containers/application_*_{run number}/container_*_000001/stdout.gz` - they might take some minutes to appear
 
 - Paste a screenshot of the log where we can see: how much time it took, what are the ids of the ten most retweeted users.
+
+
+# Additional exercises
+
+You can earn an additional 3 marks (over 10) on this project's grade by working on additional exercises. To earn the full +3, you need to complete 5 additional exercises. 
+
+During these exercises, you will build a (super simple) search engine, like a barebones Google.
+
+### [AD1Q0] Crawling
+
+Find the latest available Wikipedia datasets from [dumps.wikimedia](https://dumps.wikimedia.org/other/enterprise_html/runs/). For example, `https://dumps.wikimedia.org/other/enterprise_html/runs/20240901/enwiki-NS0-20240901-ENTERPRISE-HTML.json.tar.gz`.
+
+Then, download the first 10, 100, 1k, 10k and 100k articles in different files. The smaller datasets will be useful for testing (replace `$1` with how many articles you want to download).
+
+```zsh
+curl -L https://dumps.wikimedia.org/other/enterprise_html/runs/20240901/enwiki-NS0-20240901-ENTERPRISE-HTML.json.tar.gz | tar xz --to-stdout | head -n $1 > wikipedia$1.json
+```
+
+Paste the first Wikipedia article here, properly formatted as JSON.
+
+### [AD1Q1] Building the repository
+
+Write a Python or bash script that splits the big file into multiple files, one file per line. The file name should be the identifier of the article, and the content of the file the full JSON object.
+
+Run said script for the 10 and 1k datasets.
+
+
+### [AD1Q2] Building the reverse index
+
+Write a Spark RDD job that creates a reverse index for all the crawled articles.
+
+The reverse index must map every word in the abstract of every article, to the list of article (ids) that contain it. Store this as a file. The format must be: `LINE CRLF LINE CRLF LINE CRLF ...`, where each `LINE` is `WORD SP DOCID SP DOCID SP DOCID SP ... DOCID`. For example:
+
+```
+seven 18847712 76669474 76713187 75388615 1882504 18733291 19220717 3118126 31421710 26323888 52867888 76712306 76711442 48957757
+seasons 58765506 76669474 7755966 66730851 53056676 40360169 7871468 60331788 52867888 70406270 52243132 17781886
+22 12000256 14177667 56360708 50648266 31581711 76395922 31418962 73082202 33375130 76669474 76713187 5799657 40360169 65704112 18688178 48850419 37078259 63141238 40538167 32644089
+due 76731844 41098246 25214406 41098253 1658830 31581711 8905616 45711377 14259409 76708884 2723548 76732829 1122974 41233503 43331165 76669474 12365159 18733291 7871468 65704112 63447415 63840761 68538426 36367677
+sold 76669474 31728882 53538197 63141238 12243595
+```
+
+Remember to strip all symbols and make the text lowercase before indexing. For example: `hello`, `HELLO`, `HeLLo`, `hello,`, `hello?`, `[hello]` and `hello!` must all be treated as the same word.
+
+Customize the partitioner function to be `ord(key[0]) % PARTITION_COUNT`, such that we can easily know in which partition a word will be in the inverse index. Make `PARTITION_COUNT` a parameter. Verify that the words are indeed in the correct partition.
+
+Test it locally with the 10 and 100 datasets.
+
+### [AD1Q3] Build a search API
+
+Create a FastAPI service that, for a given query of space-separated words, returns the name, abstract, identifier and URL of all Wikipedia articles that contain all those words.
+
+The API should look like this:
+
+```
+curl -X POST localhost:8080/search -H "Content-Type: application/json" -d '{
+    "query": "david semi-finalists"
+}' | jq
+
+{
+  "results": [
+    {
+      "name": "1951–52 Southern Football League",
+      "abstract": "The 1951–52 Southern Football League season was the 49th in the history of the league, an English football competition. At the end of the previous season Torquay United resigned their second team from the league. No new clubs had joined the league for this season so the league consisted of 22 remaining clubs. Merthyr Tydfil were champions for the third season in a row, winning their fourth Southern League title. Five Southern League clubs applied to join the Football League at the end of the season, but none were successful.",
+      "identifier": 32644089,
+      "url": "https://en.wikipedia.org/wiki/1951%E2%80%9352_Southern_Football_League"
+    },
+    {
+      "name": "1997–98 Blackburn Rovers F.C. season",
+      "abstract": "During the 1997–98 English football season, Blackburn Rovers competed in the FA Premier League.",
+      "identifier": 29000478,
+      "url": "https://en.wikipedia.org/wiki/1997%E2%80%9398_Blackburn_Rovers_F.C._season"
+    },
+    {
+      "name": "1993 Football League Cup final",
+      "abstract": "The 1993 Football League Cup final took place on 18 April 1993 at Wembley Stadium, and was played between Arsenal and Sheffield Wednesday. Arsenal won 2–1 in normal time, in what was the first of three Wembley finals between the two sides that season; Arsenal and Wednesday also met in the FA Cup final of that year, the first time ever in English football. The match was the first match in which any European clubs had used squad numbers and player names on their shirts. On this occasion, as in the FA Cup final and replay that year, players wore individual numbers which were retained for the FA Cup finals. Coincidentally, the first occurrence of players wearing numbered shirts came on 25 August 1928, when Arsenal and Chelsea wore numbered shirts in their matches against The Wednesday and Swansea Town, respectively. Squad numbers became compulsory for Premier League clubs from August 1993. In the game, Wednesday's John Harkes scored the opener in the 8th minute, before Paul Merson equalised for Arsenal. Merson then set up Steve Morrow for the winner. In the celebrations after the match, Arsenal skipper Tony Adams attempted to pick up Morrow and parade him on his shoulders, but Adams slipped and Morrow awkwardly hit the ground. He broke his arm and had to be rushed to hospital. Unable to receive his winner's medal on the day, he was eventually presented with it before the start of the FA Cup Final the following month.",
+      "identifier": 7902567,
+      "url": "https://en.wikipedia.org/wiki/1993_Football_League_Cup_final"
+    },
+    {
+      "name": "1989–90 Middlesbrough F.C. season",
+      "abstract": "During the 1989–90 English football season, Middlesbrough F.C. competed in the Football League Second Division.",
+      "identifier": 59075107,
+      "url": "https://en.wikipedia.org/wiki/1989%E2%80%9390_Middlesbrough_F.C._season"
+    }
+  ]
+}
+```
+
+Some tips:
+- Read the inverse index you created with Spark from the file system to know which documents contain any given word.
+- Use set intersections to find the document ids that contain all the query words.
+- Read the files from the file system repository you created in AD1Q1 to find the abstract, uri and title for any given id. 
+
+### [AD1Q4] Use AWS to compute the inverted index for the first 10k, 100k and 1M articles
+
+Use AWS to compute the inverted index for the first 10k and 100k articles
