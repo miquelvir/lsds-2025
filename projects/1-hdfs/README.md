@@ -701,13 +701,11 @@ You can earn an additional 3 marks (over 10) on this project's grade by working 
 
 Use the [click](https://click.palletsprojects.com/en/8.1.x/) library to create a unified client with different commands for: `upload`, `download` and `info`.
 
----
 
 ### [AD0Q1] Writing one automated test
 
 Use [pytest](https://docs.pytest.org/en/8.2.x/) to create one automated test that checks we can upload and download files from SSHDFS. Compare the checksums of the file to verify the downloaded file is intact.
 
----
 
 ### [AD0Q2] Reporting block status to namenode
 
@@ -718,7 +716,6 @@ Use [rocketry](https://rocketry.readthedocs.io/en/stable/cookbook/fastapi.html) 
 - The `datanode` should then remove all blocks that have been indicated for removal by the `namenode`.
 - Also, the `datanode` should then copy all blocks that have been indicated for addition by the `namenode` from another datanode that has a replica.
 
----
 
 ### [AD0Q3] Implement an asyncronous replication strategy
 
@@ -726,7 +723,6 @@ _Depends on: AD0Q2_
 
 Instead of having the client PUT each replica to each `datanode` one by one, PUT it only to the first replica. Then, when the `namenode` answers a block report with a missing block, each `namenode` can fetch it from the first replica.
 
----
 
 ### [AD0Q4] Analyzing parameters
 
@@ -736,21 +732,17 @@ Compare how different replication factors impact download speed with many downlo
 
 Use [matplotlib](https://matplotlib.org/) to plot the results.
 
----
-
 ### [AD0Q5] Detecting corrupted files
 
 _Depends on: AD0Q2_
 
 Store the block hash next to each block in the `datanode` file system. Every 30 seconds, compute the hash of existing blocks to check if any of the blocks have been corrupted or modified. When a block hash does not match, report it as missing in the block report and retrieve it from a replica in another `datanode` provided in the `namenode` response.
 
----
 
 ### [AD0Q6] Discuss the namenode implementation
 
 Describe the main issues with the proposed `namenode` implementation and suggest improvements.
 
----
 
 ### [AD0Q7] Migrate to Docker volumes
 
@@ -760,13 +752,10 @@ Modify the Docker compose file to [use volumes for the `storage` folder](https:/
 
 Modify the Docker compose file to [use volumes for the `files.json` file](https://docs.docker.com/compose/compose-file/07-volumes/) of the `namenode`.
 
----
 
 ### [AD0Q8] Introduce a datanode id
 
 Update `config.json` with an `id` field for each `datanode`. The id must be a [uuid4](https://www.uuidgenerator.net/). Then, in `files.json`, store only the id of the `datanode` for each replica, instead of repeating the `host` and `port` over and over. Finally, adapt the `namenode` implementation so the API continues to work without changes.
-
----
 
 ### [AD0Q9] Design and implement a smarter block and replica placement strategy
 
@@ -774,19 +763,16 @@ The simple block placement strategy we use (always start with the first `datanod
 
 Design a block (and replica) placement strategy that considers how many blocks each `datanode` already has, such that blocks are distributed uniformly. Explain and implement the improved placement strategy in `namenode`.
 
----
 
 ### [AD0Q10] Extend the client to check for file integrity [1 mark]
 
 Extend the `upload.py` client to also send the hash of the file. Then, store the file hash in the `files.json` and expose it in the `namenode` API. Finally, when the `download.py` client retrieves all the blocks and reconstructs the file, check that the hash matches the expected one. If the hash does not match (e.g. a block was corrupted), print an error.
 
----
 
 ### [AD0Q11] Implement a mechanism for AuthN
 
 Describe the main problems regarding the (lack of) AuthN in SSHDFS. Implement a JWT-based mechanism that only allows clients with a valid token to create files, upload and download files.
 
----
 
 ### [AD0Q12] Implement a mechanism for AuthZ
 
