@@ -797,3 +797,7 @@ Burn a role into the JWT payloads and only allow clients to download files that 
 ### [AD0Q13] Implement deleting blocks
 
 Extend the APIs and client scripts to allow deleting files.
+
+### [AD0Q14] Improve the current namenode storage
+
+Replace the single file with a journal and a checkpoint.
