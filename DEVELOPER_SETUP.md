@@ -107,7 +107,7 @@ pip install -r requirements.txt
 fastapi dev app/main.py
 ```
 
-- Check you can access the server
+- In another terminal, check you can access the server
 
 ```zsh
 curl -X GET http://127.0.0.1:8000 | jq
@@ -130,7 +130,7 @@ cd fastapi-quickstart
 docker compose up --build
 ```
 
-- Check you can access the server when it runs in Docker
+- In another terminal, check you can access the server when it runs in Docker
 
 ```zsh
 curl -X GET http://127.0.0.1:8001/info | jq
