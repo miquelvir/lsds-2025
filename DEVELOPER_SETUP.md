@@ -108,8 +108,12 @@ fastapi dev app/main.py
 ```
 
 - Check you can access the server
+
 ```zsh
-$ curl -X GET http://127.0.0.1:8000 | jq
+curl -X GET http://127.0.0.1:8000 | jq
+```
+
+```zsh
 {
   "Hello": "World"
 }
@@ -129,7 +133,10 @@ docker compose up --build
 - Check you can access the server when it runs in Docker
 
 ```zsh
-$ curl -X GET http://127.0.0.1:8001/info | jq
+curl -X GET http://127.0.0.1:8001/info | jq
+```
+
+```zsh
 {
   "studentId": 123,
   "universityName": "upf"
