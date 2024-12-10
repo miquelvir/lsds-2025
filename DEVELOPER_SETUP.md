@@ -156,7 +156,10 @@ docker compose up --build
 - Check it works:
 
 ```zsh
-$ curl -X GET http://127.0.0.1:8001/info | jq
+curl -X GET http://127.0.0.1:8001/info | jq
+```
+
+```zsh
 {
   "studentId": 555,
   "universityName": "upf"
