@@ -49,6 +49,14 @@ If you get stuck and need help, come to the office hours:
 
 - If you don't, [install Python](https://www.python.org/downloads/)
 
+
+### JQ
+
+> [!WARNING]
+> If you use WSL, remember to run these commands in the WSL terminal.
+
+- [Install jq](https://jqlang.github.io/jq/download/)
+
 ## Accept invitations
 
 ### Discord
@@ -96,7 +104,7 @@ If you get stuck and need help, come to the office hours:
 > [!WARNING]
 > If you use WSL, remember to run these commands in the WSL terminal.
 
-- Run a Python server
+- Run a Python server (you can run `deactivate` at any point to exit the venv)
 
 ```zsh
 cd resources
@@ -123,7 +131,7 @@ curl -X GET http://127.0.0.1:8000 | jq
 
 - Open Docker Desktop
 
-- Run a Python server with Docker
+- Run a Python server with Docker (you can Ctrl-C at any point to stop the containers)
 
 ```zsh
 cd fastapi-quickstart
