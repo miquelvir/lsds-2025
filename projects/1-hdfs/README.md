@@ -152,7 +152,7 @@ Go back to [projects\1-hdfs\testserver1](./testserver1/). Adapt it so it runs in
 
 During this lab session, you must build the `namenode` service as described in [namenode](#namenode).
 
-Create a basic FastAPI service in [projects\1-hdfs\namenode](./namenode/) that can be dockerized like [projects\1-hdfs\testserver2](./testserver2/). In the `config.json` file, write a [JSON object with 3 data nodes](#namenode-filesystem).
+Create a basic FastAPI service in [projects\1-hdfs\namenode](./namenode/) that can be dockerized like [projects\1-hdfs\testserver2](./testserver2/). 
 
 ```
 /namenode
@@ -165,8 +165,9 @@ Create a basic FastAPI service in [projects\1-hdfs\namenode](./namenode/) that c
 
 ### [L1Q0] [5 marks] GET /datanodes
 
+In the `config.json` file, write a [JSON object with 3 data nodes](#namenode-filesystem).
 
-Implement the first endpoint of the `namenode` API: [GET /datanodes](#get-datanodes). Your code must [read](https://python.land/data-processing/working-with-json#How_to_read_a_JSON_file_in_python) the configured `datanodes` from the `config.json` file and return them.
+Then, implement the first endpoint of the `namenode` API: [GET /datanodes](#get-datanodes). Your code must [read](https://python.land/data-processing/working-with-json#How_to_read_a_JSON_file_in_python) the configured `datanodes` from the `config.json` file and return them.
 
 Test it works with curl and paste a screenshot.
 
