@@ -696,7 +696,7 @@ For example, to download the block `0` of a file named `myfile.jpg` from the `da
 
 # Additional exercises
 
-You can earn an additional 2 marks (over 10) on this project's grade by working on additional exercises. To earn the full +3, you need to complete 5 additional exercises. 
+You can earn an additional 2 marks (over 10) on this project's grade by working on additional exercises. To earn the full +2, you need to complete 5 additional exercises. 
 
 ### [AD0Q0] Build a unified client with click
 
