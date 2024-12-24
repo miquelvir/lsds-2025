@@ -274,7 +274,7 @@ Test you can download the cat image we uploaded before with curl: `curl -o downl
 
 ### [L2Q2] [5 marks]. Deploying the datanode with docker compose
 
-Modify the `compose.yaml` file to also create 3 `datanodes` services at ports 8081, 8082 and 8083.
+Modify the `compose.yaml` file to also create 3 `datanodes` services at ports 8001, 8002 and 8003.
 
 Test you can upload and download the cat image when the service runs in Docker. Paste a screenshot and verify the downloaded image is fine.
 
@@ -486,10 +486,10 @@ If the `replication_factor` of the system is higher than one, the `replicas` arr
 
 The client can retrieve all `datanodes` configured in SSHDFS using the `datanodes` endpoint.
 
-For example, the `client` can retrieve all `datanodes` configured in the `namenode` with address `localhost:8080` as follows:
+For example, the `client` can retrieve all `datanodes` configured in the `namenode` with address `localhost:8000` as follows:
 
 ```
-GET http://localhost:8080/datanodes
+GET http://localhost:8000/datanodes
 ```
 
 Response:
@@ -516,10 +516,10 @@ Response:
 
 POSTing to `/files` creates a new file in the `namenode`.  When a file is created, the response from the `namenode` contains the information of where the file must be stored.
 
-For example, the `client` can create a file called `myfile.jpg` that weights 295 bytes to the `namenode` with address `localhost:8080` (configured with a replication factor of 2) as follows:
+For example, the `client` can create a file called `myfile.jpg` that weights 295 bytes to the `namenode` with address `localhost:8000` (configured with a replication factor of 2) as follows:
 
 ```
-POST http://localhost:8080/files
+POST http://localhost:8000/files
 ```
 
 Body:
@@ -611,10 +611,10 @@ For example, consider a system with 3 `datanodes`, `block_size=100` and `replica
 
 GETting `/files/{filename}` retrieves the file metadata from the `namenode`. 
 
-For example, the `client` can retrieve all the information about a file called `myfile.jpg` from the `namenode` with address `localhost:8080` as follows:
+For example, the `client` can retrieve all the information about a file called `myfile.jpg` from the `namenode` with address `localhost:8000` as follows:
 
 ```
-GET http://localhost:8080/files/myfile.jpg
+GET http://localhost:8000/files/myfile.jpg
 ```
 
 Response:
@@ -687,13 +687,13 @@ When a block is stored in a `datanode` server, the block is persisted to the fil
 
 PUTting a block to `/files/{filename}/blocks/{block_number}/content` uploads it to the `datanode`. 
 
-For example, to upload the block `0` of a file named `myfile.jpg` in the `datanode` with address `localhost:8081`, the `client` must send a request with the block [attached as a file](https://api4.ai/blog/how-to-post-a-file-via-http-request) to `PUT http://localhost:8081/files/myfile.jpg/blocks/0/content`.
+For example, to upload the block `0` of a file named `myfile.jpg` in the `datanode` with address `localhost:8001`, the `client` must send a request with the block [attached as a file](https://api4.ai/blog/how-to-post-a-file-via-http-request) to `PUT http://localhost:8001/files/myfile.jpg/blocks/0/content`.
 
 #### GET /files/{filename}/blocks/{block_number}/content
 
 GETting a block from `/files/{filename}/blocks/{block_number}/content` downloads it from the `datanode`. 
 
-For example, to download the block `0` of a file named `myfile.jpg` from the `datanode` with address `localhost:8081`, the `client` must send a request to `GET http://localhost:8081/files/myfile.jpg/blocks/0/content`.
+For example, to download the block `0` of a file named `myfile.jpg` from the `datanode` with address `localhost:8001`, the `client` must send a request to `GET http://localhost:8001/files/myfile.jpg/blocks/0/content`.
 
 
 # Additional exercises
