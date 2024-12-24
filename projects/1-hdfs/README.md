@@ -181,6 +181,8 @@ When a new file is created, you must return the number of blocks and the datanod
 
 - [Read](https://python.land/data-processing/working-with-json#How_to_read_a_JSON_file_in_python) the [number of replicas, `datanodes` and block size from `config.json`](#namenode-filesystem).
 
+- Read the file size and file name from the request body. [Help](https://fastapi.tiangolo.com/tutorial/body/).
+
 - Compute the number of blocks and assign them to `datanodes` using the [modulo-based policy](#block-and-replica-placement)
 
 - [Write](https://python.land/data-processing/working-with-json#How_to_write_JSON_to_a_file_in_python) the [metadata of the new file to `files.json`](#namenode-filesystem) whenever a new file is created. 
