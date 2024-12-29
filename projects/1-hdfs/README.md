@@ -767,7 +767,7 @@ The simple block placement strategy we use (always start with the first `datanod
 Design a block (and replica) placement strategy that considers how many blocks each `datanode` already has, such that blocks are distributed uniformly. Explain and implement the improved placement strategy in `namenode`.
 
 
-### [AD0Q10] Extend the client to check for file integrity [1 mark]
+### [AD0Q10] Extend the client to check for file integrity
 
 Extend the `upload.py` client to also send the hash of the file. Then, store the file hash in the `files.json` and expose it in the `namenode` API. Finally, when the `download.py` client retrieves all the blocks and reconstructs the file, check that the hash matches the expected one. If the hash does not match (e.g. a block was corrupted), print an error.
 
