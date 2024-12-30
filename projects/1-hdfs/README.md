@@ -715,16 +715,12 @@ Use [pytest](https://docs.pytest.org/en/8.2.x/) to create one automated test tha
 Use [rocketry](https://rocketry.readthedocs.io/en/stable/cookbook/fastapi.html) to report the blocks that each `datanode` has every 30 seconds to the `namenode`:
 - Add an endpoint in the API of the `namenode` that allows removing a file.
 - Add an endpoint in the API of the `namenode` to receive the block reports.
-- The `namenode` must answer the request with any blocks which should be removed (if the file has been removed and is no longer in `files.json`) or added (if the block is in `files.json` but the datanode does not have it).
-- The `datanode` should then remove all blocks that have been indicated for removal by the `namenode`.
-- Also, the `datanode` should then copy all blocks that have been indicated for addition by the `namenode` from another datanode that has a replica.
+- The `datanode` should then copy all blocks that have been indicated for addition by the `namenode` from another datanode that has a replica.
 
 
-### [AD0Q3] Implement an asyncronous replication strategy
+### [AD0Q3] Implement write pipelines
 
-_Depends on: AD0Q2_
-
-Instead of having the client PUT each replica to each `datanode` one by one, PUT it only to the first replica. Then, when the `namenode` answers a block report with a missing block, each `namenode` can fetch it from the first replica.
+Instead of having the client PUT each replica to each `datanode` one by one, PUT it only to the first replica. Then, the `datanode` writes it to the next one in the pipeline.
 
 
 ### [AD0Q4] Analyzing parameters
@@ -774,14 +770,12 @@ Extend the `upload.py` client to also send the hash of the file. Then, store the
 
 ### [AD0Q11] Implement a mechanism for AuthN
 
-Describe the main problems regarding the (lack of) AuthN in SSHDFS. Implement a JWT-based mechanism that only allows clients with a valid token to create files, upload and download files.
+Implement a mechanism that only allows clients with a valid token to create files, upload and download files. This should be similar to the HDFS block token, but using JWTs instead.
 
 
 ### [AD0Q12] Implement a mechanism for AuthZ
 
-_Depends on: AD0Q11_
-
-Burn a role into the JWT payloads and only allow clients to download files that their role has access to. When uploading a file, the client can set the role needed to view that file.
+Extend the NN API to allow creating roles and creating files that only some roles can read. Then, enforce them when a client tries to read or write by extending AD0Q11.
 
 ### [AD0Q13] Implement deleting blocks
 
