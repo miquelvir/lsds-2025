@@ -29,7 +29,7 @@ If you get stuck and need help, come to the office hours:
 
 ### Configure VSCode
 
-- If you use Windows, [install the WSL extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl) and open VSCode in WSL to follow the next steps
+- If you use Windows, [install the WSL extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl) and open VSCode in WSL to follow the next steps. (Optional)
 - [Install the Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
 - [Install the Markdown Preview Mermaid Support extension](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid)
 - [Install the Markdown Alert extension](https://marketplace.visualstudio.com/items?itemName=yahyabatulu.vscode-markdown-alert)
