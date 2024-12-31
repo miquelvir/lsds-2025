@@ -587,7 +587,7 @@ curl -X POST {URL} -H 'Content-Type: application/json' -d '{
 
 # Additional exercises
 
-You can earn an additional 2 marks (over 10) on this project's grade by working on additional exercises. To earn the full +2, you need to complete 5 additional exercises. 
+You can earn an additional 2 marks (over 10) on this project's grade by working on additional exercises. To earn the full +2, you need to complete 4 additional exercises. 
 
 ### [AD2Q0] Improve the `alarms` service rule matching algorithm
 
