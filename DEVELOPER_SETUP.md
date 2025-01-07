@@ -97,7 +97,7 @@ If you get stuck and need help, come to the office hours:
 
 ## Download the sample dataset
 
-- Download the file `Eurovision3.json` and `Eurovision9.json` from AulaGlobal and save them inside [projects/2-sparkrdd/data](./projects/2-sparkrdd/data/).
+- Download the file `Eurovision3.json` and `Eurovision9.json` from AulaGlobal and save them inside [projects/2-sparkrdd/data](./projects/2-sparkrdd/data/). Add them to the `.gitignore` to avoid committing these large files.
 
 ## Making sure Python and Docker work
 
