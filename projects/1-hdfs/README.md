@@ -107,7 +107,7 @@ Inside the folder [projects\1-hdfs\testserver1](./testserver1/), follow the [Fas
 
 **[1 mark] Paste a screenshot where you do a GET request to your service using the browser. Open `http://127.0.0.1:8000/items/512?q=lsds25`.**.
 
-**[1 mark] Paste a screenshot where you do the same GET request to your service but using `curl` in the terminal. Run `curl -X GET http://127.0.0.1:8000/items/835?q=lsds25`.**
+**[1 mark] Paste a screenshot where you do the same GET request to your service but using `curl` in the terminal. Run `curl -X GET "http://127.0.0.1:8000/items/835?q=lsds25"`.**
 
 **[2 marks] Implement a new endpoint of your API: `POST /sum`.** 
 
@@ -132,7 +132,7 @@ Response:
 }
 ```
 
-**[1 mark] Paste a screenshot where you test the POST request to your service using `curl`. Run `curl -X POST http://127.0.0.1:8000/sum -H "Content-Type: application/json" -d '{"x":23, "y": 32}'` in the terminal**
+**[1 mark] Paste a screenshot where you test the POST request to your service using `curl`. Run `curl -X POST "http://127.0.0.1:8000/sum" -H "Content-Type: application/json" -d '{"x":23, "y": 32}'` in the terminal**
 
 ---
 
