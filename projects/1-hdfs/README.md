@@ -756,11 +756,11 @@ Modify the Docker compose file to [use volumes for the `files.json` file](https:
 
 Update `config.json` with an `id` field for each `datanode`. The id must be a [uuid4](https://www.uuidgenerator.net/). Then, in `files.json`, store only the id of the `datanode` for each replica, instead of repeating the `host` and `port` over and over. Finally, adapt the `namenode` implementation so the API continues to work without changes.
 
-### [AD0Q9] Design and implement a smarter block and replica placement strategy
+### [AD0Q9] Implement a smarter block replica placement strategy
 
 The simple block placement strategy we use (always start with the first `datanode` and assign using modulo) can lead to unbalanced `datanodes`.
 
-Design a block (and replica) placement strategy that considers how many blocks each `datanode` already has, such that blocks are distributed uniformly. Explain and implement the improved placement strategy in `namenode`.
+Allow configuring a rack id in `config.json`. Implement a replica placement strategy that considers the rack like HDFS.
 
 
 ### [AD0Q10] Extend the client to check for file integrity
