@@ -5,8 +5,8 @@ The goal of this lab is to use Spark RDDs to analyze a large volume of Tweets in
 # Table of contents
 
 - [Required exercises](#required-exercises)
-    - [Lab 3: Downloading Tweets from S3 and parsing them from JSON](#lab-3-downloading-tweets-from-s3-and-parsing-them-from-json)
     - [Seminar 3: Using Spark RDDs](#seminar-3-using-spark-rdds)
+    - [Lab 3: Downloading Tweets and parsing them from JSON](#lab-3-downloading-tweets-from-s3-and-parsing-them-from-json)
     - [Lab 4: Analyzing Tweets with Spark](#lab-4-analyzing-tweets-with-spark)
     - [Seminar 4: Running Spark in AWS](#seminar-4-running-spark-in-aws)
 - [Additional exercises](#additional-exercises)
@@ -14,38 +14,6 @@ The goal of this lab is to use Spark RDDs to analyze a large volume of Tweets in
 # Required exercises
 
 Remember you must format your code with black and follow PEP8 conventions.
-
-## Lab 3: Parsing Tweets as JSON
-
-### [L3Q0] [5 marks] The tweets dataset
-
-- Follow the Developer Setup to download the needed data if you did not at the beginning of the course.
-- Take a look at the first Tweet: `cat Eurovision3.json -n | head -n 1 | jq`. [Help](https://unix.stackexchange.com/questions/288521/with-the-linux-cat-command-how-do-i-show-only-certain-lines-by-number#:~:text=cat%20%2Fvar%2Flog%2Fsyslog%20-n%20%7C%20head%20-n%2050%20%7C,-b10%20-a10%20will%20show%20lines%2040%20thru%2060.)
-- **[1 mark]** What field in the JSON object of a Tweet contains the user bio?
-- **[1 mark]** What field in the JSON object of a Tweet contains the language?
-- **[1 mark]** What field in the JSON object of a Tweet contains the text content?
-- **[1 mark]** What field in the JSON object of a Tweet contains the number of followers?
-- Take a look at the first two lines: `cat Eurovision3.json -n | head -n 2`.
-- **[1 mark]** How many Tweets does each line contain?
-
-### [L3Q1] [5 marks] Parsing JSON with Python
-
-- Create a file `tweet_parser.py`
-- Create a `Tweet` dataclass with fields for the `tweet_id` (int), `text` (str), `user_id` (int), `user_name` (str), `language` (str), `timestamp_ms` (int) and `retweet_count` (int). [Help](https://realpython.com/python-data-classes/)
-- Create a function `parse_tweet(tweet: str) -> Tweet` that takes in a Tweet as a Json string and returns a Tweet object. [Help](https://stackoverflow.com/a/7771071)
-- Read the first line of `Eurovision3.json` and print the result of `parse_tweet`. [Help](https://stackoverflow.com/questions/1904394/read-only-the-first-line-of-a-file)
-- Take a screenshot and add it to the README.
-- Push your changes.
-
-### [L3Q2] [5 marks] Counting Tweets by language
-
-- Create a file `simple_tweet_language_counter.py`
-- Implement a script that reads each line of `Eurovision3.json` one by one. [Help](https://stackoverflow.com/a/3277512)
-    - You might need to skip any invalid lines, such as empty lines with only a `\n` or Tweets with an invalid JSON format.
-- Parse each Tweet using the `parse_tweet` function from the previous exercise.
-- Count the number of Tweets of each language using a dictionary. [Help](https://www.w3schools.com/python/python_dictionaries.asp)
-- Print the dictionary. Take a screenshot and add it to the README.
-- Push your changes.
 
 ## Seminar 3: Using Spark RDDs
 
@@ -94,6 +62,38 @@ The file [cat.txt](./data/cat.txt) has many lines, each with a sentence.
 - Create a file `spark_count_bigrams.py`
 - Implement and run a Spark job that counts how many people live in each city.
 - Write the command you used to run it in the README and show a screenshot of the result.
+
+## Lab 3: Parsing Tweets as JSON
+
+### [L3Q0] [5 marks] The tweets dataset
+
+- Follow the Developer Setup to download the needed data if you did not at the beginning of the course.
+- Take a look at the first Tweet: `cat Eurovision3.json -n | head -n 1 | jq`. [Help](https://unix.stackexchange.com/questions/288521/with-the-linux-cat-command-how-do-i-show-only-certain-lines-by-number#:~:text=cat%20%2Fvar%2Flog%2Fsyslog%20-n%20%7C%20head%20-n%2050%20%7C,-b10%20-a10%20will%20show%20lines%2040%20thru%2060.)
+- **[1 mark]** What field in the JSON object of a Tweet contains the user bio?
+- **[1 mark]** What field in the JSON object of a Tweet contains the language?
+- **[1 mark]** What field in the JSON object of a Tweet contains the text content?
+- **[1 mark]** What field in the JSON object of a Tweet contains the number of followers?
+- Take a look at the first two lines: `cat Eurovision3.json -n | head -n 2`.
+- **[1 mark]** How many Tweets does each line contain?
+
+### [L3Q1] [5 marks] Parsing JSON with Python
+
+- Create a file `tweet_parser.py`
+- Create a `Tweet` dataclass with fields for the `tweet_id` (int), `text` (str), `user_id` (int), `user_name` (str), `language` (str), `timestamp_ms` (int) and `retweet_count` (int). [Help](https://realpython.com/python-data-classes/)
+- Create a function `parse_tweet(tweet: str) -> Tweet` that takes in a Tweet as a Json string and returns a Tweet object. [Help](https://stackoverflow.com/a/7771071)
+- Read the first line of `Eurovision3.json` and print the result of `parse_tweet`. [Help](https://stackoverflow.com/questions/1904394/read-only-the-first-line-of-a-file)
+- Take a screenshot and add it to the README.
+- Push your changes.
+
+### [L3Q2] [5 marks] Counting Tweets by language
+
+- Create a file `simple_tweet_language_counter.py`
+- Implement a script that reads each line of `Eurovision3.json` one by one. [Help](https://stackoverflow.com/a/3277512)
+    - You might need to skip any invalid lines, such as empty lines with only a `\n` or Tweets with an invalid JSON format.
+- Parse each Tweet using the `parse_tweet` function from the previous exercise.
+- Count the number of Tweets of each language using a dictionary. [Help](https://www.w3schools.com/python/python_dictionaries.asp)
+- Print the dictionary. Take a screenshot and add it to the README.
+- Push your changes.
 
 ## Lab 4: Analyzing Tweets with Spark
 
