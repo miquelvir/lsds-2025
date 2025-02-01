@@ -299,6 +299,3 @@ Some tips:
 - Use set intersections to find the document ids that contain all the query words.
 - Read the files from the file system repository you created in AD1Q1 to find the abstract, uri and title for any given id. 
 
-### [AD1Q4] Use AWS to compute the inverted index for the first 10k, 100k and 1M articles
-
-Use AWS to compute the inverted index for the much larger datasets.
