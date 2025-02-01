@@ -83,7 +83,6 @@ The file [cat.txt](./data/cat.txt) has many lines, each with a sentence.
 - Create a function `parse_tweet(tweet: str) -> Tweet` that takes in a Tweet as a Json string and returns a Tweet object. [Help](https://stackoverflow.com/a/7771071)
 - Read the first line of `Eurovision3.json` and print the result of `parse_tweet`. [Help](https://stackoverflow.com/questions/1904394/read-only-the-first-line-of-a-file)
 - Take a screenshot and add it to the README.
-- Push your changes.
 
 ### [L3Q2] [5 marks] Counting Tweets by language
 
@@ -93,7 +92,6 @@ The file [cat.txt](./data/cat.txt) has many lines, each with a sentence.
 - Parse each Tweet using the `parse_tweet` function from the previous exercise.
 - Count the number of Tweets of each language using a dictionary. [Help](https://www.w3schools.com/python/python_dictionaries.asp)
 - Print the dictionary. Take a screenshot and add it to the README.
-- Push your changes.
 
 ## Lab 4: Analyzing Tweets with Spark
 
