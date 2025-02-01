@@ -60,7 +60,7 @@ The file [people.txt](./data/people.txt) has many lines, each with `{NAME} {LANG
 The file [cat.txt](./data/cat.txt) has many lines, each with a sentence.
 
 - Create a file `spark_count_bigrams.py`
-- Implement and run a Spark job that counts how many people live in each city.
+- Implement and run a Spark job that counts how many tines each bigram appears.
 - Write the command you used to run it in the README and show a screenshot of the result.
 
 ## Lab 3: Parsing Tweets as JSON
