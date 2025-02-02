@@ -15,6 +15,9 @@ The goal of this lab is to use Spark RDDs to analyze a large volume of Tweets in
 
 Remember you must format your code with black and follow PEP8 conventions.
 
+> [!TIP]
+> When contributing to bigger software projects professionally, following conventions and using formatters like Black allows all contributors to produce more cohesive code.
+
 ## Seminar 3: Using Spark RDDs
 
 > Before starting this section, read [RDD Programming Guide](https://spark.apache.org/docs/latest/rdd-programming-guide.html) and [Resilient Distributed Datasets](https://www.usenix.org/system/files/conference/nsdi12/nsdi12-final138.pdf)
