@@ -26,6 +26,9 @@ We will call this system Super Simple Realtime Monitoring System (SSRMS). You ca
 
 Remember you must format your code with black and follow PEP8 conventions.
 
+> [!TIP]
+> When contributing to bigger software projects professionally, following conventions and using formatters like Black allows all contributors to produce more cohesive code.
+
 ## Seminar 5: Producing metrics to Kafka
 
 During this seminar session, you must create scripts that simulate the devices publishing metrics to Kafka.
