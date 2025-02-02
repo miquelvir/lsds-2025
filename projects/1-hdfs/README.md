@@ -21,6 +21,9 @@ The goal of this lab is to build a distributed file storage system that allows t
 
 Remember you must format your code with black and follow PEP8 conventions.
 
+> [!TIP]
+> When contributing to bigger software projects professionally, following conventions and using formatters like Black allows all contributors to produce more cohesive code.
+
 ## Seminar 1: Introduction to HDFS, services and APIs
 
 ### [S1Q0] [5 marks] Answer the following questions about distributed systems.
