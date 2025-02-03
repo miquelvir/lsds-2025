@@ -353,11 +353,11 @@ Deploy the full system with Docker: `docker compose up --build`
 
 Create different rules with the rules API and start producing metrics with the [emulated sources](./sources/). 
 
-**[3 mark] Paste screenshots of how you receive the alarms in Discord.**
+Paste screenshots of how you receive the alarms in Discord.
 
-**[1 mark] How are `metrics` distributed between alarm containers?**
+**How are `metrics` distributed between alarm containers?**
 
-**[1 mark] What happens if you suddenly stop one of alarm service instances?**
+**What happens if you suddenly stop one of alarm service instances?**
 
 
 
