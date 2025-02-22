@@ -217,8 +217,6 @@ You can earn an additional 2 marks (over 10) on this project's grade by working 
 
 During these exercises, you will build a (super simple) search engine, like a barebones Google.
 
-### [AD1Q0] Crawling
-
 Find the latest available Wikipedia datasets from [dumps.wikimedia](https://dumps.wikimedia.org/other/enterprise_html/runs/). For example, `https://dumps.wikimedia.org/other/enterprise_html/runs/20240901/enwiki-NS0-20240901-ENTERPRISE-HTML.json.tar.gz`.
 
 Then, download the first 10, 100, 1k, 10k and 100k articles in different files. The smaller datasets will be useful for testing (replace `$1` with how many articles you want to download).
@@ -302,3 +300,6 @@ Some tips:
 - Use set intersections to find the document ids that contain all the query words.
 - Read the files from the file system repository you created in AD1Q1 to find the abstract, uri and title for any given id. 
 
+### [AD1Q4] Use AWS to compute the inverted index for the first 10k, 100k and 1M articles
+
+Use AWS to compute the inverted index for the much larger datasets.
